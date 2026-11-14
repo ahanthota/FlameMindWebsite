@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>FlameMind — Fire safety insights for living beyond Earth | Team Spherical Flame</title>
+  <meta name="description" content="FlameMind by Team Spherical Flame: Fire safety insights for living beyond Earth. Built for the NASA Space Apps Flame in Freefall challenge.">
+  <style>
+    @property --animation-reduced {
+      syntax: "*";
+      inherits: false;
+      initial-value: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      /* Official USA Flag (Old Glory) Inspired Palette */
+      --usa-navy-deep: #04122c;
+      --usa-old-glory-blue: #0a3161;
+      --usa-blue-accent: #1d4ed8;
+      --usa-blue-sky: #60a5fa;
+      --usa-old-glory-red: #b31942;
+      --usa-red-bright: #e11d48;
+      --usa-white: #ffffff;
+      --usa-star-silver: #e2e8f0;
+      --usa-muted: #cbd5e1;
+      --surface-navy: #071c3d;
+      --surface-elevated: #0d2857;
+      --border-blue: #1e4280;
+      --border-white-subtle: rgba(255, 255, 255, 0.24);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", "Public Sans", "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, sans-serif;
+      background-color: var(--usa-navy-deep);
+      color: var(--usa-white);
+      line-height: 1.6;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Red-White-Blue top tricolor bar */
+    body::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--usa-old-glory-blue) 0%,
+        var(--usa-old-glory-blue) 33.3%,
+        var(--usa-white) 33.3%,
+        var(--usa-white) 66.6%,
+        var(--usa-red-bright) 66.6%,
+        var(--usa-red-bright) 100%
+      );
+      position: relative;
+      z-index: 40;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 78rem;
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 3rem);
+    }
+
+    /* Keyframe Animations (Compositor-friendly transform & opacity) */
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes orbit-cw {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orbit-ccw {
+      from {
+        transform: rotate(360deg);
+      }
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes pulse-beacon {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.45);
+        opacity: 0.45;
+      }
+    }
+
+    @keyframes flame-breathe {
+      0%, 100% {
+        transform: scale(0.96);
+        opacity: 0.92;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scan-sweep {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      40% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      background: var(--usa-red-bright);
+      color: var(--usa-white);
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      z-index: 100;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transform: translateY(-150%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* Header in Deep Old Glory Blue */
+    header {
+      background-color: rgba(4, 18, 44, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--usa-old-glory-red);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      min-height: 4.75rem;
+      padding-block: 0.75rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.875rem;
+      color: var(--usa-white);
+      text-decoration: none;
+    }
+
+    .insignia {
+      width: 2.85rem;
+      height: 2.85rem;
+      flex-shrink: 0;
+    }
+
+    .insignia-orbit {
+      transform-origin: 32px 32px;
+      animation: orbit-cw 24s linear infinite;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--usa-white);
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--usa-star-silver);
+      margin-top: 0.15rem;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .mission-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--usa-white);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .live-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background-color: var(--usa-red-bright);
+      border: 1px solid var(--usa-white);
+      display: inline-block;
+      animation: pulse-beacon 2.2s ease-in-out infinite;
+    }
+
+    .header-repo-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--usa-white);
+      background-color: var(--usa-old-glory-blue);
+      text-decoration: none;
+      padding: 0.5rem 0.95rem;
+      border: 1.5px solid var(--usa-white);
+      border-radius: 0.25rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .header-repo-link:hover,
+    .header-repo-link:focus-visible {
+      background-color: var(--usa-old-glory-red);
+      border-color: var(--usa-white);
+      transform: translateY(-1px);
+    }
+
+    /* Animated Red-White-Blue Deep-Space Hero Banner */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      position: relative;
+      background-color: var(--usa-navy-deep);
+      background-image:
+        radial-gradient(circle at 75% 42%, rgba(29, 78, 216, 0.42) 0%, rgba(10, 49, 97, 0.28) 38%, transparent 70%),
+        radial-gradient(circle at 20% 20%, rgba(179, 25, 66, 0.22) 0%, transparent 45%),
+        linear-gradient(180deg, #04122c 0%, #0a3161 55%, #061838 100%);
+      border-bottom: 2px solid var(--usa-white);
+      padding-block: clamp(3rem, 7vw, 5.75rem);
+      overflow: hidden;
+    }
+
+    #space-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content-layer {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2.25rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    @media (min-width: 56rem) {
+      .hero-grid {
+        grid-template-columns: 1.25fr 0.95fr;
+      }
+    }
+
+    .hero-copy > * {
+      animation: fade-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-copy > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-copy > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-copy > *:nth-child(4) { animation-delay: 0.35s; }
+    .hero-copy > *:nth-child(5) { animation-delay: 0.45s; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--usa-white);
+      margin-bottom: 1.25rem;
+      padding: 0.45rem 0.9rem;
+      background-color: rgba(10, 49, 97, 0.78);
+      border-left: 4px solid var(--usa-red-bright);
+      border-top: 1px solid var(--border-white-subtle);
+      border-right: 1px solid var(--border-white-subtle);
+      border-bottom: 1px solid var(--border-white-subtle);
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      font-size: clamp(2.85rem, 1.9rem + 5vw, 4.85rem);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--usa-white);
+      margin-bottom: 0.9rem;
+    }
+
+    .tagline {
+      font-size: clamp(1.35rem, 1.05rem + 1.4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--usa-star-silver);
+      border-left: 4px solid var(--usa-red-bright);
+      padding-left: 0.85rem;
+      margin-bottom: 1.35rem;
+      max-width: 38ch;
+    }
+
+    .lead-copy {
+      font-size: clamp(1.02rem, 0.95rem + 0.3vw, 1.15rem);
+      color: var(--usa-star-silver);
+      max-width: 58ch;
+      margin-bottom: 2.25rem;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* USA Flag Colored Primary CTA Button */
+    .nasa-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--usa-white);
+      text-decoration: none;
+      background-color: var(--usa-old-glory-blue);
+      border: 2px solid var(--usa-white);
+      padding: 0.65rem 1.2rem 0.65rem 1.35rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nasa-cta:hover,
+    .nasa-cta:focus-visible {
+      background-color: var(--usa-blue-accent);
+      transform: translateY(-2px);
+    }
+
+    .nasa-cta:focus-visible,
+    .header-repo-link:focus-visible,
+    .sim-btn:focus-visible,
+    .motion-toggle:focus-visible,
+    .media-source-link:focus-visible,
+    footer a:focus-visible {
+      outline: 3px solid var(--usa-white);
+      outline-offset: 3px;
+    }
+
+    .nasa-cta-circle {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      background-color: var(--usa-red-bright);
+      border: 1.5px solid var(--usa-white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nasa-cta:hover .nasa-cta-circle {
+      background-color: var(--usa-old-glory-red);
+      transform: translateX(3px) scale(1.06);
+    }
+
+    .nasa-cta-circle svg {
+      width: 1.05rem;
+      height: 1.05rem;
+      fill: var(--usa-white);
+    }
+
+    /* Motion Pause/Play Control */
+    .motion-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: rgba(7, 28, 61, 0.9);
+      color: var(--usa-white);
+      border: 1.5px solid var(--border-white-subtle);
+      border-radius: 9999px;
+      padding: 0.55rem 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .motion-toggle:hover {
+      background-color: var(--usa-old-glory-red);
+      border-color: var(--usa-white);
+    }
+
+    .motion-toggle svg {
+      width: 0.85rem;
+      height: 0.85rem;
+      fill: currentColor;
+    }
+
+    /* Interactive Animated Spherical Microgravity Flame Module */
+    .orbital-graphic-card {
+      position: relative;
+      background-color: rgba(7, 28, 61, 0.86);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid var(--usa-white);
+      border-top: 4px solid var(--usa-red-bright);
+      border-radius: 0.35rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+    }
+
+    .scanline {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+      pointer-events: none;
+      animation: scan-sweep 6s linear infinite;
+    }
+
+    .hud-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--usa-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .spherical-flame-svg {
+      width: 100%;
+      max-width: 15.5rem;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin-block: 0.25rem 0.75rem;
+    }
+
+    .ring-cw {
+      transform-origin: 120px 120px;
+      animation: orbit-cw 28s linear infinite;
+    }
+
+    .ring-ccw {
+      transform-origin: 120px 120px;
+      animation: orbit-ccw 18s linear infinite;
+    }
+
+    .flame-core-group {
+      transform-origin: 120px 120px;
+      animation: flame-breathe 4.2s ease-in-out infinite;
+      transition: transform 0.5s ease;
+    }
+
+    /* 1G Earth Teardrop Mode Override */
+    .orbital-graphic-card[data-gravity="1g"] .flame-sphere-outer {
+      transform: scaleX(0.72) scaleY(1.32) translateY(-16px);
+    }
+
+    .orbital-graphic-card[data-gravity="1g"] .flame-sphere-inner {
+      transform: scaleX(0.68) scaleY(1.25) translateY(-12px);
+    }
+
+    .flame-sphere-outer,
+    .flame-sphere-inner {
+      transform-origin: 120px 120px;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sim-controls {
+      display: inline-flex;
+      background-color: var(--usa-navy-deep);
+      border: 1px solid var(--usa-white);
+      border-radius: 0.25rem;
+      padding: 0.2rem;
+      gap: 0.25rem;
+      margin-bottom: 0.85rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sim-btn {
+      background: transparent;
+      color: var(--usa-muted);
+      border: none;
+      padding: 0.35rem 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 0.15rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .sim-btn[aria-pressed="true"] {
+      background-color: var(--usa-red-bright);
+      color: var(--usa-white);
+    }
+
+    .graphic-caption {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--usa-white);
+    }
+
+    /* Telemetry Strip */
+    .telemetry-bar {
+      background-color: var(--surface-navy);
+      border-bottom: 2px solid var(--usa-old-glory-red);
+      padding-block: 1.35rem;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+      gap: 1.25rem;
+    }
+
+    .telemetry-item {
+      border-left: 3px solid var(--usa-white);
+      padding-left: 0.9rem;
+    }
+
+    .telemetry-item.highlight {
+      border-left-color: var(--usa-red-bright);
+    }
+
+    .telemetry-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--usa-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .telemetry-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--usa-white);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Editorial Problem Statement Section */
+    .editorial-section {
+      background-color: var(--usa-navy-deep);
+      background-image:
+        radial-gradient(circle at 15% 80%, rgba(179, 25, 66, 0.2), transparent 50%),
+        radial-gradient(circle at 85% 20%, rgba(10, 49, 97, 0.35), transparent 55%);
+      padding-block: clamp(2.75rem, 5vw, 4.25rem);
+    }
+
+    .section-overline {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--usa-red-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--usa-white);
+      margin-bottom: 1.75rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .nasa-card {
+      background-color: var(--surface-navy);
+      border: 1px solid var(--border-white-subtle);
+      border-top: 4px solid var(--usa-white);
+      border-radius: 0.25rem;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .nasa-card:hover {
+      transform: translateY(-4px);
+      background-color: var(--surface-elevated);
+      border-color: var(--usa-white);
+    }
+
+    .nasa-card.accent-red {
+      border-top-color: var(--usa-red-bright);
+    }
+
+    .card-kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--usa-star-silver);
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--usa-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .nasa-card p {
+      color: var(--usa-star-silver);
+      font-size: 0.98rem;
+    }
+
+    /* NASA Multimedia Section (Official Video & Photography from NASA.gov / images.nasa.gov) */
+    .media-section {
+      background-color: var(--surface-navy);
+      border-top: 1px solid var(--border-white-subtle);
+      padding-block: clamp(2.75rem, 5vw, 4.5rem);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .media-figure {
+      background-color: var(--usa-navy-deep);
+      border: 1.5px solid var(--border-white-subtle);
+      border-top: 4px solid var(--usa-red-bright);
+      border-radius: 0.3rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .media-figure.accent-blue {
+      border-top-color: var(--usa-white);
+    }
+
+    .media-figure:hover {
+      border-color: var(--usa-white);
+      transform: translateY(-3px);
+    }
+
+    .media-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #000000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-frame video,
+    .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-caption {
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .media-caption-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--usa-white);
+    }
+
+    .media-caption p {
+      font-size: 0.92rem;
+      color: var(--usa-star-silver);
+    }
+
+    .media-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-white-subtle);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.72rem;
+      color: var(--usa-muted);
+    }
+
+    .media-source-link {
+      color: var(--usa-white);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    .media-source-link:hover {
+      color: var(--usa-red-bright);
+    }
+
+    /* Scroll-driven entry animation where supported */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports ((animation-timeline: view()) and (animation-range: entry)) {
+        .nasa-card,
+        .media-figure {
+          animation: fade-up auto linear backwards;
+          animation-timeline: view();
+          animation-range: entry 5% cover 25%;
+        }
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--usa-old-glory-blue);
+      border-top: 3px solid var(--usa-white);
+      padding-block: 2rem;
+      font-size: 0.875rem;
+      color: var(--usa-star-silver);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    footer a {
+      color: var(--usa-white);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    footer a:hover {
+      color: var(--usa-red-bright);
+    }
+
+    /* Pause state & Reduced Motion accessibility */
+    body.motion-paused *,
+    body.motion-paused *::before,
+    body.motion-paused *::after {
+      animation-play-state: paused !important;
+      transition: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: var(--animation-reduced) !important;
+        transition: none !important;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .kicker,
+      .orbital-graphic-card,
+      .nasa-card,
+      .media-figure,
+      .nasa-cta,
+      .header-repo-link,
+      .motion-toggle,
+      .sim-controls {
+        border: 1px solid ButtonText;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- USA Red, White & Blue Spherical Flame Emblem -->
+        <svg class="insignia" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" fill="#0a3161" stroke="#ffffff" stroke-width="2.2"/>
+          <g class="insignia-orbit">
+            <ellipse cx="32" cy="32" rx="25" ry="9" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3 2" transform="rotate(-24 32 32)"/>
+            <circle cx="54" cy="22" r="2.4" fill="#ffffff"/>
+          </g>
+          <circle cx="32" cy="32" r="12" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="32" cy="32" r="6" fill="#e11d48"/>
+          <circle cx="32" cy="32" r="2.5" fill="#ffffff"/>
+          <path d="M10 42 L32 14 L54 42 L32 33 Z" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">FlameMind</span>
+          <span class="brand-sub">Team Spherical Flame</span>
+        </div>
+      </div>
+
+      <nav class="header-nav" aria-label="Primary">
+        <span class="mission-tag">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Space Apps Challenge</span>
+        </span>
+        <a class="header-repo-link" href="https://github.com/kamalakarthota/FlameMind" rel="noopener noreferrer">GitHub Repo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- Live Red, White & Blue Deep-Space & Microgravity Diffusion Canvas -->
+      <canvas id="space-canvas" aria-hidden="true"></canvas>
+
+      <div class="container hero-content-layer">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="kicker">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Coming soon: built for the NASA Space Apps Flame in Freefall challenge</span>
+            </div>
+
+            <h1 id="hero-title">FlameMind</h1>
+            <p class="tagline">Fire safety insights for living beyond Earth</p>
+            <p class="lead-copy">
+              Developed by <strong>Team Spherical Flame</strong>, FlameMind models and visualizes microgravity combustion behavior—turning orbital fire physics into actionable crew safety intelligence for space stations, lunar habitats, and deep-space transit.
+            </p>
+
+            <div class="cta-group">
+              <a class="nasa-cta" href="https://github.com/kamalakarthota/FlameMind" rel="noopener noreferrer">
+                <span>Explore GitHub Repository</span>
+                <span class="nasa-cta-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 12h11.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L16.17 13H5v-2z"/>
+                  </svg>
+                </span>
+              </a>
+
+              <button type="button" class="motion-toggle" id="motion-toggle-btn" aria-pressed="false">
+                <svg id="motion-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <span id="motion-label">Pause Motion</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="orbital-graphic-card" id="flame-visualizer" data-gravity="0g" aria-label="Interactive microgravity spherical flame simulator">
+            <div class="scanline" aria-hidden="true"></div>
+            <div class="hud-header">
+              <span>Combustion Chamber HUD</span>
+              <span id="hud-mode-readout">MODE // 0.00 G</span>
+            </div>
+
+            <svg class="spherical-flame-svg" viewBox="0 0 240 240" aria-hidden="true">
+              <defs>
+                <radialGradient id="flameGlowOuter" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98"/>
+                  <stop offset="28%" stop-color="#e11d48" stop-opacity="0.88"/>
+                  <stop offset="62%" stop-color="#1d4ed8" stop-opacity="0.82"/>
+                  <stop offset="86%" stop-color="#0a3161" stop-opacity="0.38"/>
+                  <stop offset="100%" stop-color="#04122c" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="flameCoreInner" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="55%" stop-color="#ffe4e6"/>
+                  <stop offset="100%" stop-color="#e11d48" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Counter-rotating orbital telemetry rings in USA White, Blue & Red -->
+              <g class="ring-cw">
+                <circle cx="120" cy="120" r="105" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.4"/>
+                <circle cx="120" cy="120" r="96" fill="none" stroke="#ffffff" stroke-width="1.3" stroke-dasharray="8 6 2 6" stroke-opacity="0.75"/>
+                <circle cx="120" cy="15" r="3" fill="#ffffff"/>
+                <circle cx="120" cy="225" r="3" fill="#ffffff"/>
+              </g>
+
+              <g class="ring-ccw">
+                <circle cx="120" cy="120" r="78" fill="none" stroke="#e11d48" stroke-width="1.2" stroke-dasharray="4 5" stroke-opacity="0.85"/>
+                <circle cx="198" cy="120" r="3" fill="#e11d48"/>
+                <circle cx="42" cy="120" r="3" fill="#e11d48"/>
+              </g>
+
+              <!-- Breathing Flame Front (Morphs between 0G Sphere and 1G Teardrop) -->
+              <g class="flame-core-group">
+                <g class="flame-sphere-outer">
+                  <circle cx="120" cy="120" r="66" fill="url(#flameGlowOuter)"/>
+                  <circle cx="120" cy="120" r="48" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.9"/>
+                </g>
+                <g class="flame-sphere-inner">
+                  <circle cx="120" cy="120" r="24" fill="url(#flameCoreInner)"/>
+                </g>
+              </g>
+
+              <!-- Crosshair Reticle -->
+              <line x1="12" y1="120" x2="36" y2="120" stroke="#e11d48" stroke-width="2.2"/>
+              <line x1="204" y1="120" x2="228" y2="120" stroke="#e11d48" stroke-width="2.2"/>
+              <line x1="120" y1="12" x2="120" y2="36" stroke="#e11d48" stroke-width="2.2"/>
+              <line x1="120" y1="204" x2="120" y2="228" stroke="#e11d48" stroke-width="2.2"/>
+            </svg>
+
+            <div class="sim-controls" role="group" aria-label="Gravity regime selector">
+              <button type="button" class="sim-btn" id="btn-0g" aria-pressed="true">0G Microgravity</button>
+              <button type="button" class="sim-btn" id="btn-1g" aria-pressed="false">1G Earth Buoyancy</button>
+            </div>
+
+            <p class="graphic-caption" id="sim-caption">0G Diffusion Regime // Soot-Free Spherical Flamefront</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="telemetry-bar" aria-label="Mission telemetry">
+      <div class="container telemetry-grid">
+        <div class="telemetry-item highlight">
+          <div class="telemetry-label">Mission Status</div>
+          <div class="telemetry-value">Coming Soon &mdash; Active Development</div>
+        </div>
+        <div class="telemetry-item">
+          <div class="telemetry-label">Challenge</div>
+          <div class="telemetry-value">NASA Space Apps: Flame in Freefall</div>
+        </div>
+        <div class="telemetry-item">
+          <div class="telemetry-label">Mission Team</div>
+          <div class="telemetry-value">Team Spherical Flame</div>
+        </div>
+        <div class="telemetry-item">
+          <div class="telemetry-label">Live Telemetry // O&#8322; Flux</div>
+          <div class="telemetry-value" id="telemetry-flux">Diffusive &middot; R&#8342; = 6.42 mm</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial-section" aria-labelledby="problem-heading">
+      <div class="container">
+        <p class="section-overline">Mission Brief</p>
+        <h2 id="problem-heading">The Problem: Fire in Freefall</h2>
+
+        <div class="cards-grid">
+          <article class="nasa-card">
+            <p class="card-kicker">01 // Physics of Microgravity</p>
+            <h3>When Buoyancy Disappears</h3>
+            <p>
+              On Earth, gravity-driven convection pulls cool oxygen in at the base of a fire and drives hot combustion gases upward into a flickering teardrop. In microgravity, hot gases no longer rise—flames form quiet, expanding spheres governed by slow molecular diffusion and subtle cabin ventilation currents.
+            </p>
+          </article>
+
+          <article class="nasa-card accent-red">
+            <p class="card-kicker">02 // Spacecraft Crew Safety</p>
+            <h3>Rethinking Detection &amp; Suppression</h3>
+            <p>
+              Because microgravity flames burn at lower temperatures, produce far less visible soot, and drift along cabin airflow paths rather than rising toward ceiling sensors, Earth-calibrated smoke detectors and suppression protocols can miss critical early signatures. <strong>FlameMind</strong> equips researchers and mission planners with clear insights to safeguard crews living beyond Earth.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Official NASA Microgravity Combustion Video & Imagery Section -->
+    <section class="media-section" aria-labelledby="media-heading">
+      <div class="container">
+        <p class="section-overline">NASA Multimedia Archive</p>
+        <h2 id="media-heading">Microgravity Combustion Aboard the Space Station</h2>
+
+        <div class="media-grid">
+          <!-- Official NASA Video: SoFIE-GEL Microgravity Flame Experiment -->
+          <figure class="media-figure">
+            <div class="media-frame">
+              <video
+                id="nasa-sofie-video"
+                controls
+                preload="metadata"
+                width="640"
+                height="360"
+                poster="https://images-assets.nasa.gov/video/SoFIE-GEL/SoFIE-GEL~thumb.jpg"
+              >
+                <source src="https://images-assets.nasa.gov/video/SoFIE-GEL/SoFIE-GEL~small.mp4" type="video/mp4">
+                <track
+                  kind="captions"
+                  srclang="en"
+                  label="English"
+                  default
+                  src="data:text/vtt;charset=utf-8,WEBVTT%0A%0A00:00:00.000%20--%3E%2000:00:30.000%0ANASA%20Solid%20Fuel%20Ignition%20and%20Extinction%20(SoFIE-GEL)%20spherical%20flame%20growth%20in%20microgravity%20aboard%20the%20International%20Space%20Station."
+                >
+              </video>
+            </div>
+            <figcaption class="media-caption">
+              <span class="card-kicker">NASA Video // SoFIE-GEL</span>
+              <span class="media-caption-title">Spherical Flame Growth in Microgravity</span>
+              <p>
+                Footage from NASA's <strong>Solid Fuel Ignition and Extinction &ndash; Growth and Extinction Limit (SoFIE-GEL)</strong> investigation inside the ISS Combustion Integrated Rack, showing a luminous blue spherical flame envelope propagating without buoyancy.
+              </p>
+              <div class="media-meta">
+                <span>Credit: <cite>NASA Glenn Research Center</cite></span>
+                <a class="media-source-link" href="https://images.nasa.gov/details/SoFIE-GEL" rel="noopener noreferrer">NASA ID: SoFIE-GEL</a>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Official NASA Photography: Combustion Integrated Rack on the ISS -->
+          <figure class="media-figure accent-blue">
+            <div class="media-frame">
+              <img
+                src="https://images-assets.nasa.gov/image/iss063e002825/iss063e002825~medium.jpg"
+                alt="NASA astronaut Chris Cassidy working on the open Combustion Integrated Rack inside the International Space Station Destiny laboratory module"
+                width="640"
+                height="426"
+                loading="lazy"
+              >
+            </div>
+            <figcaption class="media-caption">
+              <span class="card-kicker">ISS Expedition 63 // Destiny Lab</span>
+              <span class="media-caption-title">Combustion Integrated Rack (CIR) Operations</span>
+              <p>
+                NASA Commander Chris Cassidy configures the <strong>Combustion Integrated Rack (CIR)</strong> aboard the International Space Station, the sealed chamber used to safely conduct droplet and solid-fuel flame experiments in freefall.
+              </p>
+              <div class="media-meta">
+                <span>Credit: <cite>NASA Image and Video Library</cite></span>
+                <a class="media-source-link" href="https://images.nasa.gov/details/iss063e002825" rel="noopener noreferrer">NASA ID: iss063e002825</a>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span><strong>FlameMind</strong> &middot; Built by <strong>Team Spherical Flame</strong> for the NASA Space Apps Flame in Freefall challenge.</span>
+      <span>Source Code: <a href="https://github.com/kamalakarthota/FlameMind" rel="noopener noreferrer">github.com/kamalakarthota/FlameMind</a></span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById('space-canvas');
+      const ctx = canvas.getContext('2d');
+      const motionBtn = document.getElementById('motion-toggle-btn');
+      const motionLabel = document.getElementById('motion-label');
+      const motionIcon = document.getElementById('motion-icon');
+      const visualizer = document.getElementById('flame-visualizer');
+      const btn0g = document.getElementById('btn-0g');
+      const btn1g = document.getElementById('btn-1g');
+      const hudModeReadout = document.getElementById('hud-mode-readout');
+      const simCaption = document.getElementById('sim-caption');
+      const telemetryFlux = document.getElementById('telemetry-flux');
+
+      const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let isPaused = reducedMotionQuery.matches;
+      let gravityMode = '0g';
+
+      const updateMotionUI = () => {
+        document.body.classList.toggle('motion-paused', isPaused);
+        motionBtn.setAttribute('aria-pressed', String(isPaused));
+        motionLabel.textContent = isPaused ? 'Play Motion' : 'Pause Motion';
+        motionIcon.innerHTML = isPaused
+          ? '<path d="M8 5v14l11-7z"/>'
+          : '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+      };
+
+      updateMotionUI();
+
+      reducedMotionQuery.addEventListener('change', (e) => {
+        isPaused = e.matches;
+        updateMotionUI();
+      });
+
+      motionBtn.addEventListener('click', () => {
+        isPaused = !isPaused;
+        updateMotionUI();
+      });
+
+      // Gravity Regime Switcher (0G Spherical vs 1G Buoyant Teardrop)
+      const setGravityMode = (mode) => {
+        gravityMode = mode;
+        visualizer.setAttribute('data-gravity', mode);
+        const isZeroG = mode === '0g';
+        btn0g.setAttribute('aria-pressed', String(isZeroG));
+        btn1g.setAttribute('aria-pressed', String(!isZeroG));
+        hudModeReadout.textContent = isZeroG ? 'MODE // 0.00 G' : 'MODE // 1.00 G';
+        simCaption.textContent = isZeroG
+          ? '0G Diffusion Regime // Soot-Free Spherical Flamefront'
+          : '1G Buoyant Regime // Upward Convective Plume';
+      };
+
+      btn0g.addEventListener('click', () => setGravityMode('0g'));
+      btn1g.addEventListener('click', () => setGravityMode('1g'));
+
+      // Starfield & USA Red/White/Blue Microgravity Diffusion Particles on Hero Canvas
+      let width = 0;
+      let height = 0;
+      const stars = [];
+      const embers = [];
+      const usaColors = ['#ffffff', '#e11d48', '#60a5fa'];
+
+      const resizeCanvas = () => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      const initParticles = () => {
+        stars.length = 0;
+        embers.length = 0;
+        const starCount = Math.min(110, Math.floor((width * height) / 9000));
+        for (let i = 0; i < starCount; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 1.5 + 0.3,
+            alpha: Math.random() * 0.75 + 0.25,
+            speed: Math.random() * 0.14 + 0.03,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
+
+        for (let i = 0; i < 30; i++) {
+          embers.push({
+            angle: Math.random() * Math.PI * 2,
+            radius: Math.random() * 220 + 20,
+            speed: (Math.random() * 0.35 + 0.12) * (Math.random() > 0.5 ? 1 : -1),
+            radialSpeed: Math.random() * 0.25 + 0.08,
+            size: Math.random() * 2.3 + 0.9,
+            hue: usaColors[i % usaColors.length]
+          });
+        }
+      };
+
+      resizeCanvas();
+      initParticles();
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+      });
+
+      let tick = 0;
+      const render = () => {
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw white starfield
+        for (const s of stars) {
+          if (!isPaused) {
+            s.x -= s.speed;
+            s.phase += s.twinkleSpeed;
+            if (s.x < 0) s.x = width;
+          }
+          const currentAlpha = s.alpha * (0.7 + 0.3 * Math.sin(s.phase));
+          ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha.toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Draw orbital diffusion particles in Red, White & Blue
+        const focalX = width > 896 ? width * 0.74 : width * 0.5;
+        const focalY = height * 0.52;
+
+        for (const e of embers) {
+          if (!isPaused) {
+            if (gravityMode === '0g') {
+              e.angle += e.speed * 0.006;
+              e.radius += Math.sin(tick * 0.02 + e.angle) * e.radialSpeed;
+            } else {
+              e.radius -= e.radialSpeed * 1.6;
+              if (e.radius < 15) e.radius = 220;
+            }
+          }
+          const px = focalX + Math.cos(e.angle) * e.radius;
+          const py = focalY + Math.sin(e.angle) * (gravityMode === '0g' ? e.radius : e.radius * 1.25);
+
+          ctx.fillStyle = e.hue;
+          ctx.globalAlpha = 0.55;
+          ctx.beginPath();
+          ctx.arc(px, py, e.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        // Live telemetry fluctuation
+        if (!isPaused && tick % 20 === 0) {
+          const rf = gravityMode === '0g'
+            ? (6.40 + Math.sin(tick * 0.03) * 0.18).toFixed(2)
+            : (4.15 + Math.sin(tick * 0.08) * 0.45).toFixed(2);
+          const regimeLabel = gravityMode === '0g' ? 'Diffusive' : 'Buoyant';
+          telemetryFlux.textContent = `${regimeLabel} · Rf = ${rf} mm`;
+        }
+
+        tick++;
+        requestAnimationFrame(render);
+      };
+
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>
