@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { MatchMeter, PART_COLOR, RankCharts } from "@/components/RankCharts";
 import { linkClass } from "@/components/States";
 import { formatNumber, MISSING } from "@/lib/format";
-import { atmosphereLine, formatScore, partShare, type RankHabitatView, type RankedRow } from "@/lib/rankView";
+import { formatScore, partShare, type RankHabitatView, type RankedRow } from "@/lib/rankView";
 
 export function Rank({ views }: { views: RankHabitatView[] }) {
   const [id, setId] = useState(views[0]?.id ?? "");
@@ -38,6 +39,7 @@ export function Rank({ views }: { views: RankHabitatView[] }) {
       </fieldset>
 
       <HabitatSummary view={current} count={current.ranked.length} />
+      <RankCharts view={current} />
       <ol className="space-y-4">
         {current.ranked.map((row, index) => (
           <li key={row.id}>
@@ -55,12 +57,17 @@ function HabitatSummary({ view, count }: { view: RankHabitatView; count: number 
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold">{view.label}</h2>
-          <p className="mt-1 text-sm text-muted">{atmosphereLine(view)}</p>
+          <p className="mt-1 text-sm text-muted">{view.habitatName}</p>
         </div>
         {view.assumed ? (
           <span className="rounded bg-warn-soft px-2 py-0.5 text-xs font-medium text-warn">Assumed atmosphere</span>
         ) : null}
       </header>
+      <dl className="mt-4 grid gap-3 sm:grid-cols-3">
+        <AtmosphereStat label="Oxygen" value={`${formatNumber(view.o2Percent)}%`} />
+        <AtmosphereStat label="Pressure" value={`${formatNumber(view.pressurePsi)} psi`} />
+        <AtmosphereStat label="Gravity" value={gravityValue(view)} note={gravityNote(view)} />
+      </dl>
       <p className="mt-3 text-sm leading-6">{view.sourceNote}</p>
       {view.matchesLabel ? (
         <p className="mt-2 text-sm leading-6">
@@ -76,11 +83,41 @@ function HabitatSummary({ view, count }: { view: RankHabitatView; count: number 
   );
 }
 
+function AtmosphereStat({ label, value, note }: { label: string; value: string; note?: string }) {
+  return (
+    <div className="rounded-md bg-accent-soft px-3 py-3">
+      <dt className="text-xs font-medium text-muted">{label}</dt>
+      <dd className="mt-1 text-xl font-semibold tabular-nums">{value}</dd>
+      {note ? <dd className="mt-0.5 text-xs text-muted">{note}</dd> : null}
+    </div>
+  );
+}
+
+function gravityValue(view: RankHabitatView): string {
+  if (view.gravityG !== null) return `${formatNumber(view.gravityG)} g`;
+  if (view.gravityClasses.length > 1) return "Two classes";
+  return gravityClass(view);
+}
+
+function gravityNote(view: RankHabitatView): string {
+  if (view.gravityG !== null) return gravityClass(view);
+  if (view.gravityClasses.length > 1) return "Microgravity and partial gravity. The ranking uses oxygen and pressure.";
+  return "Used in the ranking";
+}
+
+function gravityClass(view: RankHabitatView): string {
+  if (view.gravityApplied === "microgravity") return "Microgravity";
+  if (view.gravityApplied === "partial") return "Partial gravity";
+  if (view.gravityApplied === "normal") return "Normal gravity";
+  if (view.gravityApplied === "simulated_partial") return "Simulated partial gravity";
+  return "Gravity not set";
+}
+
 function InvestigationRank({ row, place }: { row: RankedRow; place: number }) {
   return (
-    <article className="rounded-lg border border-line bg-surface p-5">
-      <header className="flex flex-wrap items-start justify-between gap-3">
-        <div>
+    <article id={`rank-${row.id}`} className="scroll-mt-20 rounded-lg border border-line bg-surface p-5">
+      <header className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
           <h3 className="text-lg font-semibold">
             <span className="mr-2 tabular-nums text-muted">{place}.</span>
             <Link href={`/investigations/${row.id}/`} className={linkClass}>
@@ -95,11 +132,22 @@ function InvestigationRank({ row, place }: { row: RankedRow; place: number }) {
             </span>
           ) : null}
         </div>
-        <p className="text-2xl font-semibold tabular-nums">
-          <span className="sr-only">Score </span>
-          {formatScore(row.score)}
-        </p>
+        <div className="w-36 shrink-0">
+          <p className="text-right text-2xl font-semibold tabular-nums">
+            <span className="sr-only">Score </span>
+            {formatScore(row.score)}
+          </p>
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-canvas" aria-hidden>
+            <div className="h-full rounded-full bg-accent" style={{ width: `${Math.min(100, row.score * 100)}%` }} />
+          </div>
+        </div>
       </header>
+
+      <div className="mt-4 grid max-w-md gap-3" aria-label={`Score parts for ${row.acronym}`}>
+        {row.parts.map((part) => (
+          <MatchMeter key={part.name} label={part.label} value={part.value} color={PART_COLOR[part.name]} />
+        ))}
+      </div>
 
       <table className="mt-4 w-full text-left text-sm">
         <caption className="sr-only">Score parts for {row.acronym}</caption>
@@ -180,7 +228,17 @@ function InvestigationRank({ row, place }: { row: RankedRow; place: number }) {
                   <td className="py-2 pr-3 tabular-nums">{formatNumber(test.o2Percent)}</td>
                   <td className="py-2 pr-3 tabular-nums">{formatNumber(test.pressurePsi)}</td>
                   <td className="py-2 pr-3 tabular-nums">{formatNumber(test.flowCmS)}</td>
-                  <td className="py-2 tabular-nums">{formatScore(test.closeness)}</td>
+                  <td className="py-2">
+                    <div className="min-w-24">
+                      <span className="tabular-nums">{formatScore(test.closeness)}</span>
+                      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-canvas" aria-hidden>
+                        <div
+                          className="h-full rounded-full bg-accent"
+                          style={{ width: `${Math.min(100, test.closeness * 100)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
