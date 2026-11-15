@@ -37,7 +37,7 @@ uvicorn main:app --reload --port 8080
 
 The API reads `GCP_PROJECT`, `GCP_REGION`, `GEMINI_MODEL`, and `EMBED_MODEL` from the repo-root `.env`, plus:
 
-- `WEB_ORIGIN`: the one browser origin allowed by CORS, for example `http://localhost:3000`. If unset, no browser origin is allowed.
+- `WEB_ORIGIN`: the browser origins allowed by CORS, separated by commas, for example `http://localhost:3000`. If unset, no browser origin is allowed.
 - `FIREBASE_PROJECT_ID`: Firebase project for sign-in and saved chats. Defaults to `GCP_PROJECT`.
 
 At startup it loads `data/chunks.json`, `embeddings.npy`, `investigations.json`, `habitats.json`, `gaps.json`, `insights.json`, `answer_cache.json`, and `derived_cache.json` into memory.

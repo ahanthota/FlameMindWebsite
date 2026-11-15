@@ -112,10 +112,12 @@ def create_app(services: Services | None = None, web_origin: str | None = None) 
         from config import load_settings
 
         web_origin = load_settings(require_ai=False).web_origin
-    if web_origin:
+    # WEB_ORIGIN may list several origins, separated by commas.
+    origins = [origin.strip().rstrip("/") for origin in (web_origin or "").split(",") if origin.strip()]
+    if origins:
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=[web_origin],
+            allow_origins=origins,
             allow_methods=["GET", "POST"],
             allow_headers=["Authorization", "Content-Type"],
             max_age=600,

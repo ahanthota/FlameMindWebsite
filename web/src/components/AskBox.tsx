@@ -16,29 +16,36 @@ export function AskBox() {
   };
 
   return (
-    <section aria-label="Ask FlameMind" className="mb-6 rounded-lg border border-line bg-surface p-5">
-      <form onSubmit={submit} className="flex flex-wrap gap-2">
-        <label htmlFor="home-ask" className="sr-only">
-          Describe what you are designing or what you need to know
+    <section aria-label="Ask FlameMind" className="mb-6 rounded-lg border border-line bg-surface p-5 sm:p-6">
+      <form onSubmit={submit}>
+        <label htmlFor="home-ask" className="block text-lg font-semibold tracking-tight">
+          Ask FlameMind about your design
         </label>
-        <input
-          id="home-ask"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          maxLength={2000}
-          placeholder="Describe what you are designing or what you need to know"
-          className="min-w-0 flex-1 rounded-md border border-line bg-surface px-3 py-2 text-sm placeholder:text-muted/70 focus:border-accent"
-        />
-        <button type="submit" disabled={!text.trim()} className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-strong disabled:opacity-40">
-          Ask
-        </button>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <input
+            id="home-ask"
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            maxLength={2000}
+            placeholder="Describe the atmosphere, materials, or question you have"
+            className="min-w-0 flex-1 basis-64 rounded-md border border-line bg-surface px-4 py-3 text-base placeholder:text-muted/70 focus:border-accent"
+          />
+          <button
+            type="submit"
+            disabled={!text.trim()}
+            className="rounded-md bg-accent px-6 py-3 text-base font-medium text-white hover:bg-accent-strong disabled:opacity-40"
+          >
+            Ask
+          </button>
+        </div>
       </form>
-      <ul className="mt-3 flex flex-wrap gap-2">
-        {STARTER_PROMPTS.slice(0, 3).map((prompt) => (
+      <p className="mt-4 text-xs font-medium text-muted">Or start with one of these</p>
+      <ul className="mt-2 flex flex-wrap gap-2">
+        {STARTER_PROMPTS.slice(0, 2).map((prompt) => (
           <li key={prompt}>
             <Link
               href={`/scenario/?ask=${encodeURIComponent(prompt)}`}
-              className="block rounded-full border border-line px-3 py-1 text-xs text-muted hover:border-accent hover:text-accent"
+              className="block rounded-full border border-line px-3 py-1.5 text-xs text-muted hover:border-accent hover:text-accent"
             >
               {prompt}
             </Link>
