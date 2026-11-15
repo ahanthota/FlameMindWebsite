@@ -10,6 +10,7 @@ export type FuelPhase = "solid" | "liquid" | "gas";
 export type GravityName = "microgravity" | "normal" | "partial" | "simulated_partial";
 export type OutcomeName = "ignited" | "no_ignition" | "extinguished" | "steady" | "unknown";
 export type TierName = "A" | "B";
+export type InsightCategory = CategoryName | "material_screening" | "earth";
 
 /** Page-level citation. `page` is the page marker in the processed text. */
 export interface SourceRef {
@@ -109,7 +110,7 @@ export interface Insight {
   id: string;
   title: string;
   text: string;
-  category: CategoryName;
+  category: InsightCategory;
   habitats: string[];
   investigation_ids: string[];
   sources: SourceRef[];

@@ -1,14 +1,22 @@
 /**
- * Calls to the FlameMind API. The base URL comes from NEXT_PUBLIC_API_URL.
+ * Calls to the FlameMind API. NEXT_PUBLIC_API_URL overrides the deployed service.
  * When someone is signed in, their Firebase ID token is sent so the API can
  * save the chat; guests send no token and nothing is saved.
  */
 
 import type { ChatResponse, HistoryItem } from "./chat";
+import { readFilterText } from "./filterText";
 import { normalizeCustomFilters, type CustomFilter, type DerivedFilter, type DerivedValue } from "./filters";
 import { getFirebase } from "./firebase";
 
-export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/+$/, "");
+/**
+ * Live Cloud Run service. A production build with no NEXT_PUBLIC_API_URL still
+ * calls this, so the static site can answer. web/.env.local overrides it for
+ * local development.
+ */
+const DEPLOYED_API_URL = "https://flamemind-api-rwgbyh6nsq-uc.a.run.app";
+
+export const API_URL = (process.env.NEXT_PUBLIC_API_URL || DEPLOYED_API_URL).replace(/\/+$/, "");
 export const CHAT_TIMEOUT_MS = 30_000;
 
 export class ApiError extends Error {
@@ -45,13 +53,33 @@ function failureMessage(status: number, detail: unknown): string {
 
 const NOT_SET = "The FlameMind service address is not set. Set NEXT_PUBLIC_API_URL for this site, then rebuild it.";
 
-/** POST a JSON body. Rejects with ApiError on a timeout, a network failure, or an error response. */
+function isLocal(url: string): boolean {
+  try {
+    const host = new URL(url).hostname;
+    return host === "localhost" || host === "127.0.0.1" || host === "::1";
+  } catch {
+    return false;
+  }
+}
+
+/** POST a JSON body. A local address that is not running falls through to the deployed service. */
 async function post<T>(path: string, body: unknown, timeoutMs: number, slow: string): Promise<T> {
   if (!API_URL) throw new ApiError(NOT_SET, 0);
+  try {
+    return await postOnce<T>(API_URL, path, body, timeoutMs, slow);
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 0 && isLocal(API_URL) && API_URL !== DEPLOYED_API_URL) {
+      return await postOnce<T>(DEPLOYED_API_URL, path, body, timeoutMs, slow);
+    }
+    throw error;
+  }
+}
+
+async function postOnce<T>(base: string, path: string, body: unknown, timeoutMs: number, slow: string): Promise<T> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(`${API_URL}${path}`, {
+    const response = await fetch(`${base}${path}`, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...(await authHeader()) },
       body: JSON.stringify(body),
@@ -97,8 +125,10 @@ function finite(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-/** POST /filter/parse. */
+/** POST /filter/parse. A quantity and a range are read here, so the button works while the local API is down. */
 export async function parseFilter(text: string): Promise<ParsedFilter> {
+  const local = readFilterText(text);
+  if (local) return local;
   const body = await post<Record<string, unknown>>(
     "/filter/parse",
     { text },

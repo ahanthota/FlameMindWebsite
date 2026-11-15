@@ -9,6 +9,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { href: "/compare/", label: "Compare" },
   { href: "/rank/", label: "Rank" },
   { href: "/gaps/", label: "Gaps" },
+  { href: "/controls/", label: "Controls" },
   { href: "/earth/", label: "Earth applications" },
   { href: "/about/", label: "About" },
 ];

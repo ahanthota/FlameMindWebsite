@@ -1,6 +1,6 @@
 {
   "source": "data/investigations.json",
-  "investigation_count": 10,
+  "investigation_count": 24,
   "grid": {
     "o2_percent_edges": [
       15.0,
@@ -47,7 +47,7 @@
     "distance_note": "distance is sqrt((dO2/85)^2 + (dpsi/14)^2), the gap scaled by the grid span on each axis. 0 means inside a tested range or at a tested point.",
     "coverage": {
       "microgravity": {
-        "covered_cells": 54,
+        "covered_cells": 56,
         "total_cells": 238
       },
       "partial": {
@@ -113,7 +113,8 @@
         "psi_max": 8.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -124,7 +125,8 @@
         "psi_max": 9.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -192,8 +194,10 @@
         "covered": true,
         "investigation_ids": [
           "PSI-25",
+          "PSI-39",
           "PSI-68",
-          "PSI-69"
+          "PSI-69",
+          "PSI-159"
         ]
       },
       {
@@ -260,8 +264,10 @@
         "psi_max": 8.0,
         "covered": true,
         "investigation_ids": [
+          "PSI-39",
           "PSI-68",
-          "PSI-69"
+          "PSI-69",
+          "PSI-159"
         ]
       },
       {
@@ -274,7 +280,8 @@
         "investigation_ids": [
           "PSI-20",
           "PSI-68",
-          "PSI-69"
+          "PSI-69",
+          "PSI-159"
         ]
       },
       {
@@ -312,6 +319,7 @@
         "covered": true,
         "investigation_ids": [
           "PSI-20",
+          "PSI-39",
           "PSI-68",
           "PSI-69"
         ]
@@ -352,8 +360,10 @@
         "investigation_ids": [
           "PSI-20",
           "PSI-25",
+          "PSI-39",
           "PSI-68",
-          "PSI-69"
+          "PSI-69",
+          "PSI-159"
         ]
       },
       {
@@ -365,7 +375,8 @@
         "covered": true,
         "investigation_ids": [
           "PSI-68",
-          "PSI-69"
+          "PSI-69",
+          "PSI-159"
         ]
       },
       {
@@ -573,7 +584,8 @@
         "psi_max": 8.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -585,7 +597,8 @@
         "covered": true,
         "investigation_ids": [
           "PSI-20",
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -726,7 +739,8 @@
         "psi_max": 8.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -792,7 +806,8 @@
         "psi_max": 14.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -803,7 +818,8 @@
         "psi_max": 15.0,
         "covered": true,
         "investigation_ids": [
-          "PSI-68"
+          "PSI-68",
+          "PSI-159"
         ]
       },
       {
@@ -1147,8 +1163,10 @@
         "o2_max": 55.0,
         "psi_min": 8.0,
         "psi_max": 9.0,
-        "covered": false,
-        "investigation_ids": []
+        "covered": true,
+        "investigation_ids": [
+          "PSI-159"
+        ]
       },
       {
         "gravity": "microgravity",
@@ -2029,8 +2047,10 @@
         "o2_max": 90.0,
         "psi_min": 8.0,
         "psi_max": 9.0,
-        "covered": false,
-        "investigation_ids": []
+        "covered": true,
+        "investigation_ids": [
+          "PSI-159"
+        ]
       },
       {
         "gravity": "microgravity",
@@ -6649,6 +6669,13 @@
       "points": 50
     },
     {
+      "investigation_id": "PSI-39",
+      "acronym": "CFI",
+      "gravity": "microgravity",
+      "basis": "tests",
+      "points": 9
+    },
+    {
       "investigation_id": "PSI-68",
       "acronym": "FLEX-2",
       "gravity": "microgravity",
@@ -6661,14 +6688,63 @@
       "gravity": "microgravity",
       "basis": "tests",
       "points": 224
+    },
+    {
+      "investigation_id": "PSI-159",
+      "acronym": "ACME CFI-G",
+      "gravity": "microgravity",
+      "basis": "tests",
+      "points": 165
     }
   ],
   "unplaced": [
+    {
+      "investigation_id": "PSI-10",
+      "acronym": "ACME/Flame Design",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-21",
+      "acronym": "ACME CLD Flame",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-22",
+      "acronym": "ACME E-FIELD Flames",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-23",
+      "acronym": "ACME s-Flame",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
     {
       "investigation_id": "PSI-26",
       "acronym": "BASS",
       "gravity": "microgravity",
       "reason": "no pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-47",
+      "acronym": "DAFT / DAFT-2",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-60",
+      "acronym": "PSI-60",
+      "gravity": null,
+      "reason": "gravity not recorded"
+    },
+    {
+      "investigation_id": "PSI-62",
+      "acronym": "PSI-62",
+      "gravity": null,
+      "reason": "gravity not recorded"
     },
     {
       "investigation_id": "PSI-98",
@@ -6699,6 +6775,36 @@
       "acronym": "SAME",
       "gravity": "microgravity",
       "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-106",
+      "acronym": "SLICE",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-107",
+      "acronym": "SPICE",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-115",
+      "acronym": "PSI-115",
+      "gravity": null,
+      "reason": "gravity not recorded"
+    },
+    {
+      "investigation_id": "PSI-117",
+      "acronym": "PSI-117",
+      "gravity": null,
+      "reason": "gravity not recorded"
+    },
+    {
+      "investigation_id": "PSI-142",
+      "acronym": "PSI-142",
+      "gravity": null,
+      "reason": "gravity not recorded"
     }
   ],
   "habitats": [
@@ -6738,15 +6844,15 @@
           "distance": 0.0003
         },
         {
-          "investigation_id": "PSI-20",
-          "acronym": "ACME BRE",
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
           "gravity": "microgravity",
-          "basis": "ranges",
-          "nearest_o2_percent": 21.0,
-          "nearest_pressure_psi": 14.7,
-          "delta_o2_percent": 0.1,
-          "delta_pressure_psi": 0.0,
-          "distance": 0.0012
+          "basis": "tests",
+          "nearest_o2_percent": 20.893,
+          "nearest_pressure_psi": 14.697,
+          "delta_o2_percent": -0.007,
+          "delta_pressure_psi": -0.003,
+          "distance": 0.0003
         }
       ]
     },
@@ -6763,8 +6869,10 @@
       "covering_investigation_ids": [
         "PSI-20",
         "PSI-25",
+        "PSI-39",
         "PSI-68",
-        "PSI-69"
+        "PSI-69",
+        "PSI-159"
       ],
       "nearest_same_gravity": [
         {
@@ -6873,15 +6981,15 @@
           "distance": 0.0143
         },
         {
-          "investigation_id": "PSI-69",
-          "acronym": "FLEX",
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
           "gravity": "microgravity",
           "basis": "tests",
-          "nearest_o2_percent": 20.0,
-          "nearest_pressure_psi": 8.0,
-          "delta_o2_percent": -14.0,
-          "delta_pressure_psi": 0.0,
-          "distance": 0.1647
+          "nearest_o2_percent": 34.081,
+          "nearest_pressure_psi": 7.348,
+          "delta_o2_percent": 0.081,
+          "delta_pressure_psi": -0.652,
+          "distance": 0.0466
         }
       ]
     },
@@ -6946,6 +7054,17 @@
       "covering_investigation_ids": [],
       "nearest_same_gravity": [
         {
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 85.0,
+          "nearest_pressure_psi": 8.001,
+          "delta_o2_percent": -15.0,
+          "delta_pressure_psi": 3.701,
+          "distance": 0.3178
+        },
+        {
           "investigation_id": "PSI-68",
           "acronym": "FLEX-2",
           "gravity": "microgravity",
@@ -6966,21 +7085,21 @@
           "delta_o2_percent": -66.0,
           "delta_pressure_psi": 3.9,
           "distance": 0.8249
-        },
-        {
-          "investigation_id": "PSI-69",
-          "acronym": "FLEX",
-          "gravity": "microgravity",
-          "basis": "tests",
-          "nearest_o2_percent": 34.0,
-          "nearest_pressure_psi": 10.332,
-          "delta_o2_percent": -66.0,
-          "delta_pressure_psi": 6.032,
-          "distance": 0.888
         }
       ],
       "nearest_any_gravity": [
         {
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 85.0,
+          "nearest_pressure_psi": 8.001,
+          "delta_o2_percent": -15.0,
+          "delta_pressure_psi": 3.701,
+          "distance": 0.3178
+        },
+        {
           "investigation_id": "PSI-68",
           "acronym": "FLEX-2",
           "gravity": "microgravity",
@@ -7001,17 +7120,6 @@
           "delta_o2_percent": -66.0,
           "delta_pressure_psi": 3.9,
           "distance": 0.8249
-        },
-        {
-          "investigation_id": "PSI-69",
-          "acronym": "FLEX",
-          "gravity": "microgravity",
-          "basis": "tests",
-          "nearest_o2_percent": 34.0,
-          "nearest_pressure_psi": 10.332,
-          "delta_o2_percent": -66.0,
-          "delta_pressure_psi": 6.032,
-          "distance": 0.888
         }
       ]
     },
@@ -7029,6 +7137,17 @@
       "nearest_same_gravity": [],
       "nearest_any_gravity": [
         {
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 85.0,
+          "nearest_pressure_psi": 8.001,
+          "delta_o2_percent": -15.0,
+          "delta_pressure_psi": 3.701,
+          "distance": 0.3178
+        },
+        {
           "investigation_id": "PSI-68",
           "acronym": "FLEX-2",
           "gravity": "microgravity",
@@ -7049,17 +7168,6 @@
           "delta_o2_percent": -66.0,
           "delta_pressure_psi": 3.9,
           "distance": 0.8249
-        },
-        {
-          "investigation_id": "PSI-69",
-          "acronym": "FLEX",
-          "gravity": "microgravity",
-          "basis": "tests",
-          "nearest_o2_percent": 34.0,
-          "nearest_pressure_psi": 10.332,
-          "delta_o2_percent": -66.0,
-          "delta_pressure_psi": 6.032,
-          "distance": 0.888
         }
       ]
     },
@@ -7099,15 +7207,15 @@
           "distance": 0.0143
         },
         {
-          "investigation_id": "PSI-69",
-          "acronym": "FLEX",
+          "investigation_id": "PSI-159",
+          "acronym": "ACME CFI-G",
           "gravity": "microgravity",
           "basis": "tests",
-          "nearest_o2_percent": 20.0,
-          "nearest_pressure_psi": 8.0,
-          "delta_o2_percent": -14.0,
-          "delta_pressure_psi": 0.0,
-          "distance": 0.1647
+          "nearest_o2_percent": 34.081,
+          "nearest_pressure_psi": 7.348,
+          "delta_o2_percent": 0.081,
+          "delta_pressure_psi": -0.652,
+          "distance": 0.0466
         }
       ]
     }
@@ -7136,7 +7244,7 @@
       "related_investigation_ids": [
         "PSI-68",
         "PSI-25",
-        "PSI-20"
+        "PSI-159"
       ]
     },
     {
@@ -7148,7 +7256,7 @@
       "related_investigation_ids": [
         "PSI-68",
         "PSI-20",
-        "PSI-69"
+        "PSI-159"
       ]
     },
     {
@@ -7166,25 +7274,25 @@
     {
       "id": "habitat_spacesuit_microgravity",
       "title": "Spacesuit: not tested in microgravity",
-      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in microgravity. Closest tested: FLEX-2 (microgravity) at 40% O2, 7.348 psi.",
+      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in microgravity. Closest tested: ACME CFI-G (microgravity) at 85% O2, 8.001 psi.",
       "habitat_id": "spacesuit",
       "gravity": "microgravity",
       "related_investigation_ids": [
+        "PSI-159",
         "PSI-68",
-        "PSI-20",
-        "PSI-69"
+        "PSI-20"
       ]
     },
     {
       "id": "habitat_spacesuit_partial",
       "title": "Spacesuit: not tested in partial",
-      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in partial. Closest tested: FLEX-2 (microgravity) at 40% O2, 7.348 psi.",
+      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in partial. Closest tested: ACME CFI-G (microgravity) at 85% O2, 8.001 psi.",
       "habitat_id": "spacesuit",
       "gravity": "partial",
       "related_investigation_ids": [
+        "PSI-159",
         "PSI-68",
-        "PSI-20",
-        "PSI-69"
+        "PSI-20"
       ]
     },
     {
@@ -7196,7 +7304,7 @@
       "related_investigation_ids": [
         "PSI-68",
         "PSI-20",
-        "PSI-69"
+        "PSI-159"
       ]
     }
   ]

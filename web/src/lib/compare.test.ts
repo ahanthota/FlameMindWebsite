@@ -49,18 +49,32 @@ function record(values: Partial<Investigation> & Pick<Investigation, "id" | "acr
 describe("compare", () => {
   it("covers every structured investigation and the rows the page has to show", () => {
     const rows = investigations.map(toCompareInvestigation);
-    expect(rows).toHaveLength(10);
-    expect(rows.map((item) => item.acronym)).toEqual([
-      "ACME BRE",
-      "BASS-II",
-      "BASS",
-      "FLEX-2",
-      "FLEX",
-      "SAFFIRE-I",
-      "SAFFIRE-II",
-      "SAFFIRE-III",
-      "SAME-R",
-      "SAME",
+    expect(rows).toHaveLength(24);
+    expect(rows.map((item) => item.id)).toEqual([
+      "PSI-10",
+      "PSI-20",
+      "PSI-21",
+      "PSI-22",
+      "PSI-23",
+      "PSI-25",
+      "PSI-26",
+      "PSI-39",
+      "PSI-47",
+      "PSI-60",
+      "PSI-62",
+      "PSI-68",
+      "PSI-69",
+      "PSI-98",
+      "PSI-99",
+      "PSI-100",
+      "PSI-101",
+      "PSI-102",
+      "PSI-106",
+      "PSI-107",
+      "PSI-115",
+      "PSI-117",
+      "PSI-142",
+      "PSI-159",
     ]);
     expect(COMPARE_ROWS.map((row) => row.label)).toEqual([
       "Objectives",
@@ -82,7 +96,8 @@ describe("compare", () => {
     const saffire = investigations.map(toCompareInvestigation).find((item) => item.id === "PSI-98");
     const flex = investigations.map(toCompareInvestigation).find((item) => item.id === "PSI-69");
     expect(saffire && rowValue("pressure", saffire)).toBe("–");
-    expect(saffire && rowValue("findings", saffire)).toBe("–");
+    expect(saffire && rowValue("oxygen", saffire)).toBe("21.5 to 21.7");
+    expect(saffire && rowValue("findings", saffire)).toContain("420 s");
     expect(flex && rowValue("oxygen", flex)).toBe("12 to 34");
     expect(flex && rowValue("hardware", flex)).toBe("CIR");
     expect(flex && rowValue("fuels", flex).startsWith("Liquid\n")).toBe(true);

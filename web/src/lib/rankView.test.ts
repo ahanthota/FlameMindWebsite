@@ -32,32 +32,48 @@ describe("buildRankViews", () => {
     expect(iss.gravityApplied).toBe("microgravity");
     expect(iss.gravityNote).toBeNull();
     expect(iss.ranked.map((row) => [row.id, row.score])).toEqual([
+      ["PSI-159", 1],
+      ["PSI-39", 1],
       ["PSI-69", 1],
       ["PSI-25", 0.9997],
       ["PSI-20", 0.9077],
       ["PSI-68", 0.9077],
       ["PSI-26", 0.6154],
-      ["PSI-98", 0.6154],
+      ["PSI-98", 0.6089],
       ["PSI-99", 0.6089],
       ["PSI-100", 0.2308],
       ["PSI-101", 0.2308],
       ["PSI-102", 0.2308],
+      ["PSI-107", 0.2308],
+      ["PSI-10", 0.0462],
+      ["PSI-106", 0.0462],
+      ["PSI-115", 0.0462],
+      ["PSI-117", 0.0462],
+      ["PSI-142", 0.0462],
+      ["PSI-21", 0.0462],
+      ["PSI-22", 0.0462],
+      ["PSI-23", 0.0462],
+      ["PSI-47", 0.0462],
+      ["PSI-60", 0.0462],
+      ["PSI-62", 0.0462],
     ]);
     const first = iss.ranked[0];
-    expect(first.acronym).toBe("FLEX");
+    expect(first.acronym).toBe("ACME CFI-G");
     expect(first.parts.map((part) => part.name)).toEqual(["conditions", "intent"]);
     expect(first.parts.map((part) => part.value)).toEqual([1, 1]);
-    expect(first.reasons[0]).toBe("Closest test PSI-69-T202 ran at 21% O2 and 14.7 psi; you asked about 21% O2, 14.7 psi.");
-    expect(first.tests[0]).toMatchObject({ testId: "PSI-69-T202", o2Percent: 21, pressurePsi: 14.7 });
+    expect(first.reasons[0]).toBe("Ranges: oxygen 12-85% O2 covers 21% O2; pressure 7.18-48 psi covers 14.7 psi.");
+    expect(first.tests[0]).toMatchObject({ testId: "PSI-159-T122", o2Percent: 21, pressurePsi: 14.6967 });
     expect(first.tests.length).toBeLessThanOrEqual(5);
   });
 
   it("ranks a Moon base, and gives the rover and Mars the same order", () => {
     const moon = view("moon_base");
     expect(moon.ranked.map((row) => row.id)).toEqual([
+      "PSI-159",
       "PSI-69",
       "PSI-68",
       "PSI-20",
+      "PSI-39",
       "PSI-25",
       "PSI-99",
       "PSI-98",
@@ -65,11 +81,24 @@ describe("buildRankViews", () => {
       "PSI-100",
       "PSI-101",
       "PSI-102",
+      "PSI-107",
+      "PSI-10",
+      "PSI-106",
+      "PSI-115",
+      "PSI-117",
+      "PSI-142",
+      "PSI-21",
+      "PSI-22",
+      "PSI-23",
+      "PSI-47",
+      "PSI-60",
+      "PSI-62",
     ]);
     expect(moon.ranked[0].score).toBe(1);
-    expect(moon.ranked[1].score).toBeCloseTo(0.9077, 4);
-    expect(moon.gravityNote).toBe("Run in microgravity, not partial gravity.");
-    expect(moon.ranked[0].reasons.some((text) => text.startsWith("Run in "))).toBe(false);
+    expect(moon.ranked[1].score).toBe(1);
+    expect(moon.ranked[2].score).toBeCloseTo(0.9077, 4);
+    expect(moon.gravityNote).toBeNull();
+    expect(moon.ranked[0].reasons.some((text) => text === "Run in microgravity, not partial gravity.")).toBe(true);
 
     const rover = view("rover");
     expect(rover.matchesLabel).toBe("Moon base");
@@ -86,7 +115,7 @@ describe("buildRankViews", () => {
     expect(suit.gravityApplied).toBeNull();
     expect(suit.gravityNote).toBeNull();
     expect(atmosphereLine(suit)).toBe("100% oxygen · 4.3 psi · Microgravity and partial gravity");
-    expect(suit.ranked[0]).toMatchObject({ id: "PSI-69", score: 0.3761 });
+    expect(suit.ranked[0]).toMatchObject({ id: "PSI-159", score: 0.5796 });
     expect(suit.ranked.map((row) => row.score)).toEqual([...suit.ranked.map((row) => row.score)].sort((a, b) => b - a));
   });
 

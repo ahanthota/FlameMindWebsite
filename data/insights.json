@@ -1,8 +1,42 @@
 [
   {
-    "id": "example-bass-low-flow-quenching",
+    "id": "same-ionization-smoke-detection",
+    "title": "Sub-micron smoke is better seen by an ionization detector",
+    "text": "For the conditions of the SAME experiment, all samples produced significant numbers of sub-micron particulate that are better detected using an ionization smoke detector.",
+    "category": "detection",
+    "habitats": ["iss", "earth_sea_level"],
+    "investigation_ids": ["PSI-102"],
+    "sources": [
+      {
+        "file_name": "documents/PSI-102_Reports_SAME_Final Science Report.pdf",
+        "title": "PSI-102 Reports SAME Final Science Report",
+        "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+        "doi": null,
+        "page": 57
+      }
+    ]
+  },
+  {
+    "id": "bass-ii-models-on-earth",
+    "title": "BASS-II results feed fire-safety models used on Earth",
+    "text": "BASS-II results contribute to the combustion computational models used in the design of fire detection and suppression systems in microgravity and on Earth.",
+    "category": "earth",
+    "habitats": ["iss", "earth_sea_level"],
+    "investigation_ids": ["PSI-25"],
+    "sources": [
+      {
+        "file_name": "overview/overview.md",
+        "title": "Burning and Suppression of Solids - II",
+        "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+        "doi": "10.60555/4qc4-de67",
+        "page": 1
+      }
+    ]
+  },
+  {
+    "id": "bass-low-flow-quenching",
     "title": "Very low airflow can quench a fabric flame",
-    "text": "In BASS tests on the ISS, lowering the concurrent airflow to about 1 cm/s led to quenching extinction of the burning sample.",
+    "text": "By decreasing concurrent-flow speed to a very low value (around 1 cm/s), quenching extinction was observed.",
     "category": "suppression",
     "habitats": ["iss"],
     "investigation_ids": ["PSI-26"],

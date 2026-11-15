@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState, PageHeader, linkClass } from "@/components/States";
-import { gaps, getInvestigation, habitats } from "@/lib/data";
+import { ConditionCharts } from "@/components/ConditionCharts";
+import { gaps, getInvestigation, habitats, investigations } from "@/lib/data";
 import { formatNumber } from "@/lib/format";
 import {
   binIndex,
@@ -83,8 +84,8 @@ export default function GapsPage() {
           </ul>
         ) : null}
         <p className="mt-2 text-xs text-muted">
-          E-FIELD Flames (PSI-22) is the electric-field stand-in named above. It is not one of the structured records,
-          so it is not on this grid.
+          E-FIELD Flames (PSI-22) is in the structured records. It flew in microgravity and uses an electric field as a
+          stand-in for some gravity effects, so it does not fill this partial-gravity grid.
         </p>
       </section>
 
@@ -108,6 +109,30 @@ export default function GapsPage() {
           ))}
         </div>
       </section>
+
+      <ConditionCharts
+        cells={gaps.grid.cells.map((cell) => ({
+          gravity: cell.gravity,
+          o2Min: cell.o2_min,
+          psiMin: cell.psi_min,
+          covered: cell.covered,
+        }))}
+        spans={investigations.flatMap((item) => {
+          const hasOxygen = item.o2_percent_min !== null || item.o2_percent_max !== null;
+          const hasPressure = item.pressure_psi_min !== null || item.pressure_psi_max !== null;
+          if (!hasOxygen && !hasPressure) return [];
+          return [
+            {
+              id: item.id,
+              acronym: item.acronym,
+              o2Min: item.o2_percent_min,
+              o2Max: item.o2_percent_max,
+              psiMin: item.pressure_psi_min,
+              psiMax: item.pressure_psi_max,
+            },
+          ];
+        })}
+      />
 
       <section aria-label="Habitats" className="mb-8">
         <h2 className="mb-1 text-base font-semibold">Habitats</h2>

@@ -38,6 +38,12 @@ TIER_A_ACCESSIONS = frozenset(
         "PSI-100",  # SAFFIRE-III
         "PSI-101",  # SAME-R
         "PSI-102",  # SAME
+        "PSI-159",  # ACME CFI-G
+        "PSI-22",  # ACME E-FIELD Flames
+        "PSI-39",  # CFI
+        "PSI-47",  # DAFT / DAFT-2
+        "PSI-107",  # SPICE
+        "PSI-106",  # SLICE
     }
 )
 
