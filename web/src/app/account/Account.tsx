@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { buttonClass, EmptyState, ErrorState, linkClass, LoadingState, PageHeader } from "@/components/States";
 import { errorMessage, useAuth } from "@/lib/auth";
-import { activeChips } from "@/lib/filters";
+import { activeChips, customFilterLabel } from "@/lib/filters";
 import { getFirebase } from "@/lib/firebase";
 import { label } from "@/lib/format";
 import {
@@ -334,7 +334,10 @@ function FiltersCard({ db, uid }: { db: Firestore; uid: string }) {
               <span className="min-w-0 flex-1">
                 <span className="block truncate font-medium">{filter.name}</span>
                 <span className="text-xs text-muted">
-                  {activeChips(filter.manualFilters, label).map((chip) => chip.label).join(" · ") || "No filters set"}
+                  {[
+                    ...activeChips(filter.manualFilters, label).map((chip) => chip.label),
+                    ...filter.customFilters.map(customFilterLabel),
+                  ].join(" · ") || "No filters set"}
                 </span>
               </span>
               <Link href={`/explore/?filter=${encodeURIComponent(filter.id)}`} className={secondaryButton}>

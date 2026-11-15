@@ -110,8 +110,11 @@ export interface InvestigationRow extends RowBase {
   o2: Range;
   pressure: Range;
   flow: Range;
+  /** Span of the flame spread rates its tests report. */
+  spreadRate: Range;
   testCount: number;
   needsReview: boolean;
+  psiUrl: string;
 }
 
 export interface TestRow extends RowBase {
@@ -163,8 +166,10 @@ export function toInvestigationRow(item: Investigation): InvestigationRow {
     o2: recordRange(item.o2_percent_min, item.o2_percent_max, item.tests.map((test) => test.o2_percent)),
     pressure: recordRange(psiMin, psiMax, item.tests.map(testPressurePsi)),
     flow: recordRange(item.flow_cm_s_min, item.flow_cm_s_max, item.tests.map((test) => test.flow_cm_s)),
+    spreadRate: spanOf(item.tests.map((test) => test.spread_rate_mm_s)),
     testCount: item.tests.length,
     needsReview: item.needs_review,
+    psiUrl: item.psi_url,
     searchText: [item.id, item.acronym, item.name, item.program, item.sample_geometry, ...item.fuels, ...item.objectives]
       .filter(Boolean)
       .join(" ")
@@ -379,4 +384,190 @@ export function parseBound(text: string): number | null {
   if (trimmed === "") return null;
   const value = Number(trimmed);
   return Number.isFinite(value) ? value : null;
+}
+
+// ---------- custom filters ----------
+
+/** Numeric fields a typed filter can map to. Mirrors FIELDS in api/ai/filter_parse.py. */
+export const MAPPED_FIELDS = {
+  o2_percent: { label: "Oxygen concentration", unit: "%", levels: ["investigation", "test"] },
+  pressure_psi: { label: "Pressure", unit: "psi", levels: ["investigation", "test"] },
+  flow_cm_s: { label: "Airflow speed", unit: "cm/s", levels: ["investigation", "test"] },
+  spread_rate_mm_s: { label: "Flame spread rate", unit: "mm/s", levels: ["test"] },
+} as const satisfies Record<string, { label: string; unit: string; levels: readonly FilterLevel[] }>;
+
+export type FilterLevel = "investigation" | "test";
+export type MappedField = keyof typeof MAPPED_FIELDS;
+
+/** A typed filter on a value the dataset already holds. Bounds are in the field's unit. */
+export interface MappedFilter {
+  kind: "mapped";
+  field: MappedField;
+  level: FilterLevel;
+  min: number | null;
+  max: number | null;
+}
+
+/** A typed filter on a parameter the API reads from the source passages. */
+export interface DerivedFilter {
+  kind: "derived";
+  parameter: string;
+  min: number | null;
+  max: number | null;
+  unit: string | null;
+}
+
+export type CustomFilter = MappedFilter | DerivedFilter;
+
+export interface DerivedCitation {
+  title: string;
+  url: string;
+  pageStart: number | null;
+  pageEnd: number | null;
+}
+
+/** One value the API found in a source passage, already compared with the range. */
+export interface DerivedValue {
+  investigationId: string;
+  /** Set when the passage ties the value to one of the investigation's tests. */
+  testId: string | null;
+  value: number;
+  unit: string | null;
+  inRange: boolean;
+  citation: DerivedCitation | null;
+}
+
+/** A custom filter in use. Derived filters carry the values the API found. */
+export interface ActiveCustomFilter {
+  filter: CustomFilter;
+  values: DerivedValue[];
+}
+
+/** "not_reported" rows are never matches: they are listed apart from the results. */
+export type CustomStatus = "match" | "no_match" | "not_reported";
+
+type AnyRow = InvestigationRow | TestRow;
+
+function isTestRow(row: AnyRow): row is TestRow {
+  return "testId" in row;
+}
+
+/** Stable id for a custom filter. Adding a filter with the same id replaces the old one. */
+export function customFilterId(filter: CustomFilter): string {
+  return filter.kind === "mapped" ? `custom:${filter.field}` : `custom:derived:${filter.parameter}`;
+}
+
+/** The parameter name and unit of a custom filter, for chips and column headers. */
+export function customFilterName(filter: CustomFilter): { name: string; unit: string | null } {
+  if (filter.kind === "mapped") {
+    const { label, unit } = MAPPED_FIELDS[filter.field];
+    return { name: label, unit };
+  }
+  return { name: filter.parameter.charAt(0).toUpperCase() + filter.parameter.slice(1), unit: filter.unit };
+}
+
+/** "Flame spread rate (tests) between 2 and 5 mm/s". Same wording as the API's interpretation line. */
+export function customFilterLabel(filter: CustomFilter): string {
+  const { name, unit } = customFilterName(filter);
+  const subject = filter.kind === "mapped" ? `${name} (${filter.level === "test" ? "tests" : "investigations"})` : name;
+  const suffix = !unit ? "" : unit === "%" ? "%" : ` ${unit}`;
+  const { min, max } = filter;
+  if (min !== null && max !== null) {
+    return min === max ? `${subject} equal to ${min}${suffix}` : `${subject} between ${min} and ${max}${suffix}`;
+  }
+  if (min !== null) return `${subject} at least ${min}${suffix}`;
+  if (max !== null) return `${subject} at most ${max}${suffix}`;
+  return subject;
+}
+
+function mappedStatus(row: AnyRow, filter: MappedFilter): CustomStatus {
+  const range: Range = { min: filter.min, max: filter.max };
+  if (isTestRow(row)) {
+    const value = { o2_percent: row.o2, pressure_psi: row.pressure, flow_cm_s: row.flow, spread_rate_mm_s: row.spreadRate }[
+      filter.field
+    ];
+    if (value === null) return "not_reported";
+    return valueInRange(value, range) ? "match" : "no_match";
+  }
+  const tested = { o2_percent: row.o2, pressure_psi: row.pressure, flow_cm_s: row.flow, spread_rate_mm_s: row.spreadRate }[
+    filter.field
+  ];
+  if (tested.min === null || tested.max === null) return "not_reported";
+  return rangeOverlaps(tested, range) ? "match" : "no_match";
+}
+
+/**
+ * The derived values that belong to a row. An investigation row gets all of its
+ * values. A test row gets the values tied to that test or, if there are none,
+ * the values stated for the investigation without a test label.
+ */
+export function derivedValuesFor(row: AnyRow, values: DerivedValue[]): DerivedValue[] {
+  if (!isTestRow(row)) return values.filter((item) => item.investigationId === row.id);
+  const own = values.filter((item) => item.testId === row.testId);
+  if (own.length > 0) return own;
+  return values.filter((item) => item.investigationId === row.investigationId && item.testId === null);
+}
+
+/** How one row stands against one custom filter. */
+export function customStatus(row: AnyRow, custom: ActiveCustomFilter): CustomStatus {
+  if (custom.filter.kind === "mapped") return mappedStatus(row, custom.filter);
+  const values = derivedValuesFor(row, custom.values);
+  if (values.length === 0) return "not_reported";
+  return values.some((item) => item.inRange) ? "match" : "no_match";
+}
+
+/**
+ * Apply custom filters to rows that already passed the manual filters.
+ * `matches` are in range for every custom filter. `notReported` fail none of
+ * them but lack a value for at least one. Rows out of range are dropped.
+ */
+export function applyCustomFilters<T extends AnyRow>(
+  rows: T[],
+  customs: ActiveCustomFilter[],
+): { matches: T[]; notReported: T[] } {
+  const matches: T[] = [];
+  const notReported: T[] = [];
+  for (const row of rows) {
+    const statuses = customs.map((custom) => customStatus(row, custom));
+    if (statuses.includes("no_match")) continue;
+    (statuses.includes("not_reported") ? notReported : matches).push(row);
+  }
+  return { matches, notReported };
+}
+
+/** Rebuild custom filter definitions from stored data (a saved filter). Malformed entries are dropped. */
+export function normalizeCustomFilters(value: unknown): CustomFilter[] {
+  if (!Array.isArray(value)) return [];
+  const bound = (item: unknown): number | null => (typeof item === "number" && Number.isFinite(item) ? item : null);
+  const filters = new Map<string, CustomFilter>();
+  for (const entry of value) {
+    if (typeof entry !== "object" || entry === null) continue;
+    const data = entry as Record<string, unknown>;
+    const min = bound(data.min);
+    const max = bound(data.max);
+    if (min === null && max === null) continue;
+    let filter: CustomFilter | null = null;
+    if (data.kind === "mapped" && typeof data.field === "string" && data.field in MAPPED_FIELDS) {
+      const field = data.field as MappedField;
+      const levels: readonly FilterLevel[] = MAPPED_FIELDS[field].levels;
+      const level = levels.includes(data.level as FilterLevel) ? (data.level as FilterLevel) : levels[0];
+      filter = { kind: "mapped", field, level, min, max };
+    } else if (data.kind === "derived" && typeof data.parameter === "string" && data.parameter.trim()) {
+      const unit = typeof data.unit === "string" && data.unit.trim() ? data.unit.trim() : null;
+      filter = { kind: "derived", parameter: data.parameter.trim(), min, max, unit };
+    }
+    if (filter) filters.set(customFilterId(filter), filter);
+  }
+  return [...filters.values()];
+}
+
+// ---------- CSV ----------
+
+/** RFC 4180 text. Missing values are empty cells. */
+export function toCsv(headers: string[], rows: (string | number | null)[][]): string {
+  const cell = (value: string | number | null): string => {
+    const text = value === null ? "" : String(value);
+    return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+  };
+  return [headers, ...rows].map((row) => row.map(cell).join(",")).join("\r\n") + "\r\n";
 }

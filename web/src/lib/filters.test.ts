@@ -1,21 +1,30 @@
 import { describe, expect, it } from "vitest";
 import {
   activeChips,
+  applyCustomFilters,
+  customFilterId,
+  customFilterLabel,
+  customStatus,
   emptyFilters,
   facetOptions,
   filterInvestigations,
   filterTests,
   matchesSearch,
+  normalizeCustomFilters,
   normalizeFilters,
   parseBound,
   rangeOverlaps,
   removeChip,
   sortRows,
   toggleFacet,
+  toCsv,
   toInvestigationRow,
   toTestRows,
   valueInRange,
+  type ActiveCustomFilter,
+  type DerivedValue,
   type Filters,
+  type MappedFilter,
 } from "./filters";
 import type { Investigation, TestCondition } from "./types";
 
@@ -298,6 +307,135 @@ describe("normalizeFilters", () => {
     expect(normalizeFilters(null)).toEqual(emptyFilters());
     expect(normalizeFilters({ search: 5, fuel: ["PMMA", 3], o2: { min: "21", max: 40 }, extra: true })).toEqual(
       filters({ fuel: ["PMMA"], o2: { min: null, max: 40 } }),
+    );
+  });
+});
+
+function mapped(values: Partial<MappedFilter> & Pick<MappedFilter, "field">): ActiveCustomFilter {
+  return { filter: { kind: "mapped", level: "test", min: null, max: null, ...values }, values: [] };
+}
+
+function derivedValue(values: Partial<DerivedValue> & Pick<DerivedValue, "investigationId" | "value">): DerivedValue {
+  return { testId: null, unit: "mm", inRange: true, citation: null, ...values };
+}
+
+describe("custom filters", () => {
+  const spread = mapped({ field: "spread_rate_mm_s", min: 1, max: 5 });
+
+  it("labels a filter the way the API words its interpretation", () => {
+    expect(customFilterLabel(spread.filter)).toBe("Flame spread rate (tests) between 1 and 5 mm/s");
+    expect(customFilterLabel(mapped({ field: "o2_percent", level: "investigation", min: 30 }).filter)).toBe(
+      "Oxygen concentration (investigations) at least 30%",
+    );
+    expect(customFilterLabel({ kind: "derived", parameter: "sample thickness", min: null, max: 1, unit: "mm" })).toBe(
+      "Sample thickness at most 1 mm",
+    );
+    expect(customFilterId(spread.filter)).toBe("custom:spread_rate_mm_s");
+  });
+
+  it("splits test rows into matches and rows where the value is not reported", () => {
+    const { matches, notReported } = applyCustomFilters(TESTS, [spread]);
+    expect(testIds(matches)).toEqual(["PSI-25-T1"]);
+    // Every other test has no spread rate: not a match, and not dropped either.
+    expect(testIds(notReported)).toEqual(["PSI-25-T2", "PSI-25-T3", "PSI-68-T1", "PSI-68-T2"]);
+  });
+
+  it("drops rows whose reported value is outside the range", () => {
+    const { matches, notReported } = applyCustomFilters(TESTS, [mapped({ field: "o2_percent", min: 25 })]);
+    expect(testIds(matches)).toEqual(["PSI-68-T1", "PSI-68-T2"]);
+    expect(testIds(notReported)).toEqual(["PSI-25-T3"]);
+  });
+
+  it("matches investigation rows by overlap with the tested range", () => {
+    const { matches, notReported } = applyCustomFilters(ROWS, [spread]);
+    expect(ids(matches)).toEqual(["PSI-25"]);
+    expect(ids(notReported)).toEqual(["PSI-68", "PSI-101"]);
+    expect(customStatus(ROWS[0], mapped({ field: "spread_rate_mm_s", min: 3 }))).toBe("no_match");
+  });
+
+  it("combines a mapped custom filter with manual filters: a row must pass both", () => {
+    const custom = [mapped({ field: "o2_percent", min: 20 })];
+    const manualOnly = filterTests(TESTS, filters({ fuel: ["PMMA", "Heptane"] }));
+    expect(testIds(manualOnly)).toEqual(["PSI-25-T2", "PSI-25-T3", "PSI-68-T1"]);
+
+    const both = applyCustomFilters(manualOnly, custom);
+    expect(testIds(both.matches)).toEqual(["PSI-68-T1"]); // heptane at 30% oxygen
+    expect(testIds(both.notReported)).toEqual(["PSI-25-T3"]); // PMMA with no oxygen value
+    // PSI-25-T2 (16% oxygen) fails the custom filter; PSI-68-T2 (methanol) fails the manual one.
+  });
+
+  it("combines a custom filter with a manual range on a different value", () => {
+    const manual = filterTests(TESTS, filters({ flow: { min: 5, max: null } }));
+    expect(testIds(applyCustomFilters(manual, [spread]).matches)).toEqual(["PSI-25-T1"]);
+    const slow = filterTests(TESTS, filters({ flow: { min: null, max: 5 } }));
+    expect(applyCustomFilters(slow, [spread])).toEqual({ matches: [], notReported: slow });
+  });
+
+  it("combines a custom filter with manual filters on investigations", () => {
+    const manual = filterInvestigations(ROWS, filters({ hardware: ["MSG", "CIR"] }));
+    const { matches, notReported } = applyCustomFilters(manual, [mapped({ field: "pressure_psi", level: "investigation", max: 10 })]);
+    expect(ids(matches)).toEqual(["PSI-68"]); // 50 kPa is 7.25 psi
+    expect(notReported).toEqual([]);
+  });
+
+  it("requires every custom filter; a manual range on the same field still applies", () => {
+    const two = [mapped({ field: "o2_percent", min: 20 }), mapped({ field: "flow_cm_s", min: 5 })];
+    const result = applyCustomFilters(TESTS, two);
+    expect(testIds(result.matches)).toEqual(["PSI-25-T1"]);
+    // Oxygen is in range but airflow is missing, or both are missing.
+    expect(testIds(result.notReported)).toEqual(["PSI-25-T3", "PSI-68-T1", "PSI-68-T2"]);
+
+    const narrowed = filterTests(TESTS, filters({ o2: { min: null, max: 35 } }));
+    expect(testIds(applyCustomFilters(narrowed, [mapped({ field: "o2_percent", min: 20 })]).matches)).toEqual([
+      "PSI-25-T1",
+      "PSI-68-T1",
+    ]);
+  });
+
+  it("returns every row as a match when there are no custom filters", () => {
+    expect(applyCustomFilters(TESTS, [])).toEqual({ matches: TESTS, notReported: [] });
+  });
+
+  it("applies derived values to the investigation, or to one test when the source names it", () => {
+    const thickness: ActiveCustomFilter = {
+      filter: { kind: "derived", parameter: "sample thickness", min: null, max: 1, unit: "mm" },
+      values: [
+        derivedValue({ investigationId: "PSI-25", value: 0.3 }),
+        derivedValue({ investigationId: "PSI-25", testId: "PSI-25-T2", value: 3, inRange: false }),
+        derivedValue({ investigationId: "PSI-68", value: 4, inRange: false }),
+      ],
+    };
+    const byInvestigation = applyCustomFilters(ROWS, [thickness]);
+    expect(ids(byInvestigation.matches)).toEqual(["PSI-25"]);
+    expect(ids(byInvestigation.notReported)).toEqual(["PSI-101"]);
+
+    const byTest = applyCustomFilters(TESTS, [thickness]);
+    // T2 has its own value (3 mm, out of range); T1 and T3 use the investigation's 0.3 mm.
+    expect(testIds(byTest.matches)).toEqual(["PSI-25-T1", "PSI-25-T3"]);
+    expect(byTest.notReported).toEqual([]);
+  });
+
+  it("rebuilds saved definitions and drops malformed ones", () => {
+    expect(
+      normalizeCustomFilters([
+        { kind: "mapped", field: "spread_rate_mm_s", level: "investigation", min: 2, max: 5, extra: 1 },
+        { kind: "derived", parameter: " sample thickness ", min: null, max: 1, unit: "mm" },
+        { kind: "mapped", field: "not_a_field", min: 1, max: 2 },
+        { kind: "mapped", field: "o2_percent", min: null, max: null },
+        "text",
+      ]),
+    ).toEqual([
+      { kind: "mapped", field: "spread_rate_mm_s", level: "test", min: 2, max: 5 },
+      { kind: "derived", parameter: "sample thickness", min: null, max: 1, unit: "mm" },
+    ]);
+    expect(normalizeCustomFilters(undefined)).toEqual([]);
+  });
+});
+
+describe("toCsv", () => {
+  it("quotes cells that need it and leaves missing values empty", () => {
+    expect(toCsv(["Name", "O2 (%)"], [["PMMA, cast", 21], ['3" rod', null]])).toBe(
+      'Name,O2 (%)\r\n"PMMA, cast",21\r\n"3"" rod",\r\n',
     );
   });
 });

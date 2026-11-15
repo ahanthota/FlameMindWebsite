@@ -26,7 +26,7 @@ import {
   type Firestore,
 } from "firebase/firestore";
 import { fromStored, type UiMessage } from "./chat";
-import { normalizeFilters, type Filters } from "./filters";
+import { normalizeCustomFilters, normalizeFilters, type CustomFilter, type Filters } from "./filters";
 
 export const USE_CASE_MAX_LENGTH = 2000;
 export const NAME_MAX_LENGTH = 120;
@@ -50,8 +50,8 @@ export interface SavedFilter {
   id: string;
   name: string;
   manualFilters: Filters;
-  /** Custom (free-text) filters. Always empty until Phase 9. */
-  customFilters: unknown[];
+  /** Typed filter definitions. Derived values are not stored: they are read again when the filter is reapplied. */
+  customFilters: CustomFilter[];
   createdAt: Date | null;
 }
 
@@ -140,16 +140,24 @@ function toSavedFilter(id: string, data: Record<string, unknown>): SavedFilter {
     id,
     name: typeof data.name === "string" ? data.name : "Untitled filter",
     manualFilters: normalizeFilters(data.manualFilters),
-    customFilters: Array.isArray(data.customFilters) ? data.customFilters : [],
+    customFilters: normalizeCustomFilters(data.customFilters),
     createdAt: toDate(data.createdAt),
   };
 }
 
-export async function saveFilter(db: Firestore, uid: string, name: string, manualFilters: Filters): Promise<string> {
+export const CUSTOM_FILTERS_MAX = 20;
+
+export async function saveFilter(
+  db: Firestore,
+  uid: string,
+  name: string,
+  manualFilters: Filters,
+  customFilters: CustomFilter[] = [],
+): Promise<string> {
   const created = await addDoc(collection(db, "users", uid, "savedFilters"), {
     name: name.trim().slice(0, NAME_MAX_LENGTH),
     manualFilters,
-    customFilters: [],
+    customFilters: customFilters.slice(0, CUSTOM_FILTERS_MAX),
     createdAt: serverTimestamp(),
   });
   return created.id;
