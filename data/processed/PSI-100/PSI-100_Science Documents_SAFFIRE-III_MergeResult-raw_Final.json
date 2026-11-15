@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-100",
+  "sample_id": null,
+  "file_name": "documents/PSI-100_Science Documents_SAFFIRE-III_MergeResult-raw_Final.xlsx",
+  "title": "PSI-100 Science Documents SAFFIRE-III MergeResult-raw Final",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+  "doi": null,
+  "source_type": "document",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: , , , , , , , , , ,\nunits: none stated\nrows: 30099"
+    }
+  ]
+}

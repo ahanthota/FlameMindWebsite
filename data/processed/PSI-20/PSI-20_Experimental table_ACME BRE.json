@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-20",
+  "sample_id": null,
+  "file_name": "tables/PSI-20_Experimental table_ACME BRE.csv",
+  "title": "PSI-20 Experimental table ACME BRE",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: Year, Month, Date, Burner Size (mm), Fuel Bottle, Oxygen Conc (percent), Flames Ignited, Notes\nunits: Burner Size (mm)=mm, Oxygen Conc (percent)=percent\nrows: 18\nYear: min=2019 max=2021\nDate: min=1 max=28\nBurner Size (mm): min=25 max=50\nFlames Ignited: min=0 max=21"
+    }
+  ]
+}

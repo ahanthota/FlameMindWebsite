@@ -1,0 +1,219 @@
+"""FlameMind API. Science data is loaded from the committed JSON files at startup."""
+
+from __future__ import annotations
+
+import logging
+from contextlib import asynccontextmanager
+from dataclasses import dataclass
+from typing import Literal
+
+from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, ConfigDict, Field
+
+import chat as chat_service
+import filters as filter_service
+from ai.llm import LLM, LLMError
+from auth import AuthError, Verifier, bearer_token
+from data import DataStore
+from ratelimit import GUEST_PER_MINUTE, SIGNED_IN_PER_MINUTE, RateLimiter
+from store import ChatStore
+
+log = logging.getLogger("flamemind.api")
+
+
+@dataclass
+class Services:
+    data: DataStore
+    llm: LLM
+    store: ChatStore
+    verifier: Verifier
+    limiter: RateLimiter
+
+
+class HistoryItem(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    role: Literal["user", "assistant"]
+    content: str = Field(max_length=8000)
+
+
+class ChatRequest(BaseModel):
+    chat_id: str | None = Field(default=None, min_length=1, max_length=128, pattern=r"^[A-Za-z0-9_-]+$")
+    message: str = Field(min_length=1, max_length=2000)
+    history: list[HistoryItem] = Field(default_factory=list, max_length=50)
+
+
+class FilterParseRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=500)
+
+
+class FilterDeriveRequest(BaseModel):
+    parameter: str = Field(min_length=1, max_length=100)
+    min: float | None = None
+    max: float | None = None
+    unit: str | None = Field(default=None, max_length=30)
+    investigation_ids: list[str] | None = Field(default=None, max_length=50)
+
+
+def build_services() -> Services:
+    """Real services from the environment. Called once at startup."""
+    from auth import FirebaseVerifier, firebase_app
+    from config import load_settings
+    from data import load_data
+    from store import FirestoreStore
+
+    settings = load_settings()
+    data = load_data(settings.data_dir)
+    if data.embed_model != settings.embed_model:
+        raise RuntimeError(
+            f"Embeddings were made with {data.embed_model} but EMBED_MODEL is {settings.embed_model}. "
+            "Run pipeline/embed.py again."
+        )
+    from ai.llm import VertexLLM
+
+    def firestore_client():
+        from firebase_admin import firestore
+
+        return firestore.client(firebase_app(settings.firebase_project))
+
+    log.info(
+        "Loaded %d chunks, %d investigations, %d cached answers",
+        len(data.chunks), len(data.investigations), len(data.answer_cache),
+    )
+    return Services(
+        data=data,
+        llm=VertexLLM(settings.gcp_project, settings.gcp_region, settings.gemini_model, settings.embed_model),
+        store=FirestoreStore(firestore_client),
+        verifier=FirebaseVerifier(settings.firebase_project),
+        limiter=RateLimiter(),
+    )
+
+
+def client_ip(request: Request) -> str:
+    """Cloud Run appends the caller's address as the last X-Forwarded-For entry."""
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded.strip():
+        return forwarded.split(",")[-1].strip()
+    return request.client.host if request.client else "unknown"
+
+
+def create_app(services: Services | None = None, web_origin: str | None = None) -> FastAPI:
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        if getattr(app.state, "services", None) is None:
+            app.state.services = build_services()
+        yield
+
+    app = FastAPI(title="FlameMind API", lifespan=lifespan)
+    app.state.services = services
+
+    if web_origin is None:
+        from config import load_settings
+
+        web_origin = load_settings(require_ai=False).web_origin
+    if web_origin:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=[web_origin],
+            allow_methods=["GET", "POST"],
+            allow_headers=["Authorization", "Content-Type"],
+            max_age=600,
+        )
+    else:
+        log.warning("WEB_ORIGIN is not set: no browser origin is allowed to call this API.")
+
+    def identify(
+        request: Request, authorization: str | None, rate_limit: bool = True
+    ) -> tuple[Services, str | None]:
+        """Verify the token if the request carries one, then apply the rate limit.
+
+        Every route that reads the Authorization header goes through here, so a bad
+        token is always a 401 and never silently treated as a guest.
+        """
+        services: Services = request.app.state.services
+        try:
+            token = bearer_token(authorization)
+            uid = services.verifier.verify(token) if token else None
+        except AuthError as exc:
+            raise HTTPException(status_code=401, detail=str(exc)) from exc
+        if not rate_limit:
+            return services, uid
+        key, limit = (f"user:{uid}", SIGNED_IN_PER_MINUTE) if uid else (f"ip:{client_ip(request)}", GUEST_PER_MINUTE)
+        allowed, retry_after = services.limiter.allow(key, limit)
+        if not allowed:
+            raise HTTPException(
+                status_code=429,
+                detail=f"Too many requests. The limit is {limit} per minute.",
+                headers={"Retry-After": str(retry_after)},
+            )
+        return services, uid
+
+    @app.get("/health")
+    def health() -> dict[str, str]:
+        return {"status": "ok"}
+
+    @app.get("/me")
+    def me(request: Request, authorization: str | None = Header(default=None)) -> dict:
+        """Who the API thinks you are. 401 if the token is bad."""
+        _, uid = identify(request, authorization, rate_limit=False)
+        return {"signed_in": uid is not None, "uid": uid}
+
+    @app.post("/chat")
+    def chat(
+        body: ChatRequest,
+        request: Request,
+        authorization: str | None = Header(default=None),
+    ) -> dict:
+        services, uid = identify(request, authorization)
+
+        message = body.message.strip()
+        if not message:
+            raise HTTPException(status_code=422, detail="message is empty")
+        try:
+            if uid:
+                return chat_service.user_chat(
+                    services.llm, services.data, services.store, uid, body.chat_id, message
+                )
+            history = [item.model_dump() for item in body.history]
+            return chat_service.guest_chat(services.llm, services.data, body.chat_id, message, history)
+        except chat_service.ChatNotFound as exc:
+            raise HTTPException(status_code=404, detail="Chat not found.") from exc
+        except LLMError as exc:
+            log.exception("model call failed")
+            raise HTTPException(status_code=503, detail="The AI service is unavailable. Try again shortly.") from exc
+
+    @app.post("/filter/parse")
+    def filter_parse(
+        body: FilterParseRequest, request: Request, authorization: str | None = Header(default=None)
+    ) -> dict:
+        services, _ = identify(request, authorization)
+        if not body.text.strip():
+            raise HTTPException(status_code=422, detail="text is empty")
+        try:
+            return filter_service.parse(services.llm, body.text)
+        except LLMError as exc:
+            log.exception("model call failed")
+            raise HTTPException(status_code=503, detail="The AI service is unavailable. Try again shortly.") from exc
+
+    @app.post("/filter/derive")
+    def filter_derive(
+        body: FilterDeriveRequest, request: Request, authorization: str | None = Header(default=None)
+    ) -> dict:
+        services, _ = identify(request, authorization)
+        if not filter_service.deriving.cache_key(body.parameter):
+            raise HTTPException(status_code=422, detail="parameter is empty")
+        try:
+            return filter_service.derive(
+                services.llm, services.data, body.parameter, body.min, body.max, body.unit, body.investigation_ids
+            )
+        except filter_service.UnknownInvestigation as exc:
+            raise HTTPException(status_code=422, detail=f"Unknown investigation id(s): {exc}") from exc
+        except LLMError as exc:
+            log.exception("model call failed")
+            raise HTTPException(status_code=503, detail="The AI service is unavailable. Try again shortly.") from exc
+
+    return app
+
+
+app = create_app()

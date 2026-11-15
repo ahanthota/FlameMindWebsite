@@ -1,0 +1,7203 @@
+{
+  "source": "data/investigations.json",
+  "investigation_count": 10,
+  "grid": {
+    "o2_percent_edges": [
+      15.0,
+      20.0,
+      25.0,
+      30.0,
+      35.0,
+      40.0,
+      45.0,
+      50.0,
+      55.0,
+      60.0,
+      65.0,
+      70.0,
+      75.0,
+      80.0,
+      85.0,
+      90.0,
+      95.0,
+      100.0
+    ],
+    "pressure_psi_edges": [
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0
+    ],
+    "gravity_classes": [
+      "microgravity",
+      "partial",
+      "normal"
+    ],
+    "distance_note": "distance is sqrt((dO2/85)^2 + (dpsi/14)^2), the gap scaled by the grid span on each axis. 0 means inside a tested range or at a tested point.",
+    "coverage": {
+      "microgravity": {
+        "covered_cells": 54,
+        "total_cells": 238
+      },
+      "partial": {
+        "covered_cells": 0,
+        "total_cells": 238
+      },
+      "normal": {
+        "covered_cells": 0,
+        "total_cells": 238
+      }
+    },
+    "cells": [
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-25",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-25",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-20",
+          "PSI-68",
+          "PSI-69"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": true,
+        "investigation_ids": [
+          "PSI-68"
+        ]
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "microgravity",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "partial",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 15.0,
+        "o2_max": 20.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 20.0,
+        "o2_max": 25.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 25.0,
+        "o2_max": 30.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 30.0,
+        "o2_max": 35.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 35.0,
+        "o2_max": 40.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 40.0,
+        "o2_max": 45.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 45.0,
+        "o2_max": 50.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 50.0,
+        "o2_max": 55.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 55.0,
+        "o2_max": 60.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 60.0,
+        "o2_max": 65.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 65.0,
+        "o2_max": 70.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 70.0,
+        "o2_max": 75.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 75.0,
+        "o2_max": 80.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 80.0,
+        "o2_max": 85.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 85.0,
+        "o2_max": 90.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 90.0,
+        "o2_max": 95.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 2.0,
+        "psi_max": 3.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 3.0,
+        "psi_max": 4.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 4.0,
+        "psi_max": 5.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 5.0,
+        "psi_max": 6.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 6.0,
+        "psi_max": 7.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 7.0,
+        "psi_max": 8.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 8.0,
+        "psi_max": 9.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 9.0,
+        "psi_max": 10.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 10.0,
+        "psi_max": 11.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 11.0,
+        "psi_max": 12.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 12.0,
+        "psi_max": 13.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 13.0,
+        "psi_max": 14.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 14.0,
+        "psi_max": 15.0,
+        "covered": false,
+        "investigation_ids": []
+      },
+      {
+        "gravity": "normal",
+        "o2_min": 95.0,
+        "o2_max": 100.0,
+        "psi_min": 15.0,
+        "psi_max": 16.0,
+        "covered": false,
+        "investigation_ids": []
+      }
+    ]
+  },
+  "placements": [
+    {
+      "investigation_id": "PSI-20",
+      "acronym": "ACME BRE",
+      "gravity": "microgravity",
+      "basis": "ranges",
+      "points": 1
+    },
+    {
+      "investigation_id": "PSI-25",
+      "acronym": "BASS-II",
+      "gravity": "microgravity",
+      "basis": "tests",
+      "points": 50
+    },
+    {
+      "investigation_id": "PSI-68",
+      "acronym": "FLEX-2",
+      "gravity": "microgravity",
+      "basis": "ranges",
+      "points": 1
+    },
+    {
+      "investigation_id": "PSI-69",
+      "acronym": "FLEX",
+      "gravity": "microgravity",
+      "basis": "tests",
+      "points": 224
+    }
+  ],
+  "unplaced": [
+    {
+      "investigation_id": "PSI-26",
+      "acronym": "BASS",
+      "gravity": "microgravity",
+      "reason": "no pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-98",
+      "acronym": "SAFFIRE-I",
+      "gravity": "microgravity",
+      "reason": "no pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-99",
+      "acronym": "SAFFIRE-II",
+      "gravity": "microgravity",
+      "reason": "no pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-100",
+      "acronym": "SAFFIRE-III",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-101",
+      "acronym": "SAME-R",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    },
+    {
+      "investigation_id": "PSI-102",
+      "acronym": "SAME",
+      "gravity": "microgravity",
+      "reason": "no oxygen or pressure values in tests or ranges"
+    }
+  ],
+  "habitats": [
+    {
+      "habitat_id": "earth_sea_level",
+      "name": "Earth sea level",
+      "o2_percent": 20.9,
+      "pressure_psi": 14.7,
+      "pressure_kpa": 101.35,
+      "gravity": "normal",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 20.9,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 20.9,
+          "nearest_pressure_psi": 14.696,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": -0.004,
+          "distance": 0.0003
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.1,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0012
+        }
+      ]
+    },
+    {
+      "habitat_id": "iss",
+      "name": "International Space Station",
+      "o2_percent": 21.0,
+      "pressure_psi": 14.7,
+      "pressure_kpa": 101.35,
+      "gravity": "microgravity",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": true,
+      "covering_investigation_ids": [
+        "PSI-20",
+        "PSI-25",
+        "PSI-68",
+        "PSI-69"
+      ],
+      "nearest_same_gravity": [
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        }
+      ],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 21.0,
+          "nearest_pressure_psi": 14.7,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        }
+      ]
+    },
+    {
+      "habitat_id": "moon_base",
+      "name": "Moon base / pressurized rover",
+      "o2_percent": 34.0,
+      "pressure_psi": 8.0,
+      "pressure_kpa": 55.16,
+      "gravity": "partial",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.0,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.2,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.2,
+          "distance": 0.0143
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 20.0,
+          "nearest_pressure_psi": 8.0,
+          "delta_o2_percent": -14.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.1647
+        }
+      ]
+    },
+    {
+      "habitat_id": "moon_base_upper_pressure",
+      "name": "Moon base upper pressure",
+      "o2_percent": 30.0,
+      "pressure_psi": 10.2,
+      "pressure_kpa": 70.33,
+      "gravity": "partial",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 30.0,
+          "nearest_pressure_psi": 10.2,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 30.0,
+          "nearest_pressure_psi": 10.2,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 30.0,
+          "nearest_pressure_psi": 10.332,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.132,
+          "distance": 0.0094
+        }
+      ]
+    },
+    {
+      "habitat_id": "spacesuit",
+      "name": "Spacesuit",
+      "o2_percent": 100.0,
+      "pressure_psi": 4.3,
+      "pressure_kpa": 29.65,
+      "gravity": "microgravity",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 40.0,
+          "nearest_pressure_psi": 7.348,
+          "delta_o2_percent": -60.0,
+          "delta_pressure_psi": 3.048,
+          "distance": 0.7387
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.2,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 3.9,
+          "distance": 0.8249
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 10.332,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 6.032,
+          "distance": 0.888
+        }
+      ],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 40.0,
+          "nearest_pressure_psi": 7.348,
+          "delta_o2_percent": -60.0,
+          "delta_pressure_psi": 3.048,
+          "distance": 0.7387
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.2,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 3.9,
+          "distance": 0.8249
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 10.332,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 6.032,
+          "distance": 0.888
+        }
+      ]
+    },
+    {
+      "habitat_id": "spacesuit",
+      "name": "Spacesuit",
+      "o2_percent": 100.0,
+      "pressure_psi": 4.3,
+      "pressure_kpa": 29.65,
+      "gravity": "partial",
+      "assumed": false,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 40.0,
+          "nearest_pressure_psi": 7.348,
+          "delta_o2_percent": -60.0,
+          "delta_pressure_psi": 3.048,
+          "distance": 0.7387
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.2,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 3.9,
+          "distance": 0.8249
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 10.332,
+          "delta_o2_percent": -66.0,
+          "delta_pressure_psi": 6.032,
+          "distance": 0.888
+        }
+      ]
+    },
+    {
+      "habitat_id": "mars_habitat",
+      "name": "Mars habitat",
+      "o2_percent": 34.0,
+      "pressure_psi": 8.0,
+      "pressure_kpa": 55.16,
+      "gravity": "partial",
+      "assumed": true,
+      "on_grid": true,
+      "inside_tested": false,
+      "covering_investigation_ids": [],
+      "nearest_same_gravity": [],
+      "nearest_any_gravity": [
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.0,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.0
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "gravity": "microgravity",
+          "basis": "ranges",
+          "nearest_o2_percent": 34.0,
+          "nearest_pressure_psi": 8.2,
+          "delta_o2_percent": 0.0,
+          "delta_pressure_psi": 0.2,
+          "distance": 0.0143
+        },
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "gravity": "microgravity",
+          "basis": "tests",
+          "nearest_o2_percent": 20.0,
+          "nearest_pressure_psi": 8.0,
+          "delta_o2_percent": -14.0,
+          "delta_pressure_psi": 0.0,
+          "distance": 0.1647
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "no_partial_gravity",
+      "title": "No partial-gravity combustion data in PSI",
+      "text": "No PSI combustion investigation was run at Moon or Mars gravity. Habitat presets at partial gravity can only be compared with microgravity and 1 g results.",
+      "notes": [
+        "Upcoming LUCI and FM2 experiments will add partial-gravity data.",
+        "E-FIELD Flames uses an electric field to mimic some gravity effects. It is a partial proxy, not real partial gravity.",
+        "Microgravity and 1 g results bound the expected behavior in between."
+      ],
+      "related_investigation_ids": [
+        "PSI-22"
+      ],
+      "partial_gravity_investigations_found": []
+    },
+    {
+      "id": "habitat_earth_sea_level_normal",
+      "title": "Earth sea level: not tested in normal",
+      "text": "No PSI investigation in this dataset covers 20.9% O2 at 14.7 psi in normal. Closest tested: FLEX-2 (microgravity) at 20.9% O2, 14.7 psi.",
+      "habitat_id": "earth_sea_level",
+      "gravity": "normal",
+      "related_investigation_ids": [
+        "PSI-68",
+        "PSI-25",
+        "PSI-20"
+      ]
+    },
+    {
+      "id": "habitat_moon_base_partial",
+      "title": "Moon base / pressurized rover: not tested in partial",
+      "text": "No PSI investigation in this dataset covers 34% O2 at 8 psi in partial. Closest tested: FLEX-2 (microgravity) at 34% O2, 8 psi.",
+      "habitat_id": "moon_base",
+      "gravity": "partial",
+      "related_investigation_ids": [
+        "PSI-68",
+        "PSI-20",
+        "PSI-69"
+      ]
+    },
+    {
+      "id": "habitat_moon_base_upper_pressure_partial",
+      "title": "Moon base upper pressure: not tested in partial",
+      "text": "No PSI investigation in this dataset covers 30% O2 at 10.2 psi in partial. Closest tested: ACME BRE (microgravity) at 30% O2, 10.2 psi.",
+      "habitat_id": "moon_base_upper_pressure",
+      "gravity": "partial",
+      "related_investigation_ids": [
+        "PSI-20",
+        "PSI-68",
+        "PSI-69"
+      ]
+    },
+    {
+      "id": "habitat_spacesuit_microgravity",
+      "title": "Spacesuit: not tested in microgravity",
+      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in microgravity. Closest tested: FLEX-2 (microgravity) at 40% O2, 7.348 psi.",
+      "habitat_id": "spacesuit",
+      "gravity": "microgravity",
+      "related_investigation_ids": [
+        "PSI-68",
+        "PSI-20",
+        "PSI-69"
+      ]
+    },
+    {
+      "id": "habitat_spacesuit_partial",
+      "title": "Spacesuit: not tested in partial",
+      "text": "No PSI investigation in this dataset covers 100% O2 at 4.3 psi in partial. Closest tested: FLEX-2 (microgravity) at 40% O2, 7.348 psi.",
+      "habitat_id": "spacesuit",
+      "gravity": "partial",
+      "related_investigation_ids": [
+        "PSI-68",
+        "PSI-20",
+        "PSI-69"
+      ]
+    },
+    {
+      "id": "habitat_mars_habitat_partial",
+      "title": "Mars habitat: not tested in partial",
+      "text": "No PSI investigation in this dataset covers 34% O2 at 8 psi in partial. Closest tested: FLEX-2 (microgravity) at 34% O2, 8 psi. This preset is assumed.",
+      "habitat_id": "mars_habitat",
+      "gravity": "partial",
+      "related_investigation_ids": [
+        "PSI-68",
+        "PSI-20",
+        "PSI-69"
+      ]
+    }
+  ]
+}

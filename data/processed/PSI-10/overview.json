@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-10",
+  "sample_id": null,
+  "file_name": "overview/overview.md",
+  "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+  "doi": "10.60555/w4zy-bt45",
+  "source_type": "psi_overview",
+  "pages": [
+    {
+      "page": 1,
+      "text": "# Advanced Combustion via Microgravity Experiments / Flame Design\n\n- Accession: PSI-10\n- Acronym: ACME/Flame Design\n- PSI page: https://psi.nasa.gov/physci/repo/data/investigations/PSI-10\n- DOI: 10.60555/w4zy-bt45\n- License: ()\n- Research area: Combustion Science\n- Sub-area: Flames of Gaseous Fuels\n- Project type: Microgravity Investigation\n- Flight program: International Space Station (ISS)\n- Hardware: Advanced Combustion via Microgravity Experiments (ACME), Combustion Integrated Rack (CIR), Reconfiguration of Combustion Integrated Rack (CIR)\n- Start: 01-14-1999\n- End: 04-30-2025\n- NASA center: Glenn Research Center (GRC)\n\n## Objectives\n\nThe primary objectives of this flight experiment are:\nA. Obtain soot-inception limits of quasi-steady normal and inverse spherical diffusion flames as functions of flow rate, Zst, amount of inert (N2 or CO2), and pressure for C2H4 and CH4 flames. Identify the corresponding temperatures in hot regions. Obtain similar limits and temperatures for inverse and normal coflow flames.\nB. Obtain detailed measurements in quasi-steady normal and inverse spherical diffusion flames for C2H4 and CH4. Determine the effects of flow rate, Zst, amount of N2, and pressure on flame temperature, size, color, and soot volume fraction. Evaluate the possible existence of steady flames.\nC. Obtain extinction limits as functions of Zst, amount of N2, and pressure for normal and inverse spherical C2H4 and CH4 flames. Identify the corresponding temperatures in hot regions. Identify the presence of radiative or kinetic extinction. Evaluate whether pseudo-flammability limits can be obtained for these flames.\n\n## Approach\n\nPerform spherical diffusion flame tests in drop towers and aboard the International Space Station. Consider a broad range of reactant dilutions, flow rates and pressures for normal and inverse convection directions. Observe the flames with a broad suite of cameras, radiometers, photomultiplier tubes, and thermocouples.\n\n## Hypothesis\n\n1. Soot formation requires a region where local C/O ratio and T exceed their critical values, and where strain rate is sufficiently low.\n2. Microgravity spherical diffusion flames extinguish when the peak temperature first decreases below 1130 K.\n3. Steady-state spherical diffusion flames are possible.\n\n## Research impacts\n\nThis project has the potential for improving efficiency and reducing pollutant emissions in terrestrial combustors. For example, it is contributing to novel designs of future coal power plants.\n\nExcerpted from the NASA Physical Sciences Informatics repository. License: see the PSI page. Cite the investigation DOI when one is listed."
+    }
+  ]
+}

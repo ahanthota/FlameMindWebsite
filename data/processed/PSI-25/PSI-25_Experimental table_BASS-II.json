@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-25",
+  "sample_id": null,
+  "file_name": "tables/PSI-25_Experimental table_BASS-II.csv",
+  "title": "PSI-25 Experimental table BASS-II",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: PI, Test #, Date, GMT, Sample #, Fuel Sample Material, Flow restrictor, Fan display, Air display, Radiometer gain (1000 250 50 10), Total Frames Shot, Calibrated initial O2 % by vol, Calibrated final O2 % by vol, Initial CO2 % by vol, Final CO2 % by vol, Initial CO (ppm), Final CO (ppm)\nunits: Radiometer gain (1000 250 50 10)=1000 250 50 10, Initial CO (ppm)=ppm, Final CO (ppm)=ppm\nrows: 129\nGMT: min=45 max=216\nFlow restrictor: min=0 max=2\nRadiometer gain (1000 250 50 10): min=10 max=1000\nTotal Frames Shot: min=2 max=316\nCalibrated initial O2 % by vol: min=13.6 max=22.2\nCalibrated final O2 % by vol: min=0.6 max=40.4\nInitial CO2 % by vol: min=0 max=1.85\nFinal CO2 % by vol: min=0.2 max=3.22\nInitial CO (ppm): min=-3 max=950\nFinal CO (ppm): min=0.3 max=950"
+    }
+  ]
+}

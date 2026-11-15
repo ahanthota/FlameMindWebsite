@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-106",
+  "sample_id": null,
+  "file_name": "overview/overview.md",
+  "title": "Structure and Liftoff In Combustion Experiment",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-106",
+  "doi": "10.60555/pm12-rg61",
+  "source_type": "psi_overview",
+  "pages": [
+    {
+      "page": 1,
+      "text": "# Structure and Liftoff In Combustion Experiment\n\n- Accession: PSI-106\n- Acronym: SLICE\n- PSI page: https://psi.nasa.gov/physci/repo/data/investigations/PSI-106\n- DOI: 10.60555/pm12-rg61\n- License: CC0-1.0 (Creative Commons Zero v1.0 Universal)\n- Research area: Combustion Science\n- Sub-area:\n- Project type: Microgravity Investigation\n- Flight program: International Space Station (ISS)\n- Hardware:\n- Start:\n- End:\n- NASA center: Glenn Research Center (GRC)\n\n## Objectives\n\nObjective: The objective of this investigation is to better understand the structure and stability of laminar diffusion flames in microgravity.\n\nSpecific objectives of this investigation were:\n1. To investigate the structure of laminar diffusion flames in microgravity to understand the stabilizing mechanisms at the flames base.\n2. Determine the liftoff velocity limits for different fuels and burner diameters.\n3. Evaluate the impact of fuel dilution with nitrogen on soot formation and flame stability.\n4. Quantify the effects of microgravity on flame length and radiative heat loss compared to normal gravity conditions.\n5. Validate numerical models for flame dynamics, soot production, and thermal radiation in non-premixed flames.\n\n## Approach\n\nThe SLICE apparatus consisted of a fan-driven flow duct, exchangeable burner tubes, and integrated sensors to measure flow rates and temperature. This setup used several fuels such as methane, ethylene, and nitrogen-diluted mixtures. Flames were then manually ignited and observed under controlled coflow air conditions. A high resolution camera captured still images while sensor data was overlaid on these images. Calibration tests for airflow velocity, soot measurement, and the fans were conducted to ensure the accuracy of the results. More than 4,000 high-resolution images were captured across 13 testing experiments. Data was then analyzed to correlate flame structure with stability with flow dynamics and fuel properties.\n\n## Hypothesis\n\nThe hypothesis is that the structure and stability of laminar diffusion flames in microgravity are significantly influenced by burner diameter, coflow velocity, and fuel composition and are fundamentally different than flames observed on Earth.\n\n## Research impacts\n\n1. Improved numerical models for flame behavior lead to more efficient combustion technologies on Earth.\n2. Understanding soot formation aids in designing combustion systems with minimum emissions.\n3. Insights into flame stability and behavior to enhance fire safety.\n4. Findings will inform the development of cleaner, more efficient engines and industrial burners.\n\nExcerpted from the NASA Physical Sciences Informatics repository. License: CC0-1.0. Cite the investigation DOI when one is listed."
+    }
+  ]
+}

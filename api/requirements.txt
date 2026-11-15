@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+google-genai>=3.3,<4
+numpy>=2,<3
+python-dotenv
+# firebase-admin 7.8 requires cryptography>=50, which has no Intel macOS wheel.
+firebase-admin>=7.7,<7.8
+cryptography>=43,<49
+pytest
+httpx2

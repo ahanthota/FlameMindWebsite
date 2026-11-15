@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-102",
+  "sample_id": null,
+  "file_name": "tables/PSI-102_Experimental table_SAME.csv",
+  "title": "PSI-102 Experimental table SAME",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: Sample #, Sample Material, Air Flow (cm/s), Weight loss rate (mg/min), Aging Duration (minutes)\nunits: Air Flow (cm/s)=cm/s, Weight loss rate (mg/min)=mg/min, Aging Duration (minutes)=minutes\nrows: 8\nSample #: min=1 max=8\nAir Flow (cm/s): min=5 max=10\nWeight loss rate (mg/min): min=1 max=2\nAging Duration (minutes): min=1 max=20"
+    }
+  ]
+}

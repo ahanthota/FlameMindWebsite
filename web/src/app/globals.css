@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neutral surfaces and one deep-blue accent. */
+  --color-canvas: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-line: #dfe3e8;
+  --color-ink: #16202e;
+  --color-muted: #586474;
+  --color-accent: #1b3a8c;
+  --color-accent-strong: #142c6b;
+  --color-accent-soft: #e9eef9;
+  --color-warn: #8a5a00;
+  --color-warn-soft: #fdf3dc;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+/* Numbers line up in tables. */
+table {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

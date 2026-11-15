@@ -1,0 +1,19 @@
+[
+  {
+    "id": "example-bass-low-flow-quenching",
+    "title": "Very low airflow can quench a fabric flame",
+    "text": "In BASS tests on the ISS, lowering the concurrent airflow to about 1 cm/s led to quenching extinction of the burning sample.",
+    "category": "suppression",
+    "habitats": ["iss"],
+    "investigation_ids": ["PSI-26"],
+    "sources": [
+      {
+        "file_name": "documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+        "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+        "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+        "doi": null,
+        "page": 1
+      }
+    ]
+  }
+]

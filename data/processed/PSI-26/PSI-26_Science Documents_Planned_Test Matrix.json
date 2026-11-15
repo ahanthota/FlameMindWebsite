@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-26",
+  "sample_id": null,
+  "file_name": "documents/PSI-26_Science Documents_Planned_Test Matrix.xlsx",
+  "title": "PSI-26 Science Documents Planned Test Matrix",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+  "doi": null,
+  "source_type": "document",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: , , , , , , , , , , , , , , , , , , , , , , , ,\nunits: none stated\nrows: 64\n: min=26 max=121\n: min=1 max=3\n: min=2 max=2\n: min=2.5 max=10\n: min=2 max=4\n: min=1000 max=1600\n: min=50 max=50\n: min=2 max=8\n: min=0.44 max=2.87\n: min=42 max=41396"
+    }
+  ]
+}

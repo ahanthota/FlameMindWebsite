@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlameMind progress report (Nov 14, 2026)</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #121a30;
+    --panel-2: #172241;
+    --text: #e6eaf2;
+    --muted: #9aa6bf;
+    --line: #26314f;
+    --accent: #ff8a3d;
+    --accent-2: #ffd166;
+    --ok: #3ecf8e;
+    --warn: #ffb547;
+    --bad: #ff6b6b;
+    --code: #0f1528;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header.hero {
+    padding: 48px 24px 32px;
+    background: radial-gradient(1200px 400px at 20% -10%, rgba(255,138,61,.25), transparent),
+                radial-gradient(800px 300px at 90% 0%, rgba(255,209,102,.15), transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 2.2rem; margin: 0 0 6px; letter-spacing: -.02em; }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--muted); margin: 0; }
+  nav.toc {
+    position: sticky; top: 0; z-index: 5;
+    background: rgba(11,16,32,.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc .wrap { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 24px; }
+  nav.toc a {
+    color: var(--muted); text-decoration: none; font-size: .85rem;
+    padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line);
+  }
+  nav.toc a:hover { color: var(--text); border-color: var(--accent); }
+  main .wrap { padding: 8px 24px 64px; }
+  section { padding-top: 28px; }
+  h2 {
+    font-size: 1.5rem; margin: 18px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .num { color: var(--accent); margin-right: 8px; }
+  h3 { font-size: 1.12rem; margin: 22px 0 8px; color: var(--accent-2); }
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+  a { color: var(--accent-2); }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .88rem; }
+  code { background: var(--code); padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); }
+  pre {
+    background: var(--code); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; overflow-x: auto; line-height: 1.45;
+  }
+  pre code { background: none; border: 0; padding: 0; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+  }
+  .card .label { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+  .card .value { font-size: 1.6rem; font-weight: 700; margin-top: 2px; }
+  .card .note { color: var(--muted); font-size: .88rem; }
+  .callout {
+    border-left: 4px solid var(--accent); background: var(--panel);
+    padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 14px 0;
+  }
+  .callout.ok { border-left-color: var(--ok); }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.bad { border-left-color: var(--bad); }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: .9rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; background: var(--panel-2); position: sticky; top: 46px; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  .table-wrap table { margin: 0; }
+  .pill {
+    display: inline-block; font-size: .75rem; padding: 1px 8px; border-radius: 999px;
+    border: 1px solid var(--line); white-space: nowrap;
+  }
+  .pill.ok { color: var(--ok); border-color: rgba(62,207,142,.4); }
+  .pill.warn { color: var(--warn); border-color: rgba(255,181,71,.4); }
+  .pill.bad { color: var(--bad); border-color: rgba(255,107,107,.4); }
+  .pill.a { color: var(--accent); border-color: rgba(255,138,61,.4); }
+  .timeline { list-style: none; padding: 0; margin: 0; }
+  .timeline > li {
+    position: relative; padding: 4px 0 18px 30px; border-left: 2px solid var(--line); margin-left: 8px;
+  }
+  .timeline > li::before {
+    content: ""; position: absolute; left: -8px; top: 8px; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg);
+  }
+  .timeline .step { font-weight: 700; }
+  .timeline .ask { color: var(--muted); font-style: italic; }
+  .timeline ul { margin: 6px 0 0; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; }
+  .flow .box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+    min-width: 150px;
+  }
+  .flow .box b { display: block; color: var(--accent-2); }
+  .flow .box span { color: var(--muted); font-size: .85rem; }
+  .flow .arrow { color: var(--accent); font-size: 1.3rem; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  footer { border-top: 1px solid var(--line); color: var(--muted); padding: 20px 24px; font-size: .85rem; }
+  @media print {
+    nav.toc { display: none; }
+    body { background: #fff; color: #111; }
+    .card, .callout, details, pre, .flow .box { background: #f6f7fb; }
+    th { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Flame<span>Mind</span> progress report</h1>
+    <p class="subtitle">NASA Space Apps "Flame in Freefall" · Team Spherical Flame · status as of Saturday, November 14, 2026, about 9:20 PM (UTC-6)</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#glance">At a glance</a>
+    <a href="#what">What FlameMind is</a>
+    <a href="#structure">Project structure</a>
+    <a href="#timeline">Prompt by prompt</a>
+    <a href="#data">NASA data</a>
+    <a href="#parse">Reading documents</a>
+    <a href="#extract">AI extraction</a>
+    <a href="#cloud">Google Cloud</a>
+    <a href="#results">BASS and FLEX</a>
+    <a href="#fixes">Problems fixed</a>
+    <a href="#state">Current state</a>
+    <a href="#next">What's next</a>
+    <a href="#run">How to run</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- ============================================================ -->
+<section id="glance">
+  <h2><span class="num">1</span>At a glance</h2>
+  <p>
+    The project skeleton is built. The NASA data for all 24 combustion investigations has been collected and read
+    into clean text. The AI extraction step works and has been run on two investigations, BASS and FLEX.
+    The website and API are still placeholders.
+  </p>
+  <div class="cards">
+    <div class="card"><div class="label">Investigations found</div><div class="value">24</div><div class="note">All NASA PSI records in Combustion Science</div></div>
+    <div class="card"><div class="label">Files read</div><div class="value">58</div><div class="note">483 pages of text, 3 files skipped</div></div>
+    <div class="card"><div class="label">Publications with DOIs</div><div class="value">283</div><div class="note">Out of 352 publications listed</div></div>
+    <div class="card"><div class="label">Investigations extracted</div><div class="value">2 / 24</div><div class="note">BASS (133 tests) and FLEX (274 tests)</div></div>
+    <div class="card"><div class="label">Automated tests</div><div class="value">40 + 1</div><div class="note">40 pipeline tests and 1 API test, all passing</div></div>
+    <div class="card"><div class="label">Raw data on disk</div><div class="value">95 MB</div><div class="note">Kept out of git. NASA's full catalog is about 12 TB.</div></div>
+  </div>
+  <div class="callout warn">
+    <b>Nothing has been committed to git yet.</b> All of this work exists only in the local folder. A stray
+    <code>Untitled/</code> folder sits at the repo root. It is a duplicate copy of the GitHub repo with no unique content,
+    and it should be deleted before the first commit.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="what">
+  <h2><span class="num">2</span>What FlameMind is</h2>
+  <p>
+    FlameMind is an AI web dashboard. It turns NASA microgravity combustion research into fire-safety insights,
+    with a source cited for every claim, for places where people will live beyond Earth: Moon bases, rovers,
+    spacecraft, and space stations. Rockets and propellants are out of scope.
+  </p>
+  <h3>The ground rules</h3>
+  <ul>
+    <li><b>Every data claim cites a source,</b> with a DOI when one exists. If there is no evidence, the app says
+      <i>"Insufficient evidence in the PSI data."</i></li>
+    <li><b>Suggestions are labeled as suggestions.</b> Each one names the findings it relies on and carries the note
+      <i>"Research summary, not certified safety guidance."</i></li>
+    <li><b>Unknown values stay empty (null) and are never guessed.</b></li>
+    <li><b>Science data lives in committed JSON files</b> in <code>data/</code>, never in a database.
+      User accounts, if added later, store only profile, chats, and saved filters.</li>
+    <li><b>Model names and cloud settings come only from environment settings</b> (<code>.env</code>), never from the code itself.</li>
+  </ul>
+  <h3>The planned experiences (not built yet)</h3>
+  <div class="grid-2">
+    <div class="card"><b>Scenario chat</b><p class="muted">Describe a situation, for example "a fabric fire in a lunar habitat."
+      The app shows the relevant data and, only when you describe a use case, labeled suggestions with sources. Signed-in users can save chats.</p></div>
+    <div class="card"><b>Explore</b><p class="muted">Manual filters, search, and a "custom filter" written in plain English that the same AI turns into real filters.
+      Results always appear as a table, and filter sets can be saved.</p></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="structure">
+  <h2><span class="num">3</span>Project structure</h2>
+  <p>The project is one repository with four parts. Each part has its own job.</p>
+  <div class="flow">
+    <div class="box"><b>NASA PSI</b><span>public research site</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>pipeline/</b><span>runs on your laptop only</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>data/</b><span>committed JSON (the source of truth)</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>api/</b><span>FastAPI on Cloud Run</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>web/</b><span>Next.js on Firebase Hosting</span></div>
+  </div>
+<pre><code>FlameMind/
+├── .env.example          the four required settings, left blank
+├── .env                  your real settings (kept out of git)
+├── .gitignore            excludes .env, data/raw/, data/cache/, node_modules, venvs, build output
+├── .github/workflows/ci.yml   runs pipeline tests, API tests, and the website build on every push
+├── README.md             how to run each part
+├── index.html            the original marketing landing page (left untouched)
+├── Untitled/             a stray duplicate copy of the repo; safe to delete
+├── docs/progress.html    this report
+├── pipeline/             local Python scripts that prepare the data
+│   ├── config.py         reads and checks the four settings
+│   ├── psi_files.py      rules for which NASA files may be downloaded
+│   ├── collect_psi.py    collected the NASA data (already run)
+│   ├── doi_lookup.py     filled in publication details from Crossref (already run)
+│   ├── parse.py          turns local files into clean page-by-page text
+│   ├── schema.py         the exact shape of an investigation record
+│   ├── extract.py        uses Gemini to turn text into structured records
+│   └── tests/            40 automated tests plus a tiny sample PDF and CSV
+├── data/
+│   ├── investigations.json   2 records so far (BASS, FLEX)
+│   ├── habitats.json · insights.json · gaps.json · chunks.json   still empty
+│   ├── raw/              downloaded NASA files, 95 MB (kept out of git)
+│   ├── processed/        58 clean-text JSON files, 1.3 MB
+│   └── cache/extract/    saved raw AI answers (kept out of git)
+├── api/                  FastAPI backend; only GET /health works so far
+└── web/                  Next.js website; a placeholder "FlameMind" page</code></pre>
+</section>
+
+<!-- ============================================================ -->
+<section id="timeline">
+  <h2><span class="num">4</span>Prompt by prompt: everything that was done</h2>
+  <ol class="timeline">
+    <li>
+      <div class="step">1. Project description</div>
+      <div class="ask">You described FlameMind, its architecture, its rules, and the investigations in scope.</div>
+      <ul><li>This set the plan. No code was written yet.</li></ul>
+    </li>
+    <li>
+      <div class="step">2. Build the project skeleton</div>
+      <div class="ask">Create folders, pipeline setup, API health check, website placeholder, empty data files, gitignore, .env template, README, CI.</div>
+      <ul>
+        <li><b>pipeline/:</b> Python package setup plus <code>config.py</code>, which stops with a clear message if any of the four settings is blank. Tests included.</li>
+        <li><b>api/:</b> a FastAPI server with one address, <code>/health</code>, which answers <code>{"status":"ok"}</code>. Also a Dockerfile for Cloud Run and a test. <code>firebase-admin</code> is installed but not used.</li>
+        <li><b>web/:</b> a Next.js site with strict TypeScript and Tailwind, set to export as static files for Firebase Hosting. Plotly and Firebase are installed but not used. The page just says "FlameMind."</li>
+        <li><b>data/:</b> five empty JSON lists.</li>
+        <li><b>Repo root:</b> <code>.gitignore</code>, <code>.env.example</code>, README, and a GitHub Actions file.</li>
+        <li><b>Fixes:</b> your Mac uses an Intel chip, and the newest <code>cryptography</code> library has no ready-made build for it,
+          so <code>cryptography</code> and <code>firebase-admin</code> were held to slightly older versions. Next.js refused
+          to build with two experimental options that don't work with static export, so those were removed.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">3. Run the API commands</div>
+      <ul><li>Your terminal was inside <code>pipeline/</code>, so <code>cd api</code> failed. The commands were run from the right folder instead. Tests passed, and the server ran at <code>http://localhost:8080/health</code>.</li></ul>
+    </li>
+    <li>
+      <div class="step">4. Run the pipeline commands</div>
+      <ul><li>The install and tests worked. <code>python config.py</code> reported the blank settings, which was expected at that point.</li></ul>
+    </li>
+    <li>
+      <div class="step">5. Run the API commands again</div>
+      <ul><li>The server was already running, so no second copy was started.</li></ul>
+    </li>
+    <li>
+      <div class="step">6. Run the website commands</div>
+      <ul><li><code>npm install</code> and <code>npm run dev</code> worked, and the site ran at <code>http://localhost:3000</code>. One harmless warning: Firebase prefers a newer Node.js than version 22.</li></ul>
+    </li>
+    <li>
+      <div class="step">7. "Is everything okay?"</div>
+      <ul><li>Yes. Only the blank <code>.env</code> was outstanding.</li></ul>
+    </li>
+    <li>
+      <div class="step">8. Fix the "wrong folder" problem</div>
+      <ul><li>The README was changed so every command block starts with <code>cd "$(git rev-parse --show-toplevel)/…"</code>, which works from any folder.</li></ul>
+    </li>
+    <li>
+      <div class="step">9. Collect the NASA PSI data</div>
+      <ul>
+        <li>Confirmed that the PSI search page is public and free to use (CC0 license; cite NASA). No bulk downloads were made, and none of the roughly 12 TB of video and images was touched.</li>
+        <li>Found exactly 24 Combustion Science investigations and split them into Tier A (10 records, studied deeply) and Tier B (14 records, overview only).</li>
+        <li>Downloaded only small documents, reports, and test tables for Tier A, skipping anything over 50 MB, plus one overview page for all 24.</li>
+        <li>Created <code>inventory.csv</code>, <code>sources.csv</code> (352 publications), and a download log.</li>
+        <li>Wrote <code>doi_lookup.py</code>, which filled in details for 284 publications from Crossref, a public citation database.</li>
+        <li>Two BASS reports could not be downloaded because the files are missing on NASA's server.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">10–11. Manual paths for the two missing reports, then "download these files"</div>
+      <ul><li>Gave you the exact NASA locations and tried again. NASA's storage confirmed both files no longer exist, and the old backup site does not respond.</li></ul>
+    </li>
+    <li>
+      <div class="step">12. "Is the attached file correct?" (20190001752.pdf)</div>
+      <ul><li>No. It is NASA's 2017–2018 Space Station yearly highlights document, which only mentions BASS and FLEX in passing.</li></ul>
+    </li>
+    <li>
+      <div class="step">13. The NTRS link (20130014735.pdf)</div>
+      <ul><li>No. It is a bibliography of spacecraft fire safety papers from 1956 to 1999, with no mention of BASS, SPICE, Saffire, or SAME.</li></ul>
+    </li>
+    <li>
+      <div class="step">14. Check the PSI-26 page</div>
+      <ul><li>The page is live. Its Reports folder lists only the same two missing files. Everything else for BASS was already downloaded.</li></ul>
+    </li>
+    <li>
+      <div class="step">15. "Are we good to proceed?"</div>
+      <ul><li>Yes. The two missing reports are recorded as a gap and don't block anything.</li></ul>
+    </li>
+    <li>
+      <div class="step">16. Build the document-reading step (<code>parse.py</code>)</div>
+      <ul>
+        <li>Reads every file listed in <code>sources.csv</code>, skips files over 50 MB, and never downloads.</li>
+        <li>PDFs are read page by page with <code>pdfplumber</code>, with <code>pypdf</code> as a backup. Word, Excel, and Markdown files are also supported.</li>
+        <li>Data tables become short summaries listing columns, units, row count, and the smallest and largest value of each number column.</li>
+        <li>Text cleanup removes repeated headers and footers, rejoins words split by a hyphen at a line break, and tidies spacing, while keeping page numbers.</li>
+        <li><code>sources.csv</code> was rebuilt into your requested format without losing any publication details.</li>
+        <li>Result: 58 files, 483 pages, 3 skipped. The FLEX table first failed because of Windows text encoding, and that was fixed.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">17. Build the AI extraction step (<code>schema.py</code> and <code>extract.py</code>)</div>
+      <ul>
+        <li>Defined the investigation record shape you specified, made of Investigation, TestCondition, Finding, and SourceRef.</li>
+        <li>Gemini reads each investigation's text and fills that shape, with a page reference for every number and finding.</li>
+        <li>It checks every answer, retries once with the error, then marks the record <code>needs_review</code>. Answers are saved so reruns don't repeat work, and <code>--only</code> limits a run to chosen investigations.</li>
+        <li>Could not run at first because <code>.env</code> was blank.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">18–19. "Run now," then "write detailed steps"</div>
+      <ul><li>It stopped again on the blank <code>.env</code>. You received step-by-step Google Cloud setup instructions.</li></ul>
+    </li>
+    <li>
+      <div class="step">20. "Summarize everything," "what is Vertex AI for," and "what's next"</div>
+      <ul><li>Explanations only, with no code changes.</li></ul>
+    </li>
+    <li>
+      <div class="step">21. Install the Google Cloud command-line tool</div>
+      <ul>
+        <li>The Homebrew install was very slow because Homebrew no longer ships ready-made packages for Intel Macs. You switched to Google's own installer, which worked (version 593.0.0).</li>
+        <li>You signed in twice in the browser: once for the command line and once for the pipeline ("application default credentials").</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">22. "Use my $300 credit"</div>
+      <ul>
+        <li>Created a new project, <code>flamemind-707965</code>, linked it to your billing account (where the free credit is), and turned on Vertex AI.</li>
+        <li>Filled in <code>.env</code>. Current Gemini models only answered through the <code>global</code> location, so <code>GCP_REGION=global</code>.</li>
+        <li>Ran BASS and FLEX for the first time. That run exposed made-up page numbers, which were fixed (see <a href="#fixes">Problems fixed</a>).</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">23. "Fix the table rows and suspicious ranges; only BASS and FLEX for now"</div>
+      <ul>
+        <li>Added a second pass that sends each test table's actual rows to Gemini, 40 at a time, and requires exactly one test back per row.</li>
+        <li>Added range checks for impossible values, such as zero pressure or oxygen outside 0–100%.</li>
+        <li>Added waiting and retrying when Google's rate limit is hit.</li>
+        <li>FLEX went from 0 tests to 274. BASS has 133.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">24. Fix the FLEX gas labels, report on <code>Untitled/</code>, and wait on the other 22</div>
+      <ul>
+        <li>NASA's FLEX table labels its gas columns "O", "N", and "CO" with the 2s missing. These three exact column names are now corrected to O₂, N₂, and CO₂. FLEX was rerun, and no bare "CO" remains.</li>
+        <li><code>Untitled/</code> turned out to be a duplicate copy of the GitHub repo with nothing unique in it.</li>
+        <li>The other 22 investigations can be run later, a few at a time or all at once.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="step">25. This report</div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section id="data">
+  <h2><span class="num">5</span>The NASA data that was collected</h2>
+  <p>
+    Source: <a href="https://psi.nasa.gov/physci/repo/search?q=combustion&amp;data_source=psi&amp;data_type=investigation">NASA Physical Sciences Informatics (PSI)</a>.
+    The data is public under a CC0 license, and NASA should be cited. A search for "combustion" returns 26 records. Exactly 24 of them are
+    in the Combustion Science research area. The other two, a solder study and a fluid physics study, were excluded.
+  </p>
+  <div class="callout">
+    <b>Tier A (deep):</b> small documents, reports, and test tables were downloaded.
+    <b>Tier B (light):</b> only the overview page and the publication list.
+    Saffire is three separate NASA records, and DAFT and DAFT-2 share one record. That is why Tier A has 10 records.
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>NASA ID</th><th>Tier</th><th>Short name</th><th>Full name</th><th>Docs saved</th><th>Pubs with DOI</th><th>Test table</th><th>Downloaded</th><th>NASA's full size</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PSI-10</td><td>B</td><td>ACME Flame Design</td><td>Advanced Combustion via Microgravity Experiments / Flame Design</td><td>0</td><td>33</td><td>yes</td><td>overview</td><td>2,180 GB</td></tr>
+      <tr><td>PSI-20</td><td><span class="pill a">A</span></td><td>ACME BRE</td><td>ACME – Burning Rate Emulator</td><td>1</td><td>15</td><td>yes</td><td>table</td><td>2,036 GB</td></tr>
+      <tr><td>PSI-21</td><td>B</td><td>ACME CLD Flame</td><td>ACME / Coflow Laminar Diffusion Flame</td><td>0</td><td>18</td><td>yes</td><td>overview</td><td>2,006 GB</td></tr>
+      <tr><td>PSI-22</td><td>B</td><td>ACME E-FIELD Flames</td><td>ACME Electric-Field Effects on Laminar Diffusion Flames</td><td>0</td><td>22</td><td>yes</td><td>overview</td><td>950 GB</td></tr>
+      <tr><td>PSI-23</td><td>B</td><td>ACME s-Flame</td><td>ACME – Structure and Response of Spherical Diffusion Flames</td><td>0</td><td>37</td><td>yes</td><td>overview</td><td>782 GB</td></tr>
+      <tr><td>PSI-25</td><td><span class="pill a">A</span></td><td>BASS-II</td><td>Burning and Suppression of Solids – II</td><td>6</td><td>9</td><td>yes</td><td>50.2 MB</td><td>275 GB</td></tr>
+      <tr><td>PSI-26</td><td><span class="pill a">A</span></td><td>BASS</td><td>Burning and Suppression of Solids</td><td>7</td><td>7</td><td>yes</td><td>9.9 MB</td><td>164 GB</td></tr>
+      <tr><td>PSI-39</td><td>B</td><td>CFI</td><td>Cool Flames Investigation</td><td>0</td><td>6</td><td>yes</td><td>overview</td><td>719 GB</td></tr>
+      <tr><td>PSI-47</td><td>B</td><td>DAFT / DAFT-2</td><td>Dust and Aerosol Measurement Feasibility Test (1 and 2)</td><td>0</td><td>2</td><td>yes</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-60</td><td>B</td><td>—</td><td>Computational and Experimental Analysis of SPICE Data Sets</td><td>0</td><td>1</td><td>no</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-62</td><td>B</td><td>—</td><td>Concurrent Flame Spread Modeling … with Comparison to BASS Experiments</td><td>0</td><td>4</td><td>no</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-68</td><td><span class="pill a">A</span></td><td>FLEX-2</td><td>Flame Extinguishment Experiment – 2</td><td>1</td><td>36</td><td>yes</td><td>table</td><td>1,225 GB</td></tr>
+      <tr><td>PSI-69</td><td><span class="pill a">A</span></td><td>FLEX</td><td>Flame Extinguishment Experiment</td><td>1</td><td>45</td><td>yes</td><td>table</td><td>924 GB</td></tr>
+      <tr><td>PSI-98</td><td><span class="pill a">A</span></td><td>SAFFIRE-I</td><td>Spacecraft Fire Safety Experiment – I</td><td>5</td><td>3</td><td>yes</td><td>12.8 MB</td><td>12 GB</td></tr>
+      <tr><td>PSI-99</td><td><span class="pill a">A</span></td><td>SAFFIRE-II</td><td>Spacecraft Fire Experiment – II</td><td>1</td><td>5</td><td>yes</td><td>table</td><td>17 GB</td></tr>
+      <tr><td>PSI-100</td><td><span class="pill a">A</span></td><td>SAFFIRE-III</td><td>Spacecraft Fire Experiment – III</td><td>6</td><td>0</td><td>yes</td><td>16.1 MB</td><td>35 GB</td></tr>
+      <tr><td>PSI-101</td><td><span class="pill a">A</span></td><td>SAME-R</td><td>Smoke Aerosol Measurement Experiment – Reflight</td><td>4</td><td>3</td><td>yes</td><td>5.5 MB</td><td>6 GB</td></tr>
+      <tr><td>PSI-102</td><td><span class="pill a">A</span></td><td>SAME</td><td>Smoke and Aerosol Measurement Experiment</td><td>5</td><td>10</td><td>yes</td><td>4.7 MB</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-106</td><td>B</td><td>SLICE</td><td>Structure and Liftoff In Combustion Experiment</td><td>0</td><td>4</td><td>yes</td><td>overview</td><td>73 GB</td></tr>
+      <tr><td>PSI-107</td><td>B</td><td>SPICE</td><td>Smoke Point In Co-flow Experiment</td><td>0</td><td>7</td><td>yes</td><td>overview</td><td>7 GB</td></tr>
+      <tr><td>PSI-115</td><td>B</td><td>—</td><td>Utilization of the SAME Data for Advanced Modeling of Smoke Generation</td><td>0</td><td>0</td><td>no</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-117</td><td>B</td><td>—</td><td>Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics</td><td>0</td><td>5</td><td>no</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-142</td><td>B</td><td>—</td><td>Quantitative Studies of Cool Flame Transitions … Using Counterflow Flames</td><td>0</td><td>10</td><td>yes</td><td>overview</td><td>&lt; 1 GB</td></tr>
+      <tr><td>PSI-159</td><td>B</td><td>ACME CFI-G</td><td>ACME / Cool Flames Investigation with Gases</td><td>0</td><td>2</td><td>yes</td><td>overview</td><td>2,086 GB</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">"Test table" means NASA lists a test-condition table for the investigation. For Tier B, those tables were not downloaded.
+    Several large Tier A records (FLEX, FLEX-2, SAFFIRE-II) list no individual files apart from the test table. Their bulk data stays on NASA's servers.</p>
+
+  <h3>What was deliberately not downloaded</h3>
+  <ul>
+    <li>Raw video, images, and high-rate sensor logs. These make up almost all of the roughly 12 TB.</li>
+    <li>Any single file over 50 MB, folder zips, engineering drawings, and presentations.</li>
+    <li>Requests were paced 0.6 seconds apart to stay polite to NASA's servers.</li>
+  </ul>
+
+  <h3>The two missing BASS reports</h3>
+  <div class="callout bad">
+    <b>BASS Final Report</b> and <b>SPICE Final Report</b> (both listed under PSI-26 → Reports) could not be retrieved.
+    NASA's signed download links worked, but the storage returned "NoSuchKey," meaning the files are gone. The old backup site
+    (<code>psi.ndc.nasa.gov</code>) does not exist anymore. Two documents you suggested were checked and are different documents.
+    This is recorded as a data gap and does not block the project.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="parse">
+  <h2><span class="num">6</span>Reading the documents (<code>parse.py</code>)</h2>
+  <div class="flow">
+    <div class="box"><b>sources.csv</b><span>list of every local file</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>Read</b><span>PDF, Word, Excel, CSV, Markdown</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>Clean</b><span>headers, hyphens, spacing</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>data/processed/</b><span>one JSON file per document</span></div>
+  </div>
+  <ul>
+    <li><b>PDFs:</b> read page by page with <code>pdfplumber</code>. If that gets no text, <code>pypdf</code> is tried.</li>
+    <li><b>Test tables (CSV and Excel):</b> become a short summary listing column names, units, row count, and the smallest and largest value of each number column.
+      Windows-encoded files are handled. The three FLEX gas columns that lost their subscripts are corrected to O₂, N₂, and CO₂.</li>
+    <li><b>Cleanup:</b> lines that repeat at the top or bottom of every page are removed, words split with a hyphen at a line break are rejoined, and extra spacing is tidied. Page numbers are kept.</li>
+    <li><b>Safety:</b> files over 50 MB are skipped and logged as <code>skipped_large</code>. One bad file never stops the run. Nothing is ever downloaded.</li>
+    <li><b>Output shape:</b> <code>{investigation_id, sample_id, file_name, title, url, doi, source_type, pages:[{page, text}]}</code></li>
+  </ul>
+  <h3>Results</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Investigation</th><th>Files read</th><th>Pages</th><th>Test tables</th><th>Pubs with DOI</th><th>Skipped</th></tr></thead>
+    <tbody>
+      <tr><td>PSI-100 SAFFIRE-III</td><td>7</td><td>12</td><td>1</td><td>0</td><td>—</td></tr>
+      <tr><td>PSI-101 SAME-R</td><td>5</td><td>139</td><td>1</td><td>3</td><td>—</td></tr>
+      <tr><td>PSI-102 SAME</td><td>5</td><td>118</td><td>1</td><td>10</td><td>metadata zip</td></tr>
+      <tr><td>PSI-20 ACME BRE</td><td>2</td><td>2</td><td>1</td><td>15</td><td>—</td></tr>
+      <tr><td>PSI-25 BASS-II</td><td>6</td><td>164</td><td>1</td><td>9</td><td>metadata zip</td></tr>
+      <tr><td>PSI-26 BASS</td><td>7</td><td>17</td><td>1</td><td>7</td><td>metadata zip</td></tr>
+      <tr><td>PSI-68 FLEX-2</td><td>2</td><td>2</td><td>1</td><td>36</td><td>—</td></tr>
+      <tr><td>PSI-69 FLEX</td><td>2</td><td>2</td><td>1</td><td>45</td><td>—</td></tr>
+      <tr><td>PSI-98 SAFFIRE-I</td><td>6</td><td>11</td><td>1</td><td>3</td><td>—</td></tr>
+      <tr><td>PSI-99 SAFFIRE-II</td><td>2</td><td>2</td><td>1</td><td>5</td><td>—</td></tr>
+      <tr><td>14 Tier B investigations</td><td>1 each</td><td>1 each</td><td>0</td><td>149 total</td><td>—</td></tr>
+      <tr><td><b>Total</b></td><td><b>58</b></td><td><b>483</b></td><td><b>10</b></td><td><b>283</b></td><td><b>3</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">The three skipped files are small NASA metadata zip archives, which the reader does not open.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="extract">
+  <h2><span class="num">7</span>AI extraction (<code>schema.py</code> and <code>extract.py</code>)</h2>
+  <p>
+    This step turns the clean text into one structured record per investigation, using Google's Gemini model on Vertex AI.
+    The record has the exact fields you specified: hardware, platform, years, fuels, sample size, oxygen, pressure (in both kPa and psi), and flow ranges,
+    plus gravity, diluents, the variables that were varied and held fixed, sensors, a list of tests, and findings on ignition, flame spread, and extinction.
+    It ends with key findings, fire-safety relevance, sources, and a <code>needs_review</code> flag.
+  </p>
+  <div class="flow">
+    <div class="box"><b>Pass 1: documents</b><span>overview, documents, abstracts</span></div>
+    <div class="arrow">+</div>
+    <div class="box"><b>Pass 2: table rows</b><span>40 rows per call, 1 test per row</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>Checks</b><span>schema, citations, ranges</span></div>
+    <div class="arrow">→</div>
+    <div class="box"><b>investigations.json</b><span>sorted by ID</span></div>
+  </div>
+
+  <h3>The safeguards</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Safeguard</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Fixed answer format</td><td>Gemini must answer in the exact record shape, which is enforced through the schema.</td></tr>
+      <tr><td>Strict instructions</td><td>Use only the given text. Leave unknowns empty. Never guess. Give a page reference for every number and finding.</td></tr>
+      <tr><td>Real page numbers only</td><td>Every citation must point to a file and page that were actually in the text. Otherwise the answer is rejected and retried.</td></tr>
+      <tr><td>One retry, then flag</td><td>A failed answer is sent back once with the error. If it fails again, bad parts are dropped and the record is marked <code>needs_review</code>.</td></tr>
+      <tr><td>Unit check</td><td>Pressure is filled in both kPa and psi. If the two don't match, the record is flagged.</td></tr>
+      <tr><td>Range check</td><td>Flags pressure of zero or below, oxygen outside 0–100%, a minimum above its maximum, and tests outside the stated range (ignoring tiny rounding differences).</td></tr>
+      <tr><td>Exact test count</td><td>Each group of table rows must return exactly one test per row.</td></tr>
+      <tr><td>Rate-limit handling</td><td>When Google says "too many requests," it waits 15, 30, 60, then 120 seconds and retries. A call that still fails becomes a review reason instead of a crash.</td></tr>
+      <tr><td>Saved answers</td><td>Raw answers are stored in <code>data/cache/extract/</code>, so finished investigations aren't redone unless you add <code>--force</code>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Options</h3>
+<pre><code>.venv/bin/python extract.py --only BASS,FLEX    # pick investigations by short name or NASA ID
+.venv/bin/python extract.py --force             # redo even if a saved answer exists
+.venv/bin/python extract.py --no-tables         # skip the per-row test pass
+.venv/bin/python extract.py --rows-per-call 40  # table rows per Gemini call</code></pre>
+</section>
+
+<!-- ============================================================ -->
+<section id="cloud">
+  <h2><span class="num">8</span>Google Cloud setup</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Item</th><th>Value</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Google account</td><td>ahanthota@gmail.com</td><td>Signed in twice: for the command line and for the pipeline</td></tr>
+      <tr><td>Project</td><td><code>flamemind-707965</code></td><td>New project created for FlameMind</td></tr>
+      <tr><td>Billing</td><td>"My Billing Account"</td><td>Uses your $300 free credit</td></tr>
+      <tr><td>Vertex AI</td><td>Enabled</td><td>The service that runs Gemini</td></tr>
+      <tr><td><code>GCP_REGION</code></td><td><code>global</code></td><td>Current Gemini models returned "not found" in <code>us-central1</code></td></tr>
+      <tr><td><code>GEMINI_MODEL</code></td><td><code>gemini-3.5-flash</code></td><td>Used for extraction. Gemini 2.5 Flash was retired in October 2026.</td></tr>
+      <tr><td><code>EMBED_MODEL</code></td><td><code>gemini-embedding-001</code></td><td>Not used yet. It will power search later (3,072-number vectors).</td></tr>
+      <tr><td>gcloud CLI</td><td>593.0.0</td><td>Installed with Google's installer in <code>~/google-cloud-sdk</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <b>What Vertex AI is for:</b> it runs Gemini. FlameMind uses it to pull facts out of documents now, to turn text into searchable
+    "embeddings" next, and later to answer chat questions and turn plain-English filters into real filters. Your science data never
+    lives in Vertex. It stays in the JSON files.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="results">
+  <h2><span class="num">9</span>Results: BASS and FLEX</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>ID</th><th>Fields filled</th><th>Fields empty</th><th>Tests</th><th>Needs review</th></tr></thead>
+    <tbody>
+      <tr><td>PSI-26 BASS</td><td>29</td><td>8</td><td>133</td><td><span class="pill ok">no</span></td></tr>
+      <tr><td>PSI-69 FLEX</td><td>33</td><td>4</td><td>274</td><td><span class="pill ok">no</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>BASS: Burning and Suppression of Solids</h3>
+      <ul>
+        <li><b>Where:</b> Microgravity Science Glovebox (MSG) on the ISS, 2009–2013</li>
+        <li><b>Fuels (solid):</b> cotton-fiberglass fabric, Nomex, Ultem, PMMA, wax, Japan wax, paraffin</li>
+        <li><b>Shapes:</b> flat sheets, solid spheres, candles in tubes</li>
+        <li><b>Conditions:</b> oxygen 21%, airflow 0–44 cm/s, nitrogen as the extinguishing gas, no pressure stated</li>
+        <li><b>Sensors:</b> still and video cameras, hot-wire anemometer, radiometer</li>
+        <li><b>Tests:</b> 122 from the test-run table (date, test number, sample, material), plus 11 from the fabric paper with flow speeds and spread rates.
+          For example, sample 7 at 10 cm/s spread steadily at 2.55 mm/s.</li>
+        <li><b>Findings:</b> concurrent-flow spread rate rises in a straight line with flow speed. Opposed-flow spread peaks at about 10–15 cm/s.
+          The flame quenched at about 1 cm/s. The fabric burned in opposed flow in microgravity, where in normal gravity it puts itself out.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>FLEX: Flame Extinguishment Experiment</h3>
+      <ul>
+        <li><b>Where:</b> Multi-user Droplet Combustion Apparatus (MDCA) on the ISS, 2007–2016</li>
+        <li><b>Fuels (liquid droplets, 1.1–4.67 mm):</b> methanol, heptane, octane, decane, butanol, biofuels, Jet-A, gasoline, and others</li>
+        <li><b>Conditions:</b> oxygen 12–34%, pressure 50.7–309.3 kPa (7.3–44.9 psi). Diluents: CO₂, He, SF₆, N₂, xenon.</li>
+        <li><b>Tests:</b> all 274 table rows. 186 ended in extinction. 88 ended in "Disruption," which is recorded as "unknown" with the original wording kept in the notes.</li>
+        <li><b>Data issue handled:</b> test 114 records pressure as 0 mmHg, a recording error. That pressure is left empty with an explanatory note.</li>
+        <li><b>Findings:</b> methanol droplets burned 40–70% faster in normal gravity than in reduced gravity.
+          Droplets kept burning with 50% xenon but not with 50% helium or CO₂.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn">
+    <b>Things to know about these records:</b>
+    <ul>
+      <li>Some FLEX fuels, such as gasoline, Jet-A, camelina, and tallow, come from publication titles that have no abstract.</li>
+      <li>One FLEX finding is about a spinning polymer disc. NASA lists that paper under FLEX, but it isn't a droplet experiment.</li>
+      <li>Gemini's answers vary slightly between runs. For example, BASS's sample size and ignition finding were filled on one run and empty on another.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="fixes">
+  <h2><span class="num">10</span>Problems found and fixed</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Problem</th><th>Cause</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Python libraries wouldn't install</td><td>Intel Mac; the newest <code>cryptography</code> has no Intel build</td><td>Held <code>cryptography</code> below 49 and <code>firebase-admin</code> below 7.8</td></tr>
+      <tr><td>Website build failed</td><td>Two experimental Next.js options don't work with static export</td><td>Removed them</td></tr>
+      <tr><td><code>cd api</code> failed</td><td>Terminal was inside <code>pipeline/</code></td><td>README commands now start from the repo root</td></tr>
+      <tr><td>Pipeline tests couldn't find modules</td><td>The package install only exposed one file</td><td>Told pytest to look in the pipeline folder</td></tr>
+      <tr><td>Two BASS reports wouldn't download</td><td>The files are gone from NASA's storage</td><td>Recorded as a known gap</td></tr>
+      <tr><td>FLEX table wouldn't read</td><td>Windows text encoding</td><td>Falls back to Windows encoding</td></tr>
+      <tr><td>Duplicate output files</td><td>A rerun treated earlier output as a name clash</td><td>Name clashes are now tracked within a single run</td></tr>
+      <tr><td>Gemini "permission denied"</td><td>New project still being set up</td><td>Worked after waiting about 2 minutes</td></tr>
+      <tr><td>Gemini "model not found"</td><td>Current models aren't served in <code>us-central1</code></td><td>Switched to <code>global</code></td></tr>
+      <tr><td>Made-up page numbers</td><td>Gemini cited pages 2–6 of a document stored as 1 page</td><td>Citations are now checked against real pages, then retried</td></tr>
+      <tr><td>"ISS" recorded as the program</td><td>Unclear instruction</td><td>"Program" now means a named campaign like ACME or Saffire</td></tr>
+      <tr><td>FLEX had 0 tests</td><td>Only table summaries were sent, not rows</td><td>Added the per-row table pass</td></tr>
+      <tr><td>FLEX pressure started at 0</td><td>One bad row (test 114)</td><td>Range checks plus filling the range from the extracted tests</td></tr>
+      <tr><td>Run crashed with "Resource exhausted" (429)</td><td>The new project's rate limit is low</td><td>Waits and retries automatically</td></tr>
+      <tr><td>A failed call could look like an empty valid record</td><td>The error object passed validation</td><td>Errors now fail validation and get flagged</td></tr>
+      <tr><td>False review flag</td><td>44.8592 vs 44.8593 psi rounding</td><td>Range checks ignore 0.1% rounding differences</td></tr>
+      <tr><td>FLEX gases showed as "O," "N," "CO"</td><td>NASA's table lost the subscript 2s</td><td>Those three exact column names are corrected to O₂, N₂, CO₂</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="state">
+  <h2><span class="num">11</span>Current state</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Part</th><th>Status</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Project skeleton</td><td><span class="pill ok">done</span></td><td>All four parts, CI, README, .gitignore</td></tr>
+      <tr><td>NASA data collection</td><td><span class="pill ok">done</span></td><td>24 investigations; 2 BASS reports unavailable</td></tr>
+      <tr><td>Document reading</td><td><span class="pill ok">done</span></td><td>58 files, 483 pages</td></tr>
+      <tr><td>Google Cloud and Vertex AI</td><td><span class="pill ok">done</span></td><td>Project, billing, sign-in, <code>.env</code></td></tr>
+      <tr><td>AI extraction code</td><td><span class="pill ok">done</span></td><td>Tested and working</td></tr>
+      <tr><td>Investigations extracted</td><td><span class="pill warn">2 of 24</span></td><td>BASS and FLEX. The other 22 can run anytime.</td></tr>
+      <tr><td>habitats, insights, gaps, chunks</td><td><span class="pill bad">empty</span></td><td>Not started</td></tr>
+      <tr><td>API: chat and filters</td><td><span class="pill bad">not built</span></td><td>Only <code>/health</code> exists</td></tr>
+      <tr><td>Website pages</td><td><span class="pill bad">not built</span></td><td>Placeholder page only</td></tr>
+      <tr><td>Sign-in and saved chats</td><td><span class="pill bad">not built</span></td><td>Firebase installed, not used</td></tr>
+      <tr><td>Git</td><td><span class="pill warn">uncommitted</span></td><td>All new work is local only</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="next">
+  <h2><span class="num">12</span>What's next</h2>
+  <ol>
+    <li><b>Housekeeping:</b> delete <code>Untitled/</code>, then make the first git commit.</li>
+    <li><b>Extract the other 22 investigations</b> whenever you're ready. It takes about an hour because of the rate limit and uses a small part of the credit. It can also be done a few at a time.</li>
+    <li><b>Build search chunks and embeddings</b> (<code>chunks.json</code>) so the app can find relevant passages by meaning.</li>
+    <li><b>Fill insights, gaps, and habitats</b> from the extracted records.</li>
+    <li><b>API:</b> load the data at startup and build <code>POST /chat</code>, <code>/filter/parse</code>, and <code>/filter/derive</code>.</li>
+    <li><b>Website:</b> build the Scenario chat and Explore pages, with tables and Plotly charts.</li>
+    <li><b>Optional sign-in</b> with Firebase (Google and email), saved chats and filters in Firestore, and account deletion.</li>
+    <li><b>Deploy:</b> the API to Cloud Run and the website to Firebase Hosting.</li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section id="run">
+  <h2><span class="num">13</span>How to run each part</h2>
+  <p class="muted">Each block starts from the repo root, so it works from any folder.</p>
+  <h3>Pipeline</h3>
+<pre><code>cd "$(git rev-parse --show-toplevel)/pipeline"
+.venv/bin/pytest -q                                  # 40 tests
+.venv/bin/python parse.py                            # rebuild data/processed/
+.venv/bin/python extract.py --only BASS,FLEX         # extract chosen investigations
+.venv/bin/python extract.py                          # all 24 (finished ones come from the cache)</code></pre>
+  <h3>API</h3>
+<pre><code>cd "$(git rev-parse --show-toplevel)/api"
+source .venv/bin/activate
+pytest
+uvicorn main:app --reload --port 8080                # http://localhost:8080/health</code></pre>
+  <h3>Website</h3>
+<pre><code>cd "$(git rev-parse --show-toplevel)/web"
+npm install
+npm run dev                                          # http://localhost:3000</code></pre>
+</section>
+
+<!-- ============================================================ -->
+<section id="glossary">
+  <h2><span class="num">14</span>Glossary</h2>
+  <div class="table-wrap">
+  <table>
+    <tbody>
+      <tr><td><b>PSI</b></td><td>NASA Physical Sciences Informatics, the public website hosting the experiment data.</td></tr>
+      <tr><td><b>Investigation</b></td><td>One NASA research project, such as BASS or FLEX, with an ID like PSI-26.</td></tr>
+      <tr><td><b>Microgravity</b></td><td>Near-weightlessness, as on the Space Station. Flames behave very differently there.</td></tr>
+      <tr><td><b>Concurrent / opposed flow</b></td><td>Air moving with the flame's direction of spread, or against it.</td></tr>
+      <tr><td><b>Diluent</b></td><td>A non-burning gas such as nitrogen, CO₂, or helium, used to slow or stop a flame.</td></tr>
+      <tr><td><b>DOI</b></td><td>A permanent ID for a paper or dataset, used for citations.</td></tr>
+      <tr><td><b>Vertex AI / Gemini</b></td><td>Google Cloud's AI service, and the AI model it runs.</td></tr>
+      <tr><td><b>Embedding</b></td><td>A list of numbers capturing what a piece of text means, used for search by meaning.</td></tr>
+      <tr><td><b>Schema</b></td><td>The exact shape a data record must have.</td></tr>
+      <tr><td><b>needs_review</b></td><td>A flag saying a person should double-check a record.</td></tr>
+      <tr><td><b>Rate limit (429)</b></td><td>Google's cap on how many AI calls a project can make per minute.</td></tr>
+      <tr><td><b>MSG / CIR / MDCA</b></td><td>Experiment hardware on the ISS: the Microgravity Science Glovebox, the Combustion Integrated Rack, and the Multi-user Droplet Combustion Apparatus.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">FlameMind progress report · generated November 14, 2026 · Data: NASA Physical Sciences Informatics (CC0). Research summary, not certified safety guidance.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,2052 @@
+{
+  "697a627be3a362e8f457adc0628baec7312d9c3c4e2a2cd4744b627f20844871": {
+    "question": "How does flame spread over fabric change with airflow in microgravity?",
+    "message": {
+      "role": "assistant",
+      "content": "In microgravity, airflow speed and direction significantly influence flame spread over fabric. For concurrent flow, where the flame spreads in the same direction as the airflow, the spread rate increases linearly with increasing airflow speed, but the flame undergoes quenching extinction (goes out due to heat loss) at very low speeds of 1 to 5 cm/s. For opposed flow, where the flame spreads against the airflow, the spread rate peaks at intermediate speeds of 10 to 15 cm/s and decreases at higher speeds. At 10 cm/s airflow, the concurrent flame spreads about twice as fast as the opposed flame.",
+      "answer": {
+        "summary": "In microgravity, airflow speed and direction significantly influence flame spread over fabric. For concurrent flow, where the flame spreads in the same direction as the airflow, the spread rate increases linearly with increasing airflow speed, but the flame undergoes quenching extinction (goes out due to heat loss) at very low speeds of 1 to 5 cm/s. For opposed flow, where the flame spreads against the airflow, the spread rate peaks at intermediate speeds of 10 to 15 cm/s and decreases at higher speeds. At 10 cm/s airflow, the concurrent flame spreads about twice as fast as the opposed flame.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-26",
+            "test_ids": [],
+            "what_it_shows": "In microgravity, concurrent flame spread rate increases linearly with airflow, while opposed-flow spread rate peaks at intermediate airflow speeds and decreases at higher speeds. Quenching extinction occurs at very low concurrent flows around 1 cm/s.",
+            "key_values": [
+              {
+                "name": "Concurrent steady flame base spread rate at 10 cm/s airflow",
+                "value": "2.55",
+                "unit": "mm/s"
+              },
+              {
+                "name": "Opposed steady flame spread rate at 10 cm/s airflow",
+                "value": "1.21",
+                "unit": "mm/s"
+              },
+              {
+                "name": "Airflow speed for maximum opposed-flow spread rate",
+                "value": "10 to 15",
+                "unit": "cm/s"
+              },
+              {
+                "name": "Concurrent-flow quenching extinction speed",
+                "value": "around 1",
+                "unit": "cm/s"
+              }
+            ],
+            "citations": [
+              2,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "investigation_id": "PSI-25",
+            "test_ids": [],
+            "what_it_shows": "BASS-II tests on composite cotton-fiberglass fabric (SIBAL) showed that quenching velocities occur at low concurrent flow speeds between 1 and 5 cm/s, and flames spread slower at lower flow velocities and lower oxygen percentages.",
+            "key_values": [
+              {
+                "name": "Quenching flow velocity range",
+                "value": "1 to 5",
+                "unit": "cm/s"
+              },
+              {
+                "name": "SIBAL fabric cotton content",
+                "value": "75",
+                "unit": "%"
+              },
+              {
+                "name": "SIBAL fabric fiberglass content",
+                "value": "25",
+                "unit": "%"
+              },
+              {
+                "name": "SIBAL fabric thickness",
+                "value": "0.32",
+                "unit": "mm"
+              },
+              {
+                "name": "SIBAL fabric area density",
+                "value": "18.2",
+                "unit": "mg/cm2"
+              }
+            ],
+            "citations": [
+              4,
+              5,
+              6,
+              9
+            ]
+          }
+        ],
+        "suggestions": [],
+        "follow_up_question": "Could you describe your habitat's ventilation conditions, the specific fabric materials you are evaluating, and your overall fire safety goals?",
+        "gaps_noted": [],
+        "confidence": "high"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.83,
+          "snippet": "strategies for NASA spacecraft materials selection. The goal is to link actual burn behavior in microgravity to Earth-based selection methods. From a more fundamental point of view, improved combustion computational models using the experimental results can be developed to aid in the design of fire ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.821,
+          "snippet": "mm/s. (Tests 7 and 6) Figure 12. Concurrent and opposed comparison at 10 cm/s air flow speed. Left: Concurrent flow: Steady flame base spread rate is 2.55 mm/s. Right: Opposed flow: Steady flame spread rate is 1.21 mm/s. (Tests 7 and 6) Figure 13. Comparison of 0-g concurrent-flow flame (left) and ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.816,
+          "snippet": "configurations. The custom-made cotton-fiberglass fabric performed very well, with none of the complications caused by the burnout of ordinary cellulosic fuel samples like paper. The main variable was air flow speed and it had a major effect on the flame as suggested in earlier studies. This is the ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 108,
+          "page_end": 109,
+          "similarity": 0.804,
+          "snippet": "smaller flammable domain, as expected. Figure 7.7.—Flammability map for Solid Inflammability Boundary at Low Speeds (SIBAL) fabric in concurrent flow in microgravity. Dotted line marks experimental quenching boundary for 2.2-cm-wide sample. Flow speed (U0). NASA/TM-20210011385 100 7.1.5 Conclusions ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 101,
+          "page_end": 101,
+          "similarity": 0.803,
+          "snippet": "Concurrent Flame Growth, Spread, and Extinction Over Composite Fabric Samples in Low-Speed Purely Forced Flow in Microgravity3 7.1.1 Abstract As a part of the NASA Burning and Suppression of Solids (BASS) and BASS–II experimental projects aboard the International Space Station, flame growth, ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 101,
+          "page_end": 102,
+          "similarity": 0.793,
+          "snippet": "of seconds to minutes, depending on the sample type and flow conditions. The challenge with thin solid samples in concurrent flow, compared with other configurations, is that flame spreads much faster, and flames can become quite long. Because of size limitations, the fuel sample is relatively ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.795,
+          "snippet": "Burning and Suppression of Solids (BASS), NASA PSI investigation PSI-26. Hardware: MSG. Platform: ISS. Years: 2009-2013. Gravity: microgravity. Objectives: - Begin to bridge the gap between the normal gravity NASA-STD-6001 Test#1 method, ground-based microgravity tests, and actual material ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "Burning and Suppression of Solids",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": "10.60555/58h4-dy80",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.794,
+          "snippet": "burn as well if not better than the same material in normal gravity with other conditions being identical (pressure, oxygen concentration, temperature, etc.) To test this hypothesis with any but the thinnest materials requires extended microgravity time – longer than available in drop towers or ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-25",
+          "title": "BASS-II structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids - II (BASS-II), investigation PSI-25. Gravity: microgravity. Fuel phase: solid. Sample geometry: rods, slabs, spheres, and flat fabrics. Fuels: polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids (BASS), investigation PSI-26. Gravity: microgravity. Fuel phase: solid. Sample geometry: flat sheets, solid spheres, and candles within tubes. Fuels: cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin. Oxygen tested: 21%. Airflow tested: 0 to 44 ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-101",
+          "title": "SAME-R structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke Aerosol Measurement Experiment-Reflight (SAME-R), investigation PSI-101. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylindrical. Fuels: Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate. Airflow ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan Wax, SIBAL, composite fabric, paraffin, Nomex III, SIBAL fabric, candle) names fabric.",
+            "Has 53 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-26",
+          "acronym": "BASS",
+          "score": 0.875,
+          "reasons": [
+            "Fuel (cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin) uses a similar material to fabric.",
+            "Has 12 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-101",
+          "acronym": "SAME-R",
+          "score": 0.6875,
+          "reasons": [
+            "Burned a solid fuel (Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate), like you asked about.",
+            "Has 11 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-102",
+          "acronym": "SAME",
+          "score": 0.6875,
+          "reasons": [
+            "Burned a solid fuel (cellulose, Kapton, silicone rubber, Teflon, dibutyl-phthalate, Silicone Rubber, Cellulose, Dibutyl Phthalate), like you asked about.",
+            "Has 13 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-100",
+          "acronym": "SAFFIRE-III",
+          "score": 0.625,
+          "reasons": [
+            "Fuel (SIBAL cloth) names fabric.",
+            "Has 0 recorded finding(s) to explain from."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "explain",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": "microgravity",
+          "fuel_phase": "solid",
+          "materials": [
+            "fabric"
+          ],
+          "other_parameters": []
+        }
+      },
+      "use_case": null,
+      "use_case_complete": false,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": null,
+    "use_case_complete": false
+  },
+  "3462ce1711904f65ff2a3633c8e747db669170847ceeb98681cd34e3568da505": {
+    "question": "What happens to a burning fabric sample when the airflow drops very low?",
+    "message": {
+      "role": "assistant",
+      "content": "When the airflow drops very low in microgravity, a burning fabric sample experiences a decrease in flame size and spread rate, eventually leading to quenching extinction. The flame shrinks, turns completely blue due to cooling from radiative losses, and oscillates before going out, typically at a flow speed of around 1 cm/s. Under zero-flow conditions, smoke particles grow significantly larger because of accelerated aging and coagulation.",
+      "answer": {
+        "summary": "When the airflow drops very low in microgravity, a burning fabric sample experiences a decrease in flame size and spread rate, eventually leading to quenching extinction. The flame shrinks, turns completely blue due to cooling from radiative losses, and oscillates before going out, typically at a flow speed of around 1 cm/s. Under zero-flow conditions, smoke particles grow significantly larger because of accelerated aging and coagulation.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-26",
+            "test_ids": [],
+            "what_it_shows": "Reducing airflow on cotton-fiberglass fabric in microgravity leads to a dramatic decrease in flame spread rate and flame size, with quenching extinction occurring at around 1 cm/s in concurrent flow.",
+            "key_values": [
+              {
+                "name": "lowest flow imposed",
+                "value": "less than 1",
+                "unit": "cm/s"
+              },
+              {
+                "name": "concurrent-flow quenching extinction",
+                "value": "around 1",
+                "unit": "cm/s"
+              },
+              {
+                "name": "opposed-flow quenching extinction limit",
+                "value": "less than 1",
+                "unit": "cm/s"
+              }
+            ],
+            "citations": [
+              1,
+              2,
+              6,
+              10
+            ]
+          },
+          {
+            "investigation_id": "PSI-25",
+            "test_ids": [],
+            "what_it_shows": "At very low flows, radiative extinction occurs as the flame shrinks, turns completely blue due to temperature drops from radiative losses, and oscillates before extinguishing.",
+            "key_values": [
+              {
+                "name": "extinction velocity",
+                "value": "about 1",
+                "unit": "cm/s"
+              },
+              {
+                "name": "extinction velocity at 16% O2",
+                "value": "about 2.6 to 4",
+                "unit": "cm/s"
+              }
+            ],
+            "citations": [
+              3,
+              4,
+              9
+            ]
+          },
+          {
+            "investigation_id": "PSI-101",
+            "test_ids": [],
+            "what_it_shows": "Under zero-flow conditions, heat is transported primarily by conduction rather than convection, and smoke particles grow significantly larger due to accelerated coagulation.",
+            "key_values": [
+              {
+                "name": "smoke particles size increase",
+                "value": "2 to 3 times larger",
+                "unit": null
+              },
+              {
+                "name": "diameter of average mass increase",
+                "value": "30 % to 40 %",
+                "unit": null
+              }
+            ],
+            "citations": [
+              7,
+              11
+            ]
+          }
+        ],
+        "suggestions": [],
+        "follow_up_question": "Could you describe your specific habitat environment, the fabric materials you are evaluating, and your ultimate fire safety goal?",
+        "gaps_noted": [
+          "No PSI combustion tests were run at Moon or Mars partial gravity."
+        ],
+        "confidence": "high"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.796,
+          "snippet": "The flow is decreased from 10 cm/s all the way to nearly zero, and the spread rate is measured at each set flow speed. From this single burn, six different conditions are studied. The flow speed changes are indicated in the figure. The flame responds within a couple seconds, but the flame is ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.796,
+          "snippet": "Flow speed direction is as indicated yielding a concurrent-flow configuration. (Test 1) Figure 6. Typical flame images. Left: Digital still image from the top window looking down on the fabric sheet. Right: Edge view from the video camera viewing the flame through the front window. Video overlay ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 103,
+          "page_end": 104,
+          "similarity": 0.79,
+          "snippet": "shows side-view flame tracking of flame tip, flame base, and flame length. Figure 7.2(b) shows flame edge-view video still images at different stages. Note in the figure, flow is from right to left. After the igniter was turned on, a strong flame was initiated on both sides of the solid fuel. The ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 21,
+          "page_end": 23,
+          "similarity": 0.786,
+          "snippet": "flame spread rate of the leading edge, as plotted in Figure 2.3, shows that the flame extinguishes at about 30 s after ignition. The fan voltage at that time indicates a flow velocity of about 1.1 cm/s. The sequence of images in Figure 2.1 shows the pathway to radiative extinction. As the flow ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 102,
+          "page_end": 103,
+          "similarity": 0.784,
+          "snippet": "the holder was placed in the small flow duct of cross-sectional size 7.6 by 7.6 cm. The flow speed could be varied from 1 to 55 cm/s. The tests were conducted in ambient O molar fraction of 16 to 2 21 percent. Ambient pressure was 1 atm. It should be noted that for a given test the O concentration ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.781,
+          "snippet": "reached the end of fuel. Based on the trends however, it appears that an opposed-flow quenching extinction limit can be extrapolated to exist at an air flow speed of less than 1 cm/s. This implies that for this fuel, there is a small range of flow speeds near zero within which the flame cannot be ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "PSI-101 Reports SAME-R Final Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": 83,
+          "page_end": 84,
+          "similarity": 0.749,
+          "snippet": "case of zero-flow. The transport for the zero-flow case in μ-g is controlled by molecular diffusion and thermal expansion. Over a period of 60 seconds, the gases would diffuse a distance on the order of 4 cm. Assuming a cubical geometry this would correspond to the smoke being confined to a volume ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "Burning and Suppression of Solids - II",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": "10.60555/4qc4-de67",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.73,
+          "snippet": "be conservative for flammability in space. Testing at constant O2 mole fractions permits studying flame spread and extinction at low and high flow speed. We are interested in finding the fundamental limit for a given material. ## Research impacts A primary goal of BASS-II is improved spacecraft ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-25",
+          "title": "BASS-II structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids - II (BASS-II), investigation PSI-25. Gravity: microgravity. Fuel phase: solid. Sample geometry: rods, slabs, spheres, and flat fabrics. Fuels: polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids (BASS), investigation PSI-26. Gravity: microgravity. Fuel phase: solid. Sample geometry: flat sheets, solid spheres, and candles within tubes. Fuels: cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin. Oxygen tested: 21%. Airflow tested: 0 to 44 ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-101",
+          "title": "SAME-R structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke Aerosol Measurement Experiment-Reflight (SAME-R), investigation PSI-101. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylindrical. Fuels: Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate. Airflow ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan Wax, SIBAL, composite fabric, paraffin, Nomex III, SIBAL fabric, candle) names fabric.",
+            "Has 53 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-26",
+          "acronym": "BASS",
+          "score": 0.875,
+          "reasons": [
+            "Fuel (cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin) uses a similar material to fabric.",
+            "Has 12 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-101",
+          "acronym": "SAME-R",
+          "score": 0.6875,
+          "reasons": [
+            "Burned a solid fuel (Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate), like you asked about.",
+            "Has 11 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-102",
+          "acronym": "SAME",
+          "score": 0.6875,
+          "reasons": [
+            "Burned a solid fuel (cellulose, Kapton, silicone rubber, Teflon, dibutyl-phthalate, Silicone Rubber, Cellulose, Dibutyl Phthalate), like you asked about.",
+            "Has 13 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-100",
+          "acronym": "SAFFIRE-III",
+          "score": 0.625,
+          "reasons": [
+            "Fuel (SIBAL cloth) names fabric.",
+            "Has 0 recorded finding(s) to explain from."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "explain",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": null,
+          "fuel_phase": "solid",
+          "materials": [
+            "fabric"
+          ],
+          "other_parameters": []
+        }
+      },
+      "use_case": null,
+      "use_case_complete": false,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": null,
+    "use_case_complete": false
+  },
+  "61a4c0855fd40ef6526311d195b40cb4823f2609d3f27182f16349ca68c2620d": {
+    "question": "What data is there on droplet combustion at high oxygen?",
+    "message": {
+      "role": "assistant",
+      "content": "Data on microgravity droplet combustion at elevated oxygen levels is available from the FLEX (PSI-69) and FLEX-2 (PSI-68) investigations. FLEX tested oxygen concentrations from 12% to 34% (mole fraction 0.12 to 0.34), while FLEX-2 extended the testing range up to 40% oxygen.",
+      "answer": {
+        "summary": "Data on microgravity droplet combustion at elevated oxygen levels is available from the FLEX (PSI-69) and FLEX-2 (PSI-68) investigations. FLEX tested oxygen concentrations from 12% to 34% (mole fraction 0.12 to 0.34), while FLEX-2 extended the testing range up to 40% oxygen.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-68",
+            "test_ids": [],
+            "what_it_shows": "The FLEX-2 investigation analyzed droplet combustion in microgravity under oxygen concentrations ranging from 10% to 40%.",
+            "key_values": [
+              {
+                "name": "Oxygen tested",
+                "value": "10 to 40%",
+                "unit": "%"
+              },
+              {
+                "name": "Pressure tested",
+                "value": "7.34795 to 44.0877",
+                "unit": "psi"
+              }
+            ],
+            "citations": [
+              5,
+              10
+            ]
+          },
+          {
+            "investigation_id": "PSI-69",
+            "test_ids": [],
+            "what_it_shows": "The FLEX investigation measured droplet burning and extinction in microgravity with oxygen concentrations from 12% to 34%.",
+            "key_values": [
+              {
+                "name": "Oxygen tested",
+                "value": "12 to 34%",
+                "unit": "%"
+              },
+              {
+                "name": "O2 initial ambient composition; mole fraction",
+                "value": "0.12 to 0.34",
+                "unit": null
+              },
+              {
+                "name": "Pressure tested",
+                "value": "7.348 to 44.859",
+                "unit": "psi"
+              }
+            ],
+            "citations": [
+              2,
+              3,
+              9
+            ]
+          }
+        ],
+        "suggestions": [],
+        "follow_up_question": "Could you describe your spacecraft or habitat environment, the specific liquid fuels or materials you are evaluating, and your primary fire safety goals?",
+        "gaps_noted": [],
+        "confidence": "high"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-68",
+          "title": "PSI-68 Experimental table Flex2",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.742,
+          "snippet": "columns: Sample (Fuel Type), Initial Droplet Diameter (mm), Ambient Gas Mixture, Oxygen Mole Fraction, Ambient Pressure (atm), Ambient Temperature (C), Flow Velocity (cm/s) units: Sample (Fuel Type)=Fuel Type, Initial Droplet Diameter (mm)=mm, Ambient Pressure (atm)=atm, Ambient Temperature (C)=C, ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-69",
+          "title": "PSI-69 Experimental table FLEX",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.726,
+          "snippet": "columns: FLEX Test #, FLEX Identifier, Test Date, Test GMT, Fuel, Ambient pressure; mmHg, O2 initial ambient composition; mole fraction, N2 initial ambient composition; mole fraction, CO2 initial ambient composition; mole fraction, He initial ambient composition; mole fraction, Droplet initial ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-69",
+          "title": "FLEX structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.724,
+          "snippet": "Flame Extinguishment Experiment (FLEX), NASA PSI investigation PSI-69. Hardware: CIR. Platform: ISS. Years: 2007-2016. Gravity: microgravity. Objectives: - Map the flammability limits of liquid fuels in microgravity environments - Measure the effectiveness of various gaseous fire suppressants such ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-69",
+          "title": "Flame Extinguishment Experiment",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+          "doi": "10.60555/mbq8-0451",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.724,
+          "snippet": "ambient oxygen mole fraction. 8. Continue step 7 to an ambient oxygen mole fraction where the droplet does not ignite. There were ambient conditions where the extinction droplet sizes at all ambient oxygen mole fractions were too small to either be observed or measured with the available ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-68",
+          "title": "FLEX-2 structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.73,
+          "snippet": "Flame Extinguishment Experiment - 2 (FLEX-2), NASA PSI investigation PSI-68. Hardware: MDCA. Platform: ISS. Years: 2016-2019. Gravity: microgravity. Objectives: - Investigate the role of liquid-phase mixing on the burning characteristics of bi-component fuel droplets. - Examine the steady and ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 99,
+          "page_end": 99,
+          "similarity": 0.745,
+          "snippet": "Sci. Technol., vol. 156, no. 1, 2000, pp. 1–24. 18. Wang, H.Y.; and Law, C.K.: On Intrinsic Oscillation in Radiation-Affected Diffusion Flames. Proc. Comb. Inst., vol. 31, no. 1, 2007, pp. 979–987. 19. Nayagam, Vedha; Balasubramaniam, R.; and Ronney, Paul D.: Diffusion Flame-Holes. Combust. Theory ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-68",
+          "title": "Flame Extinguishment Experiment - 2",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": "10.60555/byp8-h018",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.714,
+          "snippet": "If the flow field is to be generated by translating the droplet then droplet motion would commence at the same time that the ignitor is retracted. A near real-time download of the color camera video was employed in order to verify successful droplet deployment, ignition, and overall progress of the ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-68",
+          "title": "Flame Extinguishment Experiment - 2",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": "10.60555/byp8-h018",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.712,
+          "snippet": "to: 1) More sustainable energy production. 2) Future combustor designs with minimal carbon footprint, maximum fuel efficiency and less pollutant emissions. 3) Allow quantitative evaluation of the performance of future fuels in combustors through the development of surrogates (mixtures of pure fuels ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-69",
+          "title": "FLEX structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Flame Extinguishment Experiment (FLEX), investigation PSI-69. Gravity: microgravity. Fuel phase: liquid. Sample geometry: droplet. Fuels: methanol, n-heptane, n-octane, n-decane, n-butanol, gasoline, 1-propanol, methyl butanoate, methyl decanoate, Jet-A, camelina, tallow, nonane, acetone, ethanol. ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-68",
+          "title": "FLEX-2 structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Flame Extinguishment Experiment - 2 (FLEX-2), investigation PSI-68. Gravity: microgravity. Fuel phase: liquid. Sample geometry: droplet. Fuels: n-heptane, methanol, ethanol, 1-propanol, n-octane, n-decane, n-butanol, gasoline, methyl butanoate, methyl decanoate, Jet-A, nonane, propanol, acetone, ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-100",
+          "title": "SAFFIRE-III structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Spacecraft Fire Experiment-III (SAFFIRE-III), investigation PSI-100. Gravity: microgravity. Fuel phase: solid. Sample geometry: planar. Fuels: SIBAL cloth. Airflow tested: 30 cm/s. Why it ranked: Fuel (SIBAL cloth) does not match liquid fuels. Has 2 test(s) with recorded conditions. Fire safety ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "score": 0.6875,
+          "reasons": [
+            "Burned a liquid fuel (methanol, n-heptane, n-octane, n-decane, n-butanol, gasoline, 1-propanol, methyl butanoate, methyl decanoate, Jet-A, camelina, tallow, nonane, acetone, ethanol), like you asked about.",
+            "Has 274 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "score": 0.5375,
+          "reasons": [
+            "Burned a liquid fuel (n-heptane, methanol, ethanol, 1-propanol, n-octane, n-decane, n-butanol, gasoline, methyl butanoate, methyl decanoate, Jet-A, nonane, propanol, acetone, decane, hexanol, dodecane), like you asked about.",
+            "Has tested ranges but no per-test values."
+          ]
+        },
+        {
+          "investigation_id": "PSI-100",
+          "acronym": "SAFFIRE-III",
+          "score": 0.375,
+          "reasons": [
+            "Fuel (SIBAL cloth) does not match liquid fuels.",
+            "Has 2 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-101",
+          "acronym": "SAME-R",
+          "score": 0.375,
+          "reasons": [
+            "Fuel (Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate) does not match liquid fuels.",
+            "Has 115 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-102",
+          "acronym": "SAME",
+          "score": 0.375,
+          "reasons": [
+            "Fuel (cellulose, Kapton, silicone rubber, Teflon, dibutyl-phthalate, Silicone Rubber, Cellulose, Dibutyl Phthalate) does not match liquid fuels.",
+            "Has 7 test(s) with recorded conditions."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "find_data",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": null,
+          "fuel_phase": "liquid",
+          "materials": [],
+          "other_parameters": []
+        }
+      },
+      "use_case": null,
+      "use_case_complete": false,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": null,
+    "use_case_complete": false
+  },
+  "bbeca7f8395a49dad166c515ebd9e3ce8ebe3fc40d34944de87ff5941a717e50": {
+    "question": "How does smoke from overheated materials differ in microgravity?",
+    "message": {
+      "role": "assistant",
+      "content": "In microgravity, the absence of buoyant flow increases the residence time of smoke, which allows particles to collide and grow through coagulation. This results in smoke particles that are typically 50% larger in count mean diameter than in normal gravity, with zero-flow conditions further increasing the average mass diameter by 30% to 40%. These larger sizes and longer transit times can significantly delay or prevent detection by spacecraft smoke detectors.",
+      "answer": {
+        "summary": "In microgravity, the absence of buoyant flow increases the residence time of smoke, which allows particles to collide and grow through coagulation. This results in smoke particles that are typically 50% larger in count mean diameter than in normal gravity, with zero-flow conditions further increasing the average mass diameter by 30% to 40%. These larger sizes and longer transit times can significantly delay or prevent detection by spacecraft smoke detectors.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-101",
+            "test_ids": [],
+            "what_it_shows": "Microgravity smoke particles experience longer residence times and higher local concentrations, accelerating coagulation and resulting in larger droplet sizes. Zero-flow conditions further increase particle size due to restricted diffusion.",
+            "key_values": [
+              {
+                "name": "Increase in diameter of average mass for zero-flow tests compared to flow tests",
+                "value": "30 % to 40 %",
+                "unit": null
+              },
+              {
+                "name": "Zero-flow initial concentration increase",
+                "value": "50 times",
+                "unit": null
+              },
+              {
+                "name": "Zero-flow diffusion distance over 60 seconds",
+                "value": "4",
+                "unit": "cm"
+              },
+              {
+                "name": "Zero-flow confined volume",
+                "value": "64",
+                "unit": "cm3"
+              }
+            ],
+            "citations": [
+              1,
+              2,
+              3,
+              4,
+              9
+            ]
+          },
+          {
+            "investigation_id": "PSI-102",
+            "test_ids": [],
+            "what_it_shows": "Smoke particles in low-gravity are typically larger than in normal gravity, with a substantial portion of particles being sub-micron (below 500 nm), and aged silicone particles rising to over 1 micrometer.",
+            "key_values": [
+              {
+                "name": "Increase in count mean diameter compared to normal gravity",
+                "value": "50%",
+                "unit": null
+              },
+              {
+                "name": "Resultant particle sizes",
+                "value": "below 300",
+                "unit": "nm"
+              },
+              {
+                "name": "Substantial portion of smoke particles diameter",
+                "value": "below 500",
+                "unit": "nm"
+              },
+              {
+                "name": "Aged silicone diameter of average mass",
+                "value": "over 1 Ιm",
+                "unit": null
+              }
+            ],
+            "citations": [
+              5,
+              6,
+              7,
+              8,
+              10
+            ]
+          }
+        ],
+        "suggestions": [],
+        "follow_up_question": "Could you describe your specific habitat design, the materials you are concerned about, and your overall fire safety goals?",
+        "gaps_noted": [],
+        "confidence": "high"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "Smoke Aerosol Measurement Experiment-Reflight",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": "10.60555/2np7-jv14",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.781,
+          "snippet": "and coagulation, will lead to larger particles compared to those produced in 1g. The formation of the larger particles is favored by the expected higher vapor concentration and smoke residence times near the source due to the reduced velocities and mixing at μg conditions. In particular, it is ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "PSI-101 Reports SAME-R Final Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": 73,
+          "page_end": 73,
+          "similarity": 0.781,
+          "snippet": "measured parameters. Terrestrial fire detection systems have been developed based on extensive study of terrestrial fires.1, 2 Unfortunately there is no corresponding data set for spacecraft fires and consequently the fire detectors in current spacecraft were developed based upon terrestrial ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "PSI-101 Reports SAME-R Final Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": 81,
+          "page_end": 83,
+          "similarity": 0.779,
+          "snippet": "In the case of non-liquid particles, the smallest particles will nevertheless be unlikely to be visible via TEM when they are attached to larger particles. Length scale 2 μm Figure 12: TEM images showing the effect of aging for Kapton (Run 62) and Pyrell (Run 63). From Left to right, unaged Kapton, ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "PSI-101 Reports SAME-R Final Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": 8,
+          "page_end": 9,
+          "similarity": 0.777,
+          "snippet": "Pyrell (Run 63). From Left to right, unaged Kapton, aged Kapton, unaged Pyrell, aged Pyrell. The notable change is the elimination of the smallest particles. D. Impact of flow on particle morphology As the samples are heated by the wire, chemical bonds are broken and gaseous products are released ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-102",
+          "title": "PSI-102 Reports SAME Final Science Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": 43,
+          "page_end": 44,
+          "similarity": 0.772,
+          "snippet": "the smoke from spacecraft fires. The absence of buoyant flow in low-gravity increases the residence time in microgravity fires and increases the transit time from the reaction zone to the detector.3 Microgravity fires have been found to have radically different structure from their 1-g ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-102",
+          "title": "Smoke and Aerosol Measurement Experiment",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": "10.60555/gd4k-8h62",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.772,
+          "snippet": "is hypothesized that liquid aerosol smokes produced in microgravity will exhibit substantially larger droplet sizes than under the same conditions in normal gravity (with a corresponding decrease in the particle number density for the same mass of smoke). The change in the size distribution and ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-102",
+          "title": "PSI-102 Reports SAME Final Science Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": 44,
+          "page_end": 44,
+          "similarity": 0.77,
+          "snippet": "smoke detectors use near-IR forward scattering, rendering them most sensitive to particles larger than a micrometer, outside of the range of sensitivity of the shuttle detector. As described by Friedman4 there have been six overheat and failed component failures in the NASA Orbiter fleet in ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-102",
+          "title": "PSI-102 Reports SAME Final Science Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": 65,
+          "page_end": 67,
+          "similarity": 0.768,
+          "snippet": "smoke generation rate was 8.5 mg/s. Module. The smoke source was activated 30 seconds after the simulation was initiated and the simulations were run for an additional 300 seconds. Figure 6 presents a reconstruction of the smoke distribution for an 8.5 mg/s generation rate case after 177 seconds. ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-101",
+          "title": "SAME-R structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke Aerosol Measurement Experiment-Reflight (SAME-R), investigation PSI-101. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylindrical. Fuels: Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate. Airflow ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-102",
+          "title": "SAME structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke and Aerosol Measurement Experiment (SAME), investigation PSI-102. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylinder. Fuels: cellulose, Kapton, silicone rubber, Teflon, dibutyl-phthalate, Silicone Rubber, Cellulose, Dibutyl Phthalate. Airflow tested: 5 to 10 cm/s. Why it ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-20",
+          "title": "ACME BRE structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator (ACME BRE), investigation PSI-20. Gravity: microgravity. Fuel phase: gas. Sample geometry: porous circular burners. Fuels: methane, ethylene, propylene, methanol, ethanol, acetone, polyethylene, polymethylmethacrylate, ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-101",
+          "acronym": "SAME-R",
+          "score": 1.0,
+          "reasons": [
+            "Has 11 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-102",
+          "acronym": "SAME",
+          "score": 1.0,
+          "reasons": [
+            "Has 13 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "score": 1.0,
+          "reasons": [
+            "Has 4 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 1.0,
+          "reasons": [
+            "Has 53 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-26",
+          "acronym": "BASS",
+          "score": 1.0,
+          "reasons": [
+            "Has 12 recorded finding(s) to explain from."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "explain",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": "microgravity",
+          "fuel_phase": null,
+          "materials": [],
+          "other_parameters": []
+        }
+      },
+      "use_case": null,
+      "use_case_complete": false,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": null,
+    "use_case_complete": false
+  },
+  "7c201a9c0e0e31f37f991d23956fcbcdf5c58384e37abd472c22afd2056a6d95": {
+    "question": "What did the Saffire experiments show about large fires in a spacecraft?",
+    "message": {
+      "role": "assistant",
+      "content": "The Saffire-I and Saffire-II experiments demonstrated a new method to study realistic, large-scale fires inside an expendable cargo spacecraft without risking a crew. These investigations measured flame growth, heat, pressure, oxygen, and carbon dioxide to determine microgravity flammability limits and understand how microgravity and limited oxygen affect flame size.",
+      "answer": {
+        "summary": "The Saffire-I and Saffire-II experiments demonstrated a new method to study realistic, large-scale fires inside an expendable cargo spacecraft without risking a crew. These investigations measured flame growth, heat, pressure, oxygen, and carbon dioxide to determine microgravity flammability limits and understand how microgravity and limited oxygen affect flame size.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-98",
+            "test_ids": [],
+            "what_it_shows": "Saffire-I successfully measured flame growth, oxygen, carbon dioxide, heat, and pressure of a large-scale fire in microgravity to determine flammability limits and validate material selection criteria.",
+            "key_values": [
+              {
+                "name": "Sample length",
+                "value": "0.94",
+                "unit": "meters"
+              },
+              {
+                "name": "Sample width",
+                "value": "0.4",
+                "unit": "meters"
+              },
+              {
+                "name": "Air flow velocity",
+                "value": "20",
+                "unit": "cm/s"
+              },
+              {
+                "name": "Oxygen concentration",
+                "value": "21",
+                "unit": "%"
+              }
+            ],
+            "citations": [
+              1,
+              2,
+              6
+            ]
+          },
+          {
+            "investigation_id": "PSI-99",
+            "test_ids": [],
+            "what_it_shows": "Saffire-II studied realistic fires on an exploration vehicle to determine microgravity flammability limits and how microgravity and limited oxygen affect flame size.",
+            "key_values": [],
+            "citations": [
+              3
+            ]
+          }
+        ],
+        "suggestions": [],
+        "follow_up_question": "Could you describe your spacecraft or habitat environment, the materials you are evaluating, and your main fire safety goals?",
+        "gaps_noted": [],
+        "confidence": "high"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-98",
+          "title": "Spacecraft Fire Safety Experiment-I",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": "10.60555/0t15-1z43",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.808,
+          "snippet": "to base their fire safety designs and procedures. To address this knowledge gap, this investigation proposed to conduct large-scale fire safety experiments in an expendable spacecraft without risk to a crew. ## Research impacts The Saffire-I experiment provides a new way to study a realistic fire ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-98",
+          "title": "SAFFIRE-I structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.805,
+          "snippet": "Spacecraft Fire Safety Experiment-I (SAFFIRE-I), NASA PSI investigation PSI-98. Program: Saffire. Hardware: other. Platform: ISS. Years: 2001-2008. Gravity: microgravity. Objectives: - determine how rapidly a large scale fire grows in low-gravity - investigate the low-g flammability limits compared ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-99",
+          "title": "Spacecraft Fire Experiment-II",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99",
+          "doi": "10.60555/2chp-m469",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.803,
+          "snippet": "spacecraft designers on which to base their fire safety designs and procedures. To address this knowledge gap, this investigation proposed to conduct large-scale fire safety experiments in an expendable spacecraft without risk to a crew. ## Research impacts The Saffire-II experiment provides a new ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-102",
+          "title": "SAME structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.752,
+          "snippet": "Smoke and Aerosol Measurement Experiment (SAME), NASA PSI investigation PSI-102. Hardware: MSG. Platform: ISS. Years: 2000-2009. Gravity: microgravity. Objectives: - characterize the size distribution of smoke particulate produced in low-gravity from a variety of overheated spacecraft materials - ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "SAME-R structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.743,
+          "snippet": "Smoke Aerosol Measurement Experiment-Reflight (SAME-R), NASA PSI investigation PSI-101. Hardware: MSG. Platform: ISS. Years: 2010-2014. Gravity: microgravity. Objectives: - Characterize the smoke aerosol encountered in space vehicles using the moment method in conjunction with the lognormal ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-98",
+          "title": "Spacecraft Fire Safety Experiment-I",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": "10.60555/0t15-1z43",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.792,
+          "snippet": "# Spacecraft Fire Safety Experiment-I - Accession: PSI-98 - Acronym: SAFFIRE-I - PSI page: https://psi.nasa.gov/physci/repo/data/investigations/PSI-98 - DOI: 10.60555/0t15-1z43 - License: CC0-1.0 (Creative Commons Zero v1.0 Universal) - Research area: Combustion Science - Sub-area: Spacecraft Fire, ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "Smoke Aerosol Measurement Experiment-Reflight",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": "10.60555/2np7-jv14",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.741,
+          "snippet": "and coagulation, will lead to larger particles compared to those produced in 1g. The formation of the larger particles is favored by the expected higher vapor concentration and smoke residence times near the source due to the reduced velocities and mixing at μg conditions. In particular, it is ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-101",
+          "title": "PSI-101 Reports SAME-R Final Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": 83,
+          "page_end": 84,
+          "similarity": 0.739,
+          "snippet": "case of zero-flow. The transport for the zero-flow case in μ-g is controlled by molecular diffusion and thermal expansion. Over a period of 60 seconds, the gases would diffuse a distance on the order of 4 cm. Assuming a cubical geometry this would correspond to the smoke being confined to a volume ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-101",
+          "title": "SAME-R structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke Aerosol Measurement Experiment-Reflight (SAME-R), investigation PSI-101. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylindrical. Fuels: Teflon, Kapton, Pyrell, silicone rubber, cellulose (lamp wick), dibutyl-phthalate, cellulose, Silicone, Cellulose, DiButyl Phthalate. Airflow ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-102",
+          "title": "SAME structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Smoke and Aerosol Measurement Experiment (SAME), investigation PSI-102. Gravity: microgravity. Fuel phase: solid. Sample geometry: cylinder. Fuels: cellulose, Kapton, silicone rubber, Teflon, dibutyl-phthalate, Silicone Rubber, Cellulose, Dibutyl Phthalate. Airflow tested: 5 to 10 cm/s. Why it ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-20",
+          "title": "ACME BRE structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator (ACME BRE), investigation PSI-20. Gravity: microgravity. Fuel phase: gas. Sample geometry: porous circular burners. Fuels: methane, ethylene, propylene, methanol, ethanol, acetone, polyethylene, polymethylmethacrylate, ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-101",
+          "acronym": "SAME-R",
+          "score": 1.0,
+          "reasons": [
+            "Has 11 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-102",
+          "acronym": "SAME",
+          "score": 1.0,
+          "reasons": [
+            "Has 13 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "score": 1.0,
+          "reasons": [
+            "Has 4 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 1.0,
+          "reasons": [
+            "Has 53 recorded finding(s) to explain from."
+          ]
+        },
+        {
+          "investigation_id": "PSI-26",
+          "acronym": "BASS",
+          "score": 1.0,
+          "reasons": [
+            "Has 12 recorded finding(s) to explain from."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "explain",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": "microgravity",
+          "fuel_phase": null,
+          "materials": [],
+          "other_parameters": []
+        }
+      },
+      "use_case": null,
+      "use_case_complete": false,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": null,
+    "use_case_complete": false
+  },
+  "cd6ee48ecb6d0ac7a526192d8dd9a6309432963b44b9e9f4ef6b355d753a7907": {
+    "question": "I am choosing fabrics for crew quarters in a Moon base at 34% oxygen and 8 psi, and I want to know which materials data applies. What should I look at?",
+    "message": {
+      "role": "assistant",
+      "content": "To choose fabrics for a Moon base crew quarters, you should look at the BASS (PSI-26) and ACME BRE (PSI-20) investigations. BASS tested solid fabrics like Nomex and a custom cotton-fiberglass blend in microgravity, showing that materials can burn more easily with low-speed ventilation than on Earth. ACME BRE tested atmospheres up to 34% oxygen and 8.2 psi, finding that flames in these elevated-oxygen environments can continue burning even without air flow, unlike in normal air.",
+      "answer": {
+        "summary": "To choose fabrics for a Moon base crew quarters, you should look at the BASS (PSI-26) and ACME BRE (PSI-20) investigations. BASS tested solid fabrics like Nomex and a custom cotton-fiberglass blend in microgravity, showing that materials can burn more easily with low-speed ventilation than on Earth. ACME BRE tested atmospheres up to 34% oxygen and 8.2 psi, finding that flames in these elevated-oxygen environments can continue burning even without air flow, unlike in normal air.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-26",
+            "test_ids": [],
+            "what_it_shows": "This investigation tested solid fabrics like a cotton-fiberglass blend and Nomex in microgravity, showing that materials can burn more readily in microgravity with ventilation than in normal gravity.",
+            "key_values": [
+              {
+                "name": "Fuels",
+                "value": "cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin",
+                "unit": null
+              },
+              {
+                "name": "Oxygen tested",
+                "value": "21%",
+                "unit": null
+              }
+            ],
+            "citations": [
+              3,
+              6
+            ]
+          },
+          {
+            "investigation_id": "PSI-20",
+            "test_ids": [],
+            "what_it_shows": "This study emulated condensed-phase materials like Nylon and PMMA in microgravity, finding that flames in elevated-oxygen atmospheres (up to 34% O2 and down to 8.2 psi) can continue burning even without air flow.",
+            "key_values": [
+              {
+                "name": "Oxygen tested",
+                "value": "21 to 34%",
+                "unit": null
+              },
+              {
+                "name": "Pressure tested",
+                "value": "8.2 to 14.7",
+                "unit": "psi"
+              }
+            ],
+            "citations": [
+              2,
+              11
+            ]
+          },
+          {
+            "investigation_id": "PSI-68",
+            "test_ids": [],
+            "what_it_shows": "This investigation tested liquid droplets in microgravity at oxygen levels up to 40% and pressures down to 7.35 psi, which covers your target atmosphere of 34% oxygen and 8 psi.",
+            "key_values": [
+              {
+                "name": "Oxygen tested",
+                "value": "10 to 40%",
+                "unit": null
+              },
+              {
+                "name": "Pressure tested",
+                "value": "7.34795 to 44.0877",
+                "unit": "psi"
+              }
+            ],
+            "citations": [
+              10
+            ]
+          }
+        ],
+        "suggestions": [
+          {
+            "text": "Look at the flammability and burning behavior of Nomex and cotton-fiberglass blends from the BASS (PSI-26) tests to understand how fabrics behave in low-gravity environments.",
+            "based_on": [
+              "PSI-26"
+            ],
+            "citations": [
+              3,
+              6
+            ]
+          },
+          {
+            "text": "Account for the increased fire risk of your 34% oxygen environment, as ACME BRE (PSI-20) shows that elevated-oxygen atmospheres allow flames to sustain themselves without ventilation, whereas they would self-extinguish in normal air.",
+            "based_on": [
+              "PSI-20"
+            ],
+            "citations": [
+              2,
+              11
+            ]
+          }
+        ],
+        "follow_up_question": null,
+        "gaps_noted": [
+          "No PSI combustion investigation was run at Moon or Mars gravity. Habitat presets at partial gravity can only be compared with microgravity and 1 g results.",
+          "No PSI investigation in this dataset covers 34% O2 at 8 psi in partial. Closest tested: FLEX-2 (microgravity) at 34% O2, 8 psi."
+        ],
+        "confidence": "medium"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "Burning and Suppression of Solids - II",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": "10.60555/4qc4-de67",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.724,
+          "snippet": "be conservative for flammability in space. Testing at constant O2 mole fractions permits studying flame spread and extinction at low and high flow speed. We are interested in finding the fundamental limit for a given material. ## Research impacts A primary goal of BASS-II is improved spacecraft ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-20",
+          "title": "ACME BRE structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.688,
+          "snippet": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator (ACME BRE), NASA PSI investigation PSI-20. Program: ACME. Hardware: CIR. Platform: ISS. Years: 2010-2025. Gravity: microgravity. Objectives: - Observe burning behavior in long-duration microgravity for CH4/N2 and ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.716,
+          "snippet": "Burning and Suppression of Solids (BASS), NASA PSI investigation PSI-26. Hardware: MSG. Platform: ISS. Years: 2009-2013. Gravity: microgravity. Objectives: - Begin to bridge the gap between the normal gravity NASA-STD-6001 Test#1 method, ground-based microgravity tests, and actual material ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-98",
+          "title": "PSI-98 Science Documents SAFFIRE Objectives, Development and Status",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": null,
+          "page_start": 6,
+          "page_end": 6,
+          "similarity": 0.715,
+          "snippet": "July 2007). 4. Olson, S.L., Ruff, G.A., Miller, F.J., Microgravity Flame Spread in Exploration Atmospheres: Pressure, Oxygen, and Velocity Effects on Opposed and Concurrent Flame Spread,” Paper No. 2008-01- 2005, 38th International Conference on Environmental Systems, San Francisco, CA, June ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-100",
+          "title": "PSI-100 Science Documents SAFFIRE Objectives, Development and Status",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+          "doi": null,
+          "page_start": 6,
+          "page_end": 6,
+          "similarity": 0.715,
+          "snippet": "July 2007). 4. Olson, S.L., Ruff, G.A., Miller, F.J., Microgravity Flame Spread in Exploration Atmospheres: Pressure, Oxygen, and Velocity Effects on Opposed and Concurrent Flame Spread,” Paper No. 2008-01- 2005, 38th International Conference on Environmental Systems, San Francisco, CA, June ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.71,
+          "snippet": "strategies for NASA spacecraft materials selection. The goal is to link actual burn behavior in microgravity to Earth-based selection methods. From a more fundamental point of view, improved combustion computational models using the experimental results can be developed to aid in the design of fire ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "Burning and Suppression of Solids",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": "10.60555/58h4-dy80",
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.706,
+          "snippet": "burn as well if not better than the same material in normal gravity with other conditions being identical (pressure, oxygen concentration, temperature, etc.) To test this hypothesis with any but the thinnest materials requires extended microgravity time – longer than available in drop towers or ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 81,
+          "page_end": 83,
+          "similarity": 0.703,
+          "snippet": "opposed-flow flame spread over rods that were also done as part of BASS–II (Ref. 14), where opposed-flow flame spread was not observed below 16.4 percent O at any flow. 2 NASA/TM-20210011385 73 Figure 6.7.—Time history of stretch rate a and radiometer signal for two local blowoffs for 0.318 cm rod. ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-69",
+          "title": "FLEX structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Flame Extinguishment Experiment (FLEX), investigation PSI-69. Gravity: microgravity. Fuel phase: liquid. Sample geometry: droplet. Fuels: methanol, n-heptane, n-octane, n-decane, n-butanol, gasoline, 1-propanol, methyl butanoate, methyl decanoate, Jet-A, camelina, tallow, nonane, acetone, ethanol. ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-68",
+          "title": "FLEX-2 structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Flame Extinguishment Experiment - 2 (FLEX-2), investigation PSI-68. Gravity: microgravity. Fuel phase: liquid. Sample geometry: droplet. Fuels: n-heptane, methanol, ethanol, 1-propanol, n-octane, n-decane, n-butanol, gasoline, methyl butanoate, methyl decanoate, Jet-A, nonane, propanol, acetone, ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-20",
+          "title": "ACME BRE structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator (ACME BRE), investigation PSI-20. Gravity: microgravity. Fuel phase: gas. Sample geometry: porous circular burners. Fuels: methane, ethylene, propylene, methanol, ethanol, acetone, polyethylene, polymethylmethacrylate, ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-69",
+          "acronym": "FLEX",
+          "score": 0.7222,
+          "reasons": [
+            "Ranges: oxygen 12-34% O2 covers 34% O2; pressure 7.35-44.9 psi covers 8 psi.",
+            "Fuel (methanol, n-heptane, n-octane, n-decane, n-butanol, gasoline, 1-propanol, methyl butanoate, methyl decanoate, Jet-A, camelina, tallow, nonane, acetone, ethanol) does not match fabrics.",
+            "Has 274 test(s) with recorded conditions.",
+            "Run in microgravity, not partial gravity."
+          ]
+        },
+        {
+          "investigation_id": "PSI-68",
+          "acronym": "FLEX-2",
+          "score": 0.6556,
+          "reasons": [
+            "Ranges: oxygen 10-40% O2 covers 34% O2; pressure 7.35-44.1 psi covers 8 psi.",
+            "Fuel (n-heptane, methanol, ethanol, 1-propanol, n-octane, n-decane, n-butanol, gasoline, methyl butanoate, methyl decanoate, Jet-A, nonane, propanol, acetone, decane, hexanol, dodecane) does not match fabrics.",
+            "Has tested ranges but no per-test values.",
+            "Run in microgravity, not partial gravity."
+          ]
+        },
+        {
+          "investigation_id": "PSI-20",
+          "acronym": "ACME BRE",
+          "score": 0.6442,
+          "reasons": [
+            "Ranges: oxygen 21-34% O2 covers 34% O2; pressure tested at 8.2-14.7 psi, you asked about 8 psi.",
+            "Fuel (methane, ethylene, propylene, methanol, ethanol, acetone, polyethylene, polymethylmethacrylate, polypropylene, polystyrene) does not match fabrics.",
+            "Has tested ranges but no per-test values.",
+            "Run in microgravity, not partial gravity."
+          ]
+        },
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 0.612,
+          "reasons": [
+            "Closest test PSI-25-T3 ran at 22.2% O2 and 14.7 psi (investigation range); you asked about 34% O2, 8 psi.",
+            "Fuel (polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan Wax, SIBAL, composite fabric, paraffin, Nomex III, SIBAL fabric, candle) names fabrics.",
+            "Has 141 test(s) with recorded conditions.",
+            "Run in microgravity, not partial gravity."
+          ]
+        },
+        {
+          "investigation_id": "PSI-99",
+          "acronym": "SAFFIRE-II",
+          "score": 0.5556,
+          "reasons": [
+            "Closest test PSI-99-T2 ran at 22.1% O2; you asked about 34% O2, 8 psi.",
+            "Fuel (SIBAL, silicone, structure PMMA, flat PMMA, PMMA with Nomex) uses a similar material to fabrics.",
+            "Has 9 test(s) with recorded conditions.",
+            "Run in microgravity, not partial gravity."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "find_data",
+        "conditions": {
+          "o2_percent": 34.0,
+          "pressure_psi": 8.0,
+          "flow_cm_s": null,
+          "gravity": "partial",
+          "fuel_phase": "solid",
+          "materials": [
+            "fabrics"
+          ],
+          "other_parameters": []
+        }
+      },
+      "use_case": {
+        "description": "Moon base at 34% oxygen and 8 psi",
+        "habitat": "Moon base",
+        "goal": "choose fabrics for crew quarters",
+        "materials": [
+          "fabrics"
+        ],
+        "constraints": []
+      },
+      "use_case_complete": true,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": {
+      "description": "Moon base at 34% oxygen and 8 psi",
+      "habitat": "Moon base",
+      "goal": "choose fabrics for crew quarters",
+      "materials": [
+        "fabrics"
+      ],
+      "constraints": []
+    },
+    "use_case_complete": true
+  },
+  "7755b48e6e6071a66a7809bba20bba66ef0c9ab5050fc24b74dfe4a03210d28d": {
+    "question": "I am planning ventilation for an ISS module that stores cotton clothing and I want to reduce flame spread risk. What does the data suggest?",
+    "message": {
+      "role": "assistant",
+      "content": "To reduce the flame spread risk for cotton clothing in microgravity, ventilation should avoid the range of 10 to 15 cm/s where opposed-flow flame spread (flame spreading against the airflow) peaks, and concurrent-flow flame spread (flame spreading in the same direction as the airflow) increases linearly with flow. Keeping ventilation extremely low, around 1 cm/s, can lead to quenching extinction (self-extinguishment due to heat loss). Slower flame spread is also achieved at lower oxygen levels.",
+      "answer": {
+        "summary": "To reduce the flame spread risk for cotton clothing in microgravity, ventilation should avoid the range of 10 to 15 cm/s where opposed-flow flame spread (flame spreading against the airflow) peaks, and concurrent-flow flame spread (flame spreading in the same direction as the airflow) increases linearly with flow. Keeping ventilation extremely low, around 1 cm/s, can lead to quenching extinction (self-extinguishment due to heat loss). Slower flame spread is also achieved at lower oxygen levels.",
+        "relevant_data": [
+          {
+            "investigation_id": "PSI-26",
+            "test_ids": [],
+            "what_it_shows": "In microgravity, concurrent flame spread on cotton-fiberglass fabric increases linearly with air flow, spreading twice as fast as opposed-flow flames at 10 cm/s. Reducing flow to around 1 cm/s leads to quenching extinction (self-extinguishment due to heat loss).",
+            "key_values": [
+              {
+                "name": "Concurrent flame spread rate at 10 cm/s",
+                "value": "2.55",
+                "unit": "mm/s"
+              },
+              {
+                "name": "Opposed flame spread rate at 10 cm/s",
+                "value": "1.21",
+                "unit": "mm/s"
+              },
+              {
+                "name": "Flow speed for peak opposed-flow flame spread",
+                "value": "10 to 15",
+                "unit": "cm/s"
+              },
+              {
+                "name": "Concurrent quenching extinction flow speed",
+                "value": "around 1",
+                "unit": "cm/s"
+              }
+            ],
+            "citations": [
+              2,
+              3,
+              10
+            ]
+          },
+          {
+            "investigation_id": "PSI-25",
+            "test_ids": [],
+            "what_it_shows": "Tests on SIBAL cotton-fiberglass fabric show that flames spread slower at lower flow velocities and lower oxygen percentages, with quenching extinction (self-extinguishment due to heat loss) occurring at very low forced flows between 1 and 5 cm/s.",
+            "key_values": [
+              {
+                "name": "Quenching velocity range",
+                "value": "1 to 5",
+                "unit": "cm/s"
+              },
+              {
+                "name": "SIBAL fabric cotton content",
+                "value": "75",
+                "unit": "%"
+              },
+              {
+                "name": "SIBAL fabric fiberglass content",
+                "value": "25",
+                "unit": "%"
+              }
+            ],
+            "citations": [
+              5,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "investigation_id": "PSI-98",
+            "test_ids": [],
+            "what_it_shows": "Saffire-I investigated large-scale microgravity flammability of SIBAL cloth (cotton-fiberglass) at 21% oxygen and 20 cm/s flow.",
+            "key_values": [
+              {
+                "name": "Oxygen concentration",
+                "value": "21",
+                "unit": "%"
+              },
+              {
+                "name": "Airflow speed",
+                "value": "20",
+                "unit": "cm/s"
+              }
+            ],
+            "citations": [
+              8,
+              11
+            ]
+          }
+        ],
+        "suggestions": [
+          {
+            "text": "Avoid ventilation flow speeds in the range of 10 to 15 cm/s, where opposed-flow flame spread rates peak and concurrent flames spread rapidly.",
+            "based_on": [
+              "PSI-26"
+            ],
+            "citations": [
+              3,
+              10
+            ]
+          },
+          {
+            "text": "If feasible, maintain local air flow velocities near or below the quenching limit of 1 cm/s to encourage self-extinction of any ignited cotton fabric.",
+            "based_on": [
+              "PSI-26",
+              "PSI-25"
+            ],
+            "citations": [
+              3,
+              5,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "text": "Consider reducing ambient oxygen levels below 21% if possible, as lower oxygen concentrations decrease flame spread rates and increase the flow speed required for quenching extinction.",
+            "based_on": [
+              "PSI-25"
+            ],
+            "citations": [
+              6,
+              9
+            ]
+          }
+        ],
+        "follow_up_question": null,
+        "gaps_noted": [
+          "The PSI database contains tests on a 75% cotton and 25% fiberglass blend (SIBAL fabric) rather than pure cotton clothing."
+        ],
+        "confidence": "medium"
+      },
+      "sources": [
+        {
+          "n": 1,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.83,
+          "snippet": "strategies for NASA spacecraft materials selection. The goal is to link actual burn behavior in microgravity to Earth-based selection methods. From a more fundamental point of view, improved combustion computational models using the experimental results can be developed to aid in the design of fire ..."
+        },
+        {
+          "n": 2,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.808,
+          "snippet": "mm/s. (Tests 7 and 6) Figure 12. Concurrent and opposed comparison at 10 cm/s air flow speed. Left: Concurrent flow: Steady flame base spread rate is 2.55 mm/s. Right: Opposed flow: Steady flame spread rate is 1.21 mm/s. (Tests 7 and 6) Figure 13. Comparison of 0-g concurrent-flow flame (left) and ..."
+        },
+        {
+          "n": 3,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.807,
+          "snippet": "Burning and Suppression of Solids (BASS), NASA PSI investigation PSI-26. Hardware: MSG. Platform: ISS. Years: 2009-2013. Gravity: microgravity. Objectives: - Begin to bridge the gap between the normal gravity NASA-STD-6001 Test#1 method, ground-based microgravity tests, and actual material ..."
+        },
+        {
+          "n": 4,
+          "kind": "passage",
+          "investigation_id": "PSI-26",
+          "title": "PSI-26 Science Documents FlammabilityAspectsofFabric USNationalCombustion.2013",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1,
+          "similarity": 0.805,
+          "snippet": "configurations. The custom-made cotton-fiberglass fabric performed very well, with none of the complications caused by the burnout of ordinary cellulosic fuel samples like paper. The main variable was air flow speed and it had a major effect on the flame as suggested in earlier studies. This is the ..."
+        },
+        {
+          "n": 5,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 108,
+          "page_end": 109,
+          "similarity": 0.804,
+          "snippet": "smaller flammable domain, as expected. Figure 7.7.—Flammability map for Solid Inflammability Boundary at Low Speeds (SIBAL) fabric in concurrent flow in microgravity. Dotted line marks experimental quenching boundary for 2.2-cm-wide sample. Flow speed (U0). NASA/TM-20210011385 100 7.1.5 Conclusions ..."
+        },
+        {
+          "n": 6,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 101,
+          "page_end": 101,
+          "similarity": 0.799,
+          "snippet": "Concurrent Flame Growth, Spread, and Extinction Over Composite Fabric Samples in Low-Speed Purely Forced Flow in Microgravity3 7.1.1 Abstract As a part of the NASA Burning and Suppression of Solids (BASS) and BASS–II experimental projects aboard the International Space Station, flame growth, ..."
+        },
+        {
+          "n": 7,
+          "kind": "passage",
+          "investigation_id": "PSI-25",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 101,
+          "page_end": 102,
+          "similarity": 0.791,
+          "snippet": "of seconds to minutes, depending on the sample type and flow conditions. The challenge with thin solid samples in concurrent flow, compared with other configurations, is that flame spreads much faster, and flames can become quite long. Because of size limitations, the fuel sample is relatively ..."
+        },
+        {
+          "n": 8,
+          "kind": "passage",
+          "investigation_id": "PSI-98",
+          "title": "SAFFIRE-I structured summary",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": 0.787,
+          "snippet": "Spacecraft Fire Safety Experiment-I (SAFFIRE-I), NASA PSI investigation PSI-98. Program: Saffire. Hardware: other. Platform: ISS. Years: 2001-2008. Gravity: microgravity. Objectives: - determine how rapidly a large scale fire grows in low-gravity - investigate the low-g flammability limits compared ..."
+        },
+        {
+          "n": 9,
+          "kind": "record",
+          "investigation_id": "PSI-25",
+          "title": "BASS-II structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids - II (BASS-II), investigation PSI-25. Gravity: microgravity. Fuel phase: solid. Sample geometry: rods, slabs, spheres, and flat fabrics. Fuels: polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan ..."
+        },
+        {
+          "n": 10,
+          "kind": "record",
+          "investigation_id": "PSI-26",
+          "title": "BASS structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Burning and Suppression of Solids (BASS), investigation PSI-26. Gravity: microgravity. Fuel phase: solid. Sample geometry: flat sheets, solid spheres, and candles within tubes. Fuels: cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin. Oxygen tested: 21%. Airflow tested: 0 to 44 ..."
+        },
+        {
+          "n": 11,
+          "kind": "record",
+          "investigation_id": "PSI-98",
+          "title": "SAFFIRE-I structured record",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": null,
+          "page_start": null,
+          "page_end": null,
+          "similarity": null,
+          "snippet": "Spacecraft Fire Safety Experiment-I (SAFFIRE-I), investigation PSI-98. Gravity: microgravity. Fuel phase: solid. Sample geometry: planar. Fuels: SIBAL cloth, cotton, fiberglass. Oxygen tested: 21%. Airflow tested: 20 cm/s. Why it ranked: Fuel (SIBAL cloth, cotton, fiberglass) names cotton. Has 2 ..."
+        }
+      ],
+      "ranking": [
+        {
+          "investigation_id": "PSI-25",
+          "acronym": "BASS-II",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (polymethylmethacrylate, cotton-fiberglass blended fabric, cellulose, Nomex, wax, PMMA, cotton-fiberglass fabric, Japan Wax, SIBAL, composite fabric, paraffin, Nomex III, SIBAL fabric, candle) names cotton.",
+            "Has 141 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-26",
+          "acronym": "BASS",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (cotton-fiberglass blend, Nomex, Ultem, PMMA, wax, Japan wax, paraffin) names cotton.",
+            "Has 7 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-98",
+          "acronym": "SAFFIRE-I",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (SIBAL cloth, cotton, fiberglass) names cotton.",
+            "Has 2 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-99",
+          "acronym": "SAFFIRE-II",
+          "score": 1.0,
+          "reasons": [
+            "Fuel (SIBAL, silicone, structure PMMA, flat PMMA, PMMA with Nomex) names cotton.",
+            "Has 9 test(s) with recorded conditions."
+          ]
+        },
+        {
+          "investigation_id": "PSI-100",
+          "acronym": "SAFFIRE-III",
+          "score": 0.875,
+          "reasons": [
+            "Fuel (SIBAL cloth) uses a similar material to cotton.",
+            "Has 2 test(s) with recorded conditions."
+          ]
+        }
+      ],
+      "understanding": {
+        "intent": "find_data",
+        "conditions": {
+          "o2_percent": null,
+          "pressure_psi": null,
+          "flow_cm_s": null,
+          "gravity": "microgravity",
+          "fuel_phase": "solid",
+          "materials": [
+            "cotton"
+          ],
+          "other_parameters": []
+        }
+      },
+      "use_case": {
+        "description": "Planning ventilation for an ISS module storing cotton clothing to reduce flame spread risk.",
+        "habitat": "ISS module",
+        "goal": "reduce flame spread risk",
+        "materials": [
+          "cotton"
+        ],
+        "constraints": []
+      },
+      "use_case_complete": true,
+      "insufficient_evidence": false,
+      "cached": false
+    },
+    "use_case": {
+      "description": "Planning ventilation for an ISS module storing cotton clothing to reduce flame spread risk.",
+      "habitat": "ISS module",
+      "goal": "reduce flame spread risk",
+      "materials": [
+        "cotton"
+      ],
+      "constraints": []
+    },
+    "use_case_complete": true
+  }
+}

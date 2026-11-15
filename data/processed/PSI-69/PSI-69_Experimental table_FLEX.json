@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-69",
+  "sample_id": null,
+  "file_name": "tables/PSI-69_Experimental table_FLEX.csv",
+  "title": "PSI-69 Experimental table FLEX",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: FLEX Test #, FLEX Identifier, Test Date, Test GMT, Fuel, Ambient pressure; mmHg, O2 initial ambient composition; mole fraction, N2 initial ambient composition; mole fraction, CO2 initial ambient composition; mole fraction, He initial ambient composition; mole fraction, Droplet initial diameter; mm, Visible flame extinction diameter; mm, Burning rate; mm, Burn time; s, Test end\nunits: none stated\nrows: 274\nFLEX Test #: min=1 max=274\nAmbient pressure; mmHg: min=0 max=2319.9\nO2 initial ambient composition; mole fraction: min=0.12 max=0.34\nN2 initial ambient composition; mole fraction: min=0.09 max=0.88\nCO2 initial ambient composition; mole fraction: min=0 max=0.7\nHe initial ambient composition; mole fraction: min=0 max=0.45\nDroplet initial diameter; mm: min=1.1 max=4.67\nVisible flame extinction diameter; mm: min=0 max=4.6\nBurning rate; mm: min=0.05 max=1.06\nBurn time; s: min=0.3 max=39.2"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Demo questions for FlameMind. One per line. Lines starting with # are ignored.
+# api/prewarm.py answers each one as a new guest chat and caches the result.
+How does flame spread over fabric change with airflow in microgravity?
+What happens to a burning fabric sample when the airflow drops very low?
+What data is there on droplet combustion at high oxygen?
+How does smoke from overheated materials differ in microgravity?
+What did the Saffire experiments show about large fires in a spacecraft?
+I am choosing fabrics for crew quarters in a Moon base at 34% oxygen and 8 psi, and I want to know which materials data applies. What should I look at?
+I am planning ventilation for an ISS module that stores cotton clothing and I want to reduce flame spread risk. What does the data suggest?

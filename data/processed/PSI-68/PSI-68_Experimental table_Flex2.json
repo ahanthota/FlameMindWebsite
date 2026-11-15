@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-68",
+  "sample_id": null,
+  "file_name": "tables/PSI-68_Experimental table_Flex2.csv",
+  "title": "PSI-68 Experimental table Flex2",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: Sample (Fuel Type), Initial Droplet Diameter (mm), Ambient Gas Mixture, Oxygen Mole Fraction, Ambient Pressure (atm), Ambient Temperature (C), Flow Velocity (cm/s)\nunits: Sample (Fuel Type)=Fuel Type, Initial Droplet Diameter (mm)=mm, Ambient Pressure (atm)=atm, Ambient Temperature (C)=C, Flow Velocity (cm/s)=cm/s\nrows: 8\nAmbient Temperature (C): min=25 max=25"
+    }
+  ]
+}

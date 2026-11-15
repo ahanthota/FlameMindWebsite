@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-26",
+  "sample_id": null,
+  "file_name": "tables/PSI-26_Experimental table_BASS.csv",
+  "title": "PSI-26 Experimental table BASS",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: Date, GMT, As Run Test #, Test #, Sample #, Fuel Sample Material\nunits: none stated\nrows: 122\nGMT: min=90 max=234\nAs Run Test #: min=1 max=116\nTest #: min=1 max=119\nSample #: min=2 max=44"
+    }
+  ]
+}

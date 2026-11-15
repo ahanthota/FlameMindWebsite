@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-98",
+  "sample_id": null,
+  "file_name": "documents/PSI-98_Science Documents_SAFFIRE-1_MergeResult-jpeg_Update_Final_v2.xlsx",
+  "title": "PSI-98 Science Documents SAFFIRE-1 MergeResult-jpeg Update Final v2",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+  "doi": null,
+  "source_type": "document",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: , , , , , , , ,\nunits: none stated\nrows: 36496\n: min=1.46594e+12 max=1.46594e+12\n: min=25569 max=25569\n: min=19282 max=176256"
+    }
+  ]
+}

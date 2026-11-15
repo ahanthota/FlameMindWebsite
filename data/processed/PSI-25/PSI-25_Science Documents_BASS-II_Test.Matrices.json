@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-25",
+  "sample_id": null,
+  "file_name": "documents/PSI-25_Science Documents_BASS-II_Test.Matrices.xlsx",
+  "title": "PSI-25 Science Documents BASS-II Test.Matrices",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+  "doi": null,
+  "source_type": "document",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: , , , , , , , , , , , , , , ,\nunits: none stated\nrows: 27\n: min=41688 max=42426\n: min=49 max=213\n: min=0 max=2\n: min=50 max=1000\n: min=2 max=316\n: min=13.6 max=22.2\n: min=13.5 max=21.9\n: min=0.2 max=1.85\n: min=0.28 max=2.1\n: min=-3 max=950\n: min=22 max=950"
+    }
+  ]
+}

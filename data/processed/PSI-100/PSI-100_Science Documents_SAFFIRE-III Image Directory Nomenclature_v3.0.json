@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-100",
+  "sample_id": null,
+  "file_name": "documents/PSI-100_Science Documents_SAFFIRE-III Image Directory Nomenclature_v3.0.pdf",
+  "title": "PSI-100 Science Documents SAFFIRE-III Image Directory Nomenclature v3.0",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+  "doi": null,
+  "source_type": "document",
+  "pages": [
+    {
+      "page": 1,
+      "text": "SAFFIRE-III\nImage Directory Nomenclature SAFFIRE-III_Image_Data_Package Contents\nVersion 3.0\nBit F1 F2 S1 S2\nXnCn_Raw_CamOriginal Camera original RAW files recorded on-board and downlinked on command.\nContains 8-byte offset that must be processed prior to color interpolation and\ndistribution. This data set is archived at NASA-GRC.\nXnCn_Raw_DistroMaster RAW Camara Orginal files processed for 8-byte offset using ImageJ, and resaved\nusing originial file name. This is the RAW Distribution Master set for Science Team\nX X X X\ndistribution and color interpolation (demosaicing).\nXn_Raw2TIFF TIFF images of the RAW Distribution Master files, color interpolated (demosaiced)\nusing IrfanView Batch Conversion process.\nX X X X\nXn_Raw2TIFF_icmad Raw2TIFF files annotated with ICMAD 'Exposure' and 'Gain' information. Data is\nappended to the bottom of each frame using ImageMagick script and resaved as\nX X\nTIFF.\nXn_jpeg Jpeg images created on-board SAFFIRE payload and downlinked by command\nX X X X\nXn_jpeg_corrupt Jpeg images received corrupted after downlink.\nX X X X\nXn_jpeg2png_icmad Jpeg images annotated with ICMAD 'Exposure' and 'Gain' information. Data is\nappended to the bottom of each frame using ImageMagick script and re-saved as X X\n.png format to minimize additional compression artifacts.\n\"Xn\" Denotes run type and number\n\"Cn\" Denotes camera number (if sorted separately)"
+    }
+  ]
+}

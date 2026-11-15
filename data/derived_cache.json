@@ -1,0 +1,173 @@
+{
+  "sample thickness": {
+    "PSI-10": [],
+    "PSI-20": [],
+    "PSI-21": [],
+    "PSI-22": [],
+    "PSI-23": [],
+    "PSI-25": [
+      {
+        "test_id": null,
+        "value": 0.1,
+        "unit": "mm",
+        "citation": {
+          "file_name": "documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+          "title": "PSI-25 Science Documents BASS-II SRD",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 13,
+          "page_end": 16
+        }
+      },
+      {
+        "test_id": null,
+        "value": 0.2,
+        "unit": "mm",
+        "citation": {
+          "file_name": "documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+          "title": "PSI-25 Science Documents BASS-II SRD",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 13,
+          "page_end": 16
+        }
+      },
+      {
+        "test_id": null,
+        "value": 0.3,
+        "unit": "mm",
+        "citation": {
+          "file_name": "documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+          "title": "PSI-25 Science Documents BASS-II SRD",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 13,
+          "page_end": 16
+        }
+      },
+      {
+        "test_id": null,
+        "value": 0.4,
+        "unit": "mm",
+        "citation": {
+          "file_name": "documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+          "title": "PSI-25 Science Documents BASS-II SRD",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 13,
+          "page_end": 16
+        }
+      },
+      {
+        "test_id": null,
+        "value": 200.0,
+        "unit": "µm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      },
+      {
+        "test_id": "PSI-25-T17",
+        "value": 100.0,
+        "unit": "µm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      },
+      {
+        "test_id": "PSI-25-T18",
+        "value": 300.0,
+        "unit": "µm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      },
+      {
+        "test_id": "PSI-25-T19",
+        "value": 200.0,
+        "unit": "µm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      },
+      {
+        "test_id": "PSI-25-T20",
+        "value": 0.1,
+        "unit": "mm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      },
+      {
+        "test_id": "PSI-25-T21",
+        "value": 400.0,
+        "unit": "µm",
+        "citation": {
+          "file_name": "documents/PSI-25_Reports_BASS-II Summary Report.pdf",
+          "title": "PSI-25 Reports BASS-II Summary Report",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+          "doi": null,
+          "page_start": 112,
+          "page_end": 112
+        }
+      }
+    ],
+    "PSI-26": [],
+    "PSI-39": [],
+    "PSI-47": [],
+    "PSI-60": [],
+    "PSI-62": [],
+    "PSI-68": [],
+    "PSI-69": [],
+    "PSI-98": [
+      {
+        "test_id": null,
+        "value": 0.37,
+        "unit": "cm",
+        "citation": {
+          "file_name": "tables/PSI-98_Experimental table_SAFFIRE-1.csv",
+          "title": "PSI-98 Experimental table SAFFIRE-1",
+          "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+          "doi": null,
+          "page_start": 1,
+          "page_end": 1
+        }
+      }
+    ],
+    "PSI-99": [],
+    "PSI-100": [],
+    "PSI-101": [],
+    "PSI-102": [],
+    "PSI-106": [],
+    "PSI-107": [],
+    "PSI-115": [],
+    "PSI-117": [],
+    "PSI-142": [],
+    "PSI-159": []
+  }
+}

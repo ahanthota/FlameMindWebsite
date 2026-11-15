@@ -1,0 +1,15 @@
+{
+  "investigation_id": "PSI-100",
+  "sample_id": null,
+  "file_name": "tables/PSI-100_Experimental table_SAFFIRE-3.csv",
+  "title": "PSI-100 Experimental table SAFFIRE-3",
+  "url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+  "doi": null,
+  "source_type": "sample_data",
+  "pages": [
+    {
+      "page": 1,
+      "text": "columns: Sample Number, Material, Sample Thickness, Sample Length, Sample Width, Air Flow, Direction, Camera 1, Camera 2\nunits: none stated\nrows: 2"
+    }
+  ]
+}

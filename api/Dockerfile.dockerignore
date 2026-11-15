@@ -1,0 +1,19 @@
+# Root-context build: send only api/ and the data files the API loads.
+*
+!api
+!data/chunks.json
+!data/embeddings.npy
+!data/embeddings_meta.json
+!data/investigations.json
+!data/habitats.json
+!data/gaps.json
+!data/insights.json
+!data/answer_cache.json
+!data/derived_cache.json
+api/.venv
+api/tests
+api/.pytest_cache
+api/**/__pycache__
+api/.env
+api/.env.*
+api/.DS_Store
