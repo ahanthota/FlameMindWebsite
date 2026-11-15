@@ -20,6 +20,12 @@ const PATHS = [
     section: "Explore",
     text: "Browse the tables of investigations and tests with manual and custom filters.",
   },
+  {
+    href: "/rank/",
+    title: "See which tests fit a habitat",
+    section: "Rank",
+    text: "Pick ISS, a Moon base, a rover, a spacesuit, or Mars. Investigations are listed best first, with the score parts and the closest tests.",
+  },
 ];
 
 export default function Home() {
@@ -31,7 +37,7 @@ export default function Home() {
     { label: "Investigations", value: indexed, note: `${investigations.length} with extracted test records` },
     { label: "Tests", value: tests, note: "Individual test conditions" },
     { label: "Data sources", value: knowledge.sources, note: "Source documents indexed" },
-    { label: "Knowledge gaps", value: gaps.gaps.length, note: "Conditions not yet tested" },
+    { label: "Knowledge gaps", value: gaps.gaps.length, note: "See which habitats were tested", href: "/gaps/" },
   ];
 
   return (
@@ -77,7 +83,15 @@ export default function Home() {
               <div key={item.label} className="rounded-lg border border-line bg-surface p-4">
                 <dt className="text-sm text-muted">{item.label}</dt>
                 <dd className="mt-1 text-2xl font-semibold tabular-nums">{item.value.toLocaleString("en-US")}</dd>
-                <dd className="mt-1 text-xs text-muted">{item.note}</dd>
+                <dd className="mt-1 text-xs text-muted">
+                  {"href" in item && item.href ? (
+                    <Link href={item.href} className={linkClass}>
+                      {item.note}
+                    </Link>
+                  ) : (
+                    item.note
+                  )}
+                </dd>
               </div>
             ))}
           </dl>

@@ -32,6 +32,10 @@ export default function AboutPage() {
           <ul className="list-disc space-y-1 pl-5">
             <li>Every finding links to the source document and page it was taken from.</li>
             <li>A value that a source does not state is shown as a dash. Nothing is estimated.</li>
+            <li>
+              Rank scores are calculated from how close an investigation&apos;s tests are to a habitat atmosphere. They are
+              not values copied from a source.
+            </li>
             <li>Units are fixed: oxygen in % by volume, pressure in psi, airflow in cm/s, flame spread rate in mm/s.</li>
             <li>All tests in this dataset were run in microgravity. None were run at Moon or Mars gravity.</li>
           </ul>
