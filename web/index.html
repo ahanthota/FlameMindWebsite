@@ -922,10 +922,10 @@
                     <span class="live-dot" aria-hidden="true"></span>
                     <span>Space Apps Challenge</span>
                 </span>
-                <!-- Opens the FlameMind app on its sign-in page. This page is served at "/" of
-                     the same site as the app (web/src/app/route.ts), so the link is relative. -->
-                <a class="header-repo-link" id="launch-app-link" href="/login/"
-                    aria-label="Launch FlameMind: open the app and sign in">Launch FlameMind</a>
+                <!-- Opens the app at its home page. This page is served at "/" of the same
+                     site (web/src/app/route.ts), so the link is relative. -->
+                <a class="header-repo-link" id="launch-app-link" href="/home/"
+                    aria-label="Launch FlameMind">Launch FlameMind</a>
             </nav>
         </div>
     </header>
@@ -1337,11 +1337,19 @@
     </script>
 
     <script>
-        // If this file is opened straight from disk there is no site around it,
-        // so send "Launch FlameMind" to the local app (npm run dev in web/).
+        // On the deployed site and on next dev, "/" and the app share an origin,
+        // so /home/ is enough. A copy of this file opened from disk, or from a
+        // preview server on another port, has no app routes. Send the button
+        // to the local app.
         (function () {
             var link = document.getElementById("launch-app-link");
-            if (link && window.location.protocol === "file:") link.href = "http://localhost:3000/login/";
+            if (!link) return;
+            var host = window.location.hostname;
+            var local = host === "localhost" || host === "127.0.0.1" || host === "";
+            var onApp = local && window.location.port === "3000";
+            if (window.location.protocol === "file:" || (local && !onApp)) {
+                link.href = "http://localhost:3000/home/";
+            }
         })();
     </script>
 </body>

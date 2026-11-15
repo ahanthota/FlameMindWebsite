@@ -127,7 +127,7 @@ npm run build   # type-checks and writes the static export to web/out/
 
 The site makes no backend calls yet. `src/lib/data.ts` imports `data/investigations.json`, `habitats.json`, `gaps.json`, and `insights.json` at build time, so rebuild after the pipeline changes them. Types in `src/lib/types.ts` are written by hand to match `pipeline/schema.py`.
 
-The site's front page (`/`) is the landing page at the repository root (`index.html`), served by `web/src/app/route.ts`; `npm run build` copies it to `web/out/index.html`. Its "Launch FlameMind" button opens the app at `/login/`. The app's own home page is `/home/`.
+The site's front page (`/`) is the landing page in `web/index.html`, served by `web/src/app/route.ts`; `npm run build` copies it to `web/out/index.html`. Its "Launch FlameMind" button opens the app's home page, `/home/`.
 
 Pages: `/home/`, `/scenario/` (AI chat), `/explore/` (filter and sort investigations or tests), `/investigations/<PSI id>/`, `/login/`, and `/account/`.
 
