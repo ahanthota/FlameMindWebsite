@@ -17,12 +17,13 @@ export function Timeline({ data }: { data: TimelineData }) {
   const ticks: number[] = [];
   for (let year = first; year <= last; year += 5) ticks.push(year);
 
-  let cursor = PAD.top;
-  const groups = data.groups.map((group) => {
-    const top = cursor;
-    cursor += GROUP_H + group.rows.length * ROW_H;
-    return { ...group, top };
-  });
+  // Each group sits below the ones before it.
+  const groupHeight = (rows: number) => GROUP_H + rows * ROW_H;
+  const groups = data.groups.map((group, index) => ({
+    ...group,
+    top: PAD.top + data.groups.slice(0, index).reduce((sum, earlier) => sum + groupHeight(earlier.rows.length), 0),
+  }));
+  const cursor = PAD.top + data.groups.reduce((sum, group) => sum + groupHeight(group.rows.length), 0);
   const height = cursor + PAD.bottom;
 
   return (
