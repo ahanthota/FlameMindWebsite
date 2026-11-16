@@ -201,3 +201,124 @@ export function rampColor(value: number, min: number, max: number): string {
 }
 
 export const RAMP_GRADIENT = `linear-gradient(to right, ${RAMP.join(", ")})`;
+
+// ---------- range bars ----------
+
+/** The lowest and highest value any row states, so every bar in a column shares one scale. */
+export function rangeDomain(ranges: readonly { min: number | null; max: number | null }[]): [number, number] | null {
+  const values = ranges.flatMap((range) => [range.min, range.max]).filter((value): value is number => value !== null);
+  if (values.length === 0) return null;
+  const low = Math.min(...values);
+  const high = Math.max(...values);
+  return high > low ? [low, high] : null;
+}
+
+/** Position of `value` along the domain, as a percentage clamped to the track. */
+export function domainPercent(value: number, domain: readonly [number, number]): number {
+  return Math.min(100, Math.max(0, ((value - domain[0]) / (domain[1] - domain[0])) * 100));
+}
+
+// ---------- timeline ----------
+
+/** "1999-2025" or "2017" as years. Anything else is not placed on the timeline. */
+export function parseYears(text: string | null): { start: number; end: number } | null {
+  const years = (text ?? "").match(/\b(19|20)\d{2}\b/g)?.map(Number) ?? [];
+  if (years.length === 0) return null;
+  return { start: Math.min(...years), end: Math.max(...years) };
+}
+
+export interface TimelineRow {
+  id: string;
+  acronym: string;
+  start: number;
+  end: number;
+}
+
+export interface Timeline {
+  /** One group per hardware, the earliest first. */
+  groups: { label: string; rows: TimelineRow[] }[];
+  /** Investigations whose record states no years. */
+  undated: string[];
+  start: number;
+  end: number;
+}
+
+export function buildTimeline(
+  items: readonly { id: string; acronym: string; years: string | null; hardware: string | null }[],
+  hardwareLabel: (hardware: string | null) => string,
+): Timeline {
+  const groups = new Map<string, TimelineRow[]>();
+  const undated: string[] = [];
+  for (const item of items) {
+    const years = parseYears(item.years);
+    if (!years) {
+      undated.push(item.acronym);
+      continue;
+    }
+    const key = hardwareLabel(item.hardware);
+    groups.set(key, [...(groups.get(key) ?? []), { id: item.id, acronym: item.acronym, ...years }]);
+  }
+  const sorted = [...groups.entries()]
+    .map(([label, rows]) => ({ label, rows: [...rows].sort((a, b) => a.start - b.start || a.end - b.end) }))
+    .sort((a, b) => a.rows[0].start - b.rows[0].start || a.label.localeCompare(b.label));
+  const all = sorted.flatMap((group) => group.rows);
+  return {
+    groups: sorted,
+    undated,
+    start: all.length > 0 ? Math.min(...all.map((row) => row.start)) : 0,
+    end: all.length > 0 ? Math.max(...all.map((row) => row.end)) : 0,
+  };
+}
+
+// ---------- evidence on the coverage map ----------
+
+/** What the chat page knows about each investigation and test, for placing cited evidence. */
+export interface EvidenceSource {
+  /** Stated oxygen and pressure range per investigation id. */
+  ranges: Record<string, { acronym: string; o2: [number, number] | null; psi: [number, number] | null }>;
+  /** Oxygen and pressure per test id, for tests that state both. */
+  tests: Record<string, [number, number]>;
+}
+
+export interface MapEvidence {
+  /** Cited investigations, as their stated oxygen and pressure range. */
+  rects: { id: string; label: string; o2: [number, number]; psi: [number, number] }[];
+  /** Cited tests that state both oxygen and pressure. */
+  points: { id: string; o2: number; psi: number }[];
+  /** The atmosphere in the question, when it gave both values. */
+  asked: { o2: number; psi: number } | null;
+  /** Cited investigations that state no oxygen and pressure to place. */
+  unplaced: string[];
+}
+
+export function buildEvidence(
+  cited: readonly { investigation_id: string; test_ids: readonly string[] }[],
+  source: EvidenceSource,
+  asked: { o2: number | null; psi: number | null } | null,
+): MapEvidence {
+  const rects: MapEvidence["rects"] = [];
+  const points: MapEvidence["points"] = [];
+  const unplaced: string[] = [];
+  const seen = new Set<string>();
+  for (const item of cited) {
+    const before = points.length;
+    for (const testId of item.test_ids) {
+      const point = source.tests[testId];
+      if (point && !points.some((existing) => existing.id === testId)) points.push({ id: testId, o2: point[0], psi: point[1] });
+    }
+    if (seen.has(item.investigation_id)) continue;
+    seen.add(item.investigation_id);
+    const range = source.ranges[item.investigation_id];
+    if (range?.o2 && range.psi) {
+      rects.push({ id: item.investigation_id, label: range.acronym, o2: range.o2, psi: range.psi });
+    } else if (points.length === before) {
+      unplaced.push(range?.acronym ?? item.investigation_id);
+    }
+  }
+  return {
+    rects,
+    points,
+    asked: asked && asked.o2 !== null && asked.psi !== null ? { o2: asked.o2, psi: asked.psi } : null,
+    unplaced,
+  };
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import investigationsJson from "../../../data/investigations.json";
-import { COMPARE_ROWS, rowValue, sameAcross, toCompareInvestigation, visibleFindings } from "./compare";
+import { COMPARE_ROWS, askAbout, axisState, mainVaried, rowValue, sameAcross, toCompareInvestigation, toCompareTests, visibleFindings } from "./compare";
 import type { Investigation } from "./types";
 
 const investigations = investigationsJson as unknown as Investigation[];
@@ -77,18 +77,19 @@ describe("compare", () => {
       "PSI-159",
     ]);
     expect(COMPARE_ROWS.map((row) => row.label)).toEqual([
-      "Objectives",
-      "Fuels",
-      "Sample shape",
-      "Sample size",
+      "Hardware",
+      "Platform",
+      "Fuel",
+      "Sample geometry",
       "Oxygen (%)",
       "Pressure (psi)",
-      "Airflow (cm/s)",
-      "Hardware",
-      "What varied",
-      "What stayed fixed",
+      "Flow (cm/s)",
+      "Gravity",
+      "Variables varied",
       "Sensors",
-      "Findings",
+      "Ignition findings",
+      "Flame spread findings",
+      "Extinction findings",
     ]);
   });
 
@@ -97,10 +98,10 @@ describe("compare", () => {
     const flex = investigations.map(toCompareInvestigation).find((item) => item.id === "PSI-69");
     expect(saffire && rowValue("pressure", saffire)).toBe("–");
     expect(saffire && rowValue("oxygen", saffire)).toBe("21.5 to 21.7");
-    expect(saffire && rowValue("findings", saffire)).toContain("420 s");
+    expect(saffire && rowValue("flameSpread", saffire)).toContain("420 s");
     expect(flex && rowValue("oxygen", flex)).toBe("12 to 34");
     expect(flex && rowValue("hardware", flex)).toBe("CIR");
-    expect(flex && rowValue("fuels", flex).startsWith("Liquid\n")).toBe(true);
+    expect(flex && rowValue("fuel", flex).startsWith("Liquid\n")).toBe(true);
   });
 
   it("treats matching hardware as the same and different oxygen as a difference", () => {
@@ -137,5 +138,34 @@ describe("compare", () => {
     expect(item.objectives).toEqual(["Measure spread."]);
     expect(item.needsReview).toBe(true);
     expect(item.findings).toEqual([{ group: "Key findings", text: "Quenched at low flow." }]);
+  });
+
+  it("names each selected investigation in the scenario question", () => {
+    const [bass, bass2] = investigations
+      .filter((item) => item.id === "PSI-26" || item.id === "PSI-25")
+      .map(toCompareInvestigation);
+    const question = askAbout([bass, bass2]);
+    expect(question).toContain("BASS (PSI-26)");
+    expect(question).toContain("BASS-II (PSI-25)");
+    expect(question.startsWith("How do ")).toBe(true);
+  });
+
+  it("marks a condition changed only when two stated values disagree", () => {
+    const tests = toCompareTests(
+      record({
+        id: "PSI-1",
+        acronym: "X",
+        tests: [
+          { sample_id: "A", fuel: "heptane", sample_geometry: "droplet", o2_percent: 21, pressure_kpa: null, pressure_psi: null, flow_cm_s: 1, diluent: null, outcome: "ignited", spread_rate_mm_s: 2, notes: null, evidence: [] },
+          { sample_id: "B", fuel: "heptane", sample_geometry: "droplet", o2_percent: 21, pressure_kpa: null, pressure_psi: 8, flow_cm_s: 5, diluent: null, outcome: "extinguished", spread_rate_mm_s: null, notes: null, evidence: [] },
+        ],
+      }),
+    );
+    expect(axisState(tests, "fuel")).toBe("fixed");
+    expect(axisState(tests, "geometry")).toBe("fixed");
+    expect(axisState(tests, "oxygen")).toBe("fixed");
+    expect(axisState(tests, "flow")).toBe("changed");
+    expect(axisState(tests, "pressure")).toBe("fixed");
+    expect(mainVaried(tests)).toBe("flow");
   });
 });

@@ -58,7 +58,7 @@ export function RankCharts({ view }: { view: RankHabitatView }) {
               height: Math.max(280, rows.length * 26 + 72),
               barmode: "stack",
               margin: { l: 16, r: 16, t: 8, b: 40 },
-              xaxis: { title: { text: "Score" }, range: [0, 100], ticksuffix: "%", fixedrange: true },
+              xaxis: { title: { text: "Score (%)" }, range: [0, 100], ticksuffix: "%", fixedrange: true },
               yaxis: { automargin: true, autorange: "reversed", fixedrange: true },
               legend: { orientation: "h", y: 1.06, x: 0, traceorder: "normal" },
             }}

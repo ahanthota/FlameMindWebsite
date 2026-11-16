@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 export function LoadingState({ label = "Loading" }: { label?: string }) {
   return (
     <div role="status" aria-live="polite" className="rounded-lg border border-line bg-surface p-6">
-      <span className="sr-only">{label}</span>
+      <p className="mb-3 text-sm text-muted">{label}</p>
       <div className="animate-pulse space-y-3" aria-hidden="true">
         <div className="h-5 w-1/3 rounded bg-line" />
         <div className="h-4 w-2/3 rounded bg-line" />
@@ -42,7 +42,7 @@ export function PageHeader({ title, children, aside }: { title: string; children
     <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-        {children ? <div className="mt-1 max-w-3xl text-sm text-muted">{children}</div> : null}
+        {children ? <div className="mt-1 max-w-3xl text-sm leading-6 text-muted">{children}</div> : null}
       </div>
       {aside}
     </div>

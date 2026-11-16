@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { EmptyState, PageHeader } from "@/components/States";
-import { toCompareInvestigation } from "@/lib/compare";
+import { toCompareInvestigation, toCompareTests } from "@/lib/compare";
 import { investigations } from "@/lib/data";
 import { Compare } from "./Compare";
 
@@ -11,15 +11,23 @@ export default function ComparePage() {
   return (
     <div className="mx-auto max-w-6xl">
       <PageHeader title="Compare">
-        The {records.length} structured investigations side by side. Objectives, fuels, sample shape and size, oxygen,
-        pressure, airflow, hardware, what varied, what stayed fixed, sensors, and findings.
+        Pick 2 or 3 investigations and read them down one column each, or open one investigation and see which of its
+        test conditions changed.
       </PageHeader>
       {records.length === 0 ? (
         <EmptyState title="No investigations loaded">
           data/investigations.json is empty. Run the pipeline, then rebuild the site.
         </EmptyState>
       ) : (
-        <Compare records={records} />
+        <Compare
+          records={records}
+          testSets={investigations.map((item) => ({
+            id: item.id,
+            acronym: item.acronym,
+            name: item.name,
+            tests: toCompareTests(item),
+          }))}
+        />
       )}
     </div>
   );

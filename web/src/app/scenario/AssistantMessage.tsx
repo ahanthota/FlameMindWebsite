@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { EvidenceMap } from "@/components/EvidenceMap";
 import { linkClass } from "@/components/States";
-import { DISCLAIMER, pageLabel, type Answer, type ChatSource, type Confidence } from "@/lib/chat";
+import { buildEvidence, type EvidenceSource, type MapData } from "@/lib/charts";
+import { DISCLAIMER, pageLabel, type Answer, type AskedConditions, type ChatSource, type Confidence } from "@/lib/chat";
 
 export type InvestigationNames = Record<string, { acronym: string; name: string }>;
+
+/** What the chat needs to draw cited evidence on the coverage map. */
+export interface EvidenceContext {
+  map: MapData;
+  source: EvidenceSource;
+}
 
 const CONFIDENCE: Record<Confidence, { label: string; className: string }> = {
   high: { label: "High confidence", className: "bg-emerald-50 text-emerald-800 ring-emerald-200" },
@@ -62,7 +70,11 @@ export function AssistantMessage({
   sources,
   names,
   onCite,
+  asked,
+  evidence,
 }: {
+  asked?: AskedConditions | null;
+  evidence?: EvidenceContext;
   text: string;
   answer: Answer | null;
   sources: ChatSource[];
@@ -124,6 +136,9 @@ export function AssistantMessage({
         </section>
       ) : null}
 
+      {evidence && answer.relevant_data.length > 0 ? (
+        <EvidenceMap data={evidence.map} evidence={buildEvidence(answer.relevant_data, evidence.source, asked ?? null)} />
+      ) : null}
       {answer.suggestions.length > 0 ? (
         <section aria-label="Suggestions for your use case" className="rounded-lg border border-accent/30 bg-accent-soft p-4">
           <h3 className="font-semibold text-accent">Suggestions for your use case</h3>

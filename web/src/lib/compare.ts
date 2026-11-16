@@ -3,8 +3,8 @@
  * an en dash. Nothing here estimates a number the record does not state.
  */
 
-import { formatRange, label, MISSING } from "./format";
-import type { Investigation } from "./types";
+import { formatNumber, formatRange, label, MISSING } from "./format";
+import type { Investigation, OutcomeName } from "./types";
 
 export const FINDING_GROUPS: readonly { key: keyof Pick<Investigation, "key_findings" | "ignition_findings" | "flame_spread_findings" | "extinction_findings">; title: string }[] = [
   { key: "key_findings", title: "Key findings" },
@@ -39,6 +39,8 @@ export interface CompareInvestigation {
   flowMin: number | null;
   flowMax: number | null;
   hardware: string | null;
+  platform: string[];
+  gravity: string | null;
   varied: string[];
   fixed: string[];
   sensors: string[];
@@ -46,18 +48,19 @@ export interface CompareInvestigation {
 }
 
 export const COMPARE_ROWS = [
-  { id: "objectives", label: "Objectives" },
-  { id: "fuels", label: "Fuels" },
-  { id: "sampleShape", label: "Sample shape" },
-  { id: "sampleSize", label: "Sample size" },
+  { id: "hardware", label: "Hardware" },
+  { id: "platform", label: "Platform" },
+  { id: "fuel", label: "Fuel" },
+  { id: "geometry", label: "Sample geometry" },
   { id: "oxygen", label: "Oxygen (%)" },
   { id: "pressure", label: "Pressure (psi)" },
-  { id: "airflow", label: "Airflow (cm/s)" },
-  { id: "hardware", label: "Hardware" },
-  { id: "varied", label: "What varied" },
-  { id: "fixed", label: "What stayed fixed" },
+  { id: "flow", label: "Flow (cm/s)" },
+  { id: "gravity", label: "Gravity" },
+  { id: "varied", label: "Variables varied" },
   { id: "sensors", label: "Sensors" },
-  { id: "findings", label: "Findings" },
+  { id: "ignition", label: "Ignition findings" },
+  { id: "flameSpread", label: "Flame spread findings" },
+  { id: "extinction", label: "Extinction findings" },
 ] as const;
 
 export type CompareRowId = (typeof COMPARE_ROWS)[number]["id"];
@@ -88,6 +91,8 @@ export function toCompareInvestigation(item: Investigation): CompareInvestigatio
     flowMin: item.flow_cm_s_min,
     flowMax: item.flow_cm_s_max,
     hardware: item.hardware,
+    platform: clean(item.platform),
+    gravity: item.gravity,
     varied: clean(item.variables_varied),
     fixed: clean(item.variables_fixed),
     sensors: clean(item.sensors),
@@ -98,31 +103,40 @@ export function toCompareInvestigation(item: Investigation): CompareInvestigatio
 /** Text used both for display of scalar rows and for "does this row differ?". */
 export function rowValue(id: CompareRowId, item: CompareInvestigation): string {
   switch (id) {
-    case "objectives":
-      return lines(item.objectives);
-    case "fuels":
+    case "hardware":
+      return label(item.hardware);
+    case "platform":
+      return lines(item.platform.map((value) => label(value)));
+    case "fuel":
       return lines([item.fuelPhase ? label(item.fuelPhase) : "", ...item.fuels]);
-    case "sampleShape":
+    case "geometry":
       return item.sampleGeometry ?? MISSING;
-    case "sampleSize":
-      return item.sampleSize ?? MISSING;
     case "oxygen":
       return formatRange(item.o2Min, item.o2Max);
     case "pressure":
       return formatRange(item.pressureMin, item.pressureMax);
-    case "airflow":
+    case "flow":
       return formatRange(item.flowMin, item.flowMax);
-    case "hardware":
-      return label(item.hardware);
+    case "gravity":
+      return label(item.gravity);
     case "varied":
       return lines(item.varied);
-    case "fixed":
-      return lines(item.fixed);
     case "sensors":
       return lines(item.sensors);
-    case "findings":
-      return item.findings.length === 0 ? MISSING : item.findings.map((finding) => `${finding.group}: ${finding.text}`).join("\n");
+    case "ignition":
+      return findingText(item, "Ignition");
+    case "flameSpread":
+      return findingText(item, "Flame spread");
+    case "extinction":
+      return findingText(item, "Extinction");
   }
+}
+
+/** A question that names each selected investigation, for the scenario chat. */
+export function askAbout(items: readonly CompareInvestigation[]): string {
+  const names = items.map((item) => `${item.acronym} (${item.id})`);
+  const list = names.length <= 1 ? names[0] ?? "these investigations" : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+  return `How do ${list} compare?`;
 }
 
 /** True when every selected investigation shows the same value, or fewer than two are selected. */
@@ -135,6 +149,106 @@ export function sameAcross(items: readonly CompareInvestigation[], id: CompareRo
 export function visibleFindings(findings: readonly CompareFinding[], expanded: boolean): CompareFinding[] {
   if (expanded || findings.length <= FINDING_PREVIEW) return [...findings];
   return findings.slice(0, FINDING_PREVIEW);
+}
+
+export function findingsFor(item: CompareInvestigation, group: string): CompareFinding[] {
+  return item.findings.filter((finding) => finding.group === group);
+}
+
+export interface CompareTest {
+  key: string;
+  sample: string;
+  fuel: string;
+  geometry: string;
+  oxygen: string;
+  pressure: string;
+  flow: string;
+  outcome: string;
+  outcomeKey: OutcomeName;
+  spread: string;
+  o2: number | null;
+  psi: number | null;
+  flowValue: number | null;
+}
+
+export interface TestSet {
+  id: string;
+  acronym: string;
+  name: string;
+  tests: CompareTest[];
+}
+
+/** Condition columns. Outcome and spread rate are results, not conditions that "vary". */
+export const TEST_AXES = [
+  { id: "fuel", label: "Fuel" },
+  { id: "geometry", label: "Geometry" },
+  { id: "oxygen", label: "Oxygen (%)" },
+  { id: "pressure", label: "Pressure (psi)" },
+  { id: "flow", label: "Flow (cm/s)" },
+] as const;
+
+export type TestAxis = (typeof TEST_AXES)[number]["id"];
+export type ChartAxis = "oxygen" | "pressure" | "flow";
+export type AxisState = "changed" | "fixed" | "unstated";
+
+export const CHART_AXIS_LABEL: Record<ChartAxis, string> = {
+  oxygen: "Oxygen (%)",
+  pressure: "Pressure (psi)",
+  flow: "Flow (cm/s)",
+};
+
+export function toCompareTests(item: Investigation): CompareTest[] {
+  return item.tests.map((test, index) => ({
+    key: `${item.id}-${index}`,
+    sample: test.sample_id?.trim() || `Test ${index + 1}`,
+    fuel: test.fuel?.trim() || MISSING,
+    geometry: test.sample_geometry?.trim() || MISSING,
+    oxygen: test.o2_percent === null ? MISSING : formatNumber(test.o2_percent),
+    pressure: test.pressure_psi === null ? MISSING : formatNumber(test.pressure_psi),
+    flow: test.flow_cm_s === null ? MISSING : formatNumber(test.flow_cm_s),
+    outcome: label(test.outcome),
+    outcomeKey: test.outcome,
+    spread: test.spread_rate_mm_s === null ? MISSING : formatNumber(test.spread_rate_mm_s),
+    o2: test.o2_percent,
+    psi: test.pressure_psi,
+    flowValue: test.flow_cm_s,
+  }));
+}
+
+/** Changed when two stated values disagree. A missing value is not a stated change. */
+export function axisState(tests: readonly CompareTest[], axis: TestAxis): AxisState {
+  const stated = tests.map((test) => test[axis]).filter((value) => value !== MISSING);
+  if (stated.length === 0) return "unstated";
+  return stated.every((value) => value === stated[0]) ? "fixed" : "changed";
+}
+
+/**
+ * The condition among oxygen, pressure, and flow that takes the most distinct
+ * stated numbers. Ties keep the earlier axis. Null when none takes two values.
+ */
+export function mainVaried(tests: readonly CompareTest[]): ChartAxis | null {
+  const axes: ChartAxis[] = ["oxygen", "pressure", "flow"];
+  let best: ChartAxis | null = null;
+  let bestCount = 1;
+  for (const axis of axes) {
+    const distinct = new Set(tests.map((test) => chartNumber(test, axis)).filter((value): value is number => value !== null).map((value) => value.toFixed(3)));
+    if (distinct.size > bestCount) {
+      best = axis;
+      bestCount = distinct.size;
+    }
+  }
+  return best;
+}
+
+export function chartNumber(test: CompareTest, axis: ChartAxis): number | null {
+  if (axis === "oxygen") return test.o2;
+  if (axis === "pressure") return test.psi;
+  return test.flowValue;
+}
+
+function findingText(item: CompareInvestigation, group: string): string {
+  const texts = findingsFor(item, group).map((finding) => finding.text);
+  return texts.length > 0 ? texts.join("\n") : MISSING;
 }
 
 function clean(values: readonly string[]): string[] {

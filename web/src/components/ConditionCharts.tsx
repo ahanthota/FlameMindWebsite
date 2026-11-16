@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import dynamic from "next/dynamic";
+import { useMemo, useState } from "react";
 import type { Data, Layout } from "plotly.js";
+import { PlotView } from "@/components/PlotView";
+import { gravityPhrase, type HabitatGapRank } from "@/lib/gapsView";
 import type { GravityName } from "@/lib/types";
-
-const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
 export interface ChartCell {
   gravity: GravityName;
@@ -36,10 +35,30 @@ const layoutBase: Partial<Layout> = {
   margin: { l: 120, r: 16, t: 8, b: 48 },
 };
 
-export function ConditionCharts({ cells, spans }: { cells: ChartCell[]; spans: ChartSpan[] }) {
+export function ConditionCharts({
+  cells,
+  spans,
+  gapRanks = [],
+}: {
+  cells: ChartCell[];
+  spans: ChartSpan[];
+  /** Untested oxygen-pressure cells, most habitats first. */
+  gapRanks?: HabitatGapRank[];
+}) {
   const [gravity, setGravity] = useState<GravityName>("microgravity");
-  const selected = cells.filter((cell) => cell.gravity === gravity);
+  const selected = useMemo(() => cells.filter((cell) => cell.gravity === gravity), [cells, gravity]);
   const covered = selected.filter((cell) => cell.covered).length;
+  const heatmapData = useMemo(() => [heatmap(selected)], [selected]);
+  const heatmapLayout = useMemo(
+    () => ({
+      ...layoutBase,
+      height: 460,
+      margin: { l: 64, r: 16, t: 8, b: 48 },
+      xaxis: { title: { text: "Oxygen (%)" }, dtick: 5 },
+      yaxis: { title: { text: "Pressure (psi)" }, dtick: 1 },
+    }),
+    [],
+  );
 
   return (
     <section aria-label="Oxygen and pressure charts" className="mb-8">
@@ -67,20 +86,31 @@ export function ConditionCharts({ cells, spans }: { cells: ChartCell[]; spans: C
         <p className="mb-2 text-sm text-muted">
           {covered} of {selected.length} cells covered
         </p>
-        <Plot
-          data={[heatmap(selected)]}
-          layout={{
-            ...layoutBase,
-            height: 460,
-            margin: { l: 64, r: 16, t: 8, b: 48 },
-            xaxis: { title: { text: "Pressure (psi)" }, dtick: 1 },
-            yaxis: { title: { text: "Oxygen (%)" } },
-          }}
-          config={{ displayModeBar: false, responsive: true }}
-          style={{ width: "100%" }}
-          useResizeHandler
-        />
+        <PlotView data={heatmapData} layout={heatmapLayout} height={460} />
       </div>
+      {gapRanks.length > 0 ? (
+        <div className="mt-4 rounded-lg border border-line bg-surface p-4">
+          <h3 className="text-sm font-semibold">Gaps ranked by how many habitats fall into them</h3>
+          <p className="mt-1 mb-3 text-sm text-muted">
+            Each row is one untested oxygen and pressure band. A habitat that was tested at its own gravity is left off.
+          </p>
+          <ol className="space-y-2 text-sm leading-6">
+            {gapRanks.map((gap) => (
+              <li key={`${gap.o2Min}-${gap.psiMin}-${gap.offGrid}`} className="flex gap-3">
+                <span className="w-24 shrink-0 font-medium tabular-nums">
+                  {gap.habitatCount} {gap.habitatCount === 1 ? "habitat" : "habitats"}
+                </span>
+                <span>
+                  {gap.offGrid
+                    ? "Outside the oxygen and pressure grid"
+                    : `${gap.o2Min}–${gap.o2Max}% oxygen, ${gap.psiMin}–${gap.psiMax} psi`}
+                  . {gap.habitats.map((habitat) => habitat.name).join(", ")}. {gap.gravities.map((gravity) => gravityPhrase(gravity)).join(", ")}.
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ) : null}
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <SpanChart title="Oxygen span (%)" axis="Oxygen (%)" spans={spans} minKey="o2Min" maxKey="o2Max" />
         <SpanChart title="Pressure span (psi)" axis="Pressure (psi)" spans={spans} minKey="psiMin" maxKey="psiMax" />
@@ -95,15 +125,16 @@ function heatmap(cells: ChartCell[]): Data {
   const covered = new Set(cells.filter((cell) => cell.covered).map((cell) => `${cell.o2Min}:${cell.psiMin}`));
   return {
     type: "heatmap",
-    x: pressure,
-    y: oxygen,
-    z: oxygen.map((o2) => pressure.map((psi) => (covered.has(`${o2}:${psi}`) ? 1 : 0))),
+    x: oxygen,
+    y: pressure,
+    z: pressure.map((psi) => oxygen.map((o2) => (covered.has(`${o2}:${psi}`) ? 1 : 0))),
+    customdata: pressure.map((psi) => oxygen.map((o2) => (covered.has(`${o2}:${psi}`) ? "Tested" : "Not tested"))),
     colorscale: [
       [0, "#f4f1ea"],
       [1, "#1b3a8c"],
     ],
     showscale: false,
-    hovertemplate: "%{y}% oxygen, %{x} psi<extra></extra>",
+    hovertemplate: "%{x}%% oxygen, %{y} psi. %{customdata}<extra></extra>",
     xgap: 1,
     ygap: 1,
   };
@@ -128,6 +159,7 @@ function SpanChart({
     if (low === null && high === null) return [];
     return [{ acronym: span.acronym, low: low ?? high ?? 0, high: high ?? low ?? 0 }];
   });
+  const height = Math.max(220, rows.length * 28 + 70);
   const data: Data[] = rows.map((row) => ({
     type: "scatter",
     mode: "lines+markers",
@@ -139,6 +171,12 @@ function SpanChart({
     hovertemplate: `${row.acronym}: %{x}<extra></extra>`,
     showlegend: false,
   }));
+  const layout = {
+    ...layoutBase,
+    height,
+    xaxis: { title: { text: axis } },
+    yaxis: { automargin: true, categoryorder: "category descending" as const },
+  };
 
   return (
     <div className="rounded-lg border border-line bg-surface p-3">
@@ -146,18 +184,7 @@ function SpanChart({
       {rows.length === 0 ? (
         <p className="text-sm text-muted">No investigation states this range.</p>
       ) : (
-        <Plot
-          data={data}
-          layout={{
-            ...layoutBase,
-            height: Math.max(220, rows.length * 28 + 70),
-            xaxis: { title: { text: axis } },
-            yaxis: { automargin: true, categoryorder: "category descending" },
-          }}
-          config={{ displayModeBar: false, responsive: true }}
-          style={{ width: "100%" }}
-          useResizeHandler
-        />
+        <PlotView data={data} layout={layout} height={height} />
       )}
     </div>
   );

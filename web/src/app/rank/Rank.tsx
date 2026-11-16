@@ -6,7 +6,7 @@ import { HabitatArt } from "@/components/HabitatArt";
 import { MatchMeter, PART_COLOR, RankCharts } from "@/components/RankCharts";
 import { linkClass } from "@/components/States";
 import { formatNumber, MISSING } from "@/lib/format";
-import { formatScore, partShare, type RankHabitatView, type RankedRow } from "@/lib/rankView";
+import { formatScore, partShare, scoreSlices, type RankHabitatView, type RankedRow, type ScoreSlice } from "@/lib/rankView";
 
 export function Rank({ views }: { views: RankHabitatView[] }) {
   const [id, setId] = useState(views[0]?.id ?? "");
@@ -15,7 +15,9 @@ export function Rank({ views }: { views: RankHabitatView[] }) {
   return (
     <div>
       <fieldset className="mb-4 rounded-lg border border-line bg-surface p-4">
-        <legend className="px-1 text-sm font-medium">Habitat</legend>
+        <legend className="mx-auto w-fit rounded-md bg-accent-soft px-4 py-1 text-center text-xl font-semibold text-accent">
+          Habitat
+        </legend>
         <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-7">
           {views.map((item) => {
             const checked = current.id === item.id;
@@ -42,7 +44,8 @@ export function Rank({ views }: { views: RankHabitatView[] }) {
             );
           })}
         </div>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
+        <p className="mt-3 text-xs text-muted">Photographs: NASA.</p>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">
           Conditions is how close the oxygen and pressure are, and it counts for 50%. Intent counts for 15%: here, that
           is whether the investigation recorded test conditions. Those two parts make the whole score for a habitat.
           Materials (25%) and airflow (10%) join the score when a question names them. A different gravity is noted
@@ -125,6 +128,48 @@ function gravityClass(view: RankHabitatView): string {
   return "Gravity not set";
 }
 
+const SLICE_COLOR: Record<string, string> = {
+  oxygen: "#1b3a8c",
+  pressure: "#6d8fd4",
+  airflow: "#2f6f4e",
+  conditions: "#1b3a8c",
+  materials: "#8a5a00",
+  intent: "#c4a574",
+};
+
+function ScoreStack({ slices, acronym }: { slices: ScoreSlice[]; acronym: string }) {
+  if (slices.length === 0) return null;
+  const described = slices.map((slice) => `${slice.label} ${formatScore(slice.points)}`).join(", ");
+  return (
+    <div className="mt-4">
+      <div
+        className="flex h-3 overflow-hidden rounded-full bg-canvas"
+        role="img"
+        aria-label={`Score breakdown for ${acronym}: ${described}. Gravity is not a slice of this bar.`}
+      >
+        {slices.map((slice) => (
+          <span
+            key={slice.key}
+            className="h-full min-w-0"
+            style={{ width: `${Math.max(0, slice.points) * 100}%`, background: SLICE_COLOR[slice.key] ?? "#1b3a8c" }}
+            title={`${slice.label}: ${formatScore(slice.points)} of the score`}
+          />
+        ))}
+      </div>
+      <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+        {slices.map((slice) => (
+          <li key={slice.key} className="flex items-center gap-1.5">
+            <span aria-hidden="true" className="inline-block size-2.5 rounded-sm" style={{ background: SLICE_COLOR[slice.key] }} />
+            <span>{slice.label}</span>
+            <span className="tabular-nums text-muted">{formatScore(slice.points)}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-1 text-xs text-muted">Gravity is noted with the reasons. It does not add to this bar.</p>
+    </div>
+  );
+}
+
 function InvestigationRank({ row, place }: { row: RankedRow; place: number }) {
   return (
     <article id={`rank-${row.id}`} className="scroll-mt-20 rounded-lg border border-line bg-surface p-5">
@@ -154,6 +199,8 @@ function InvestigationRank({ row, place }: { row: RankedRow; place: number }) {
           </div>
         </div>
       </header>
+
+      <ScoreStack slices={scoreSlices(row)} acronym={row.acronym} />
 
       <div className="mt-4 grid max-w-md gap-3" aria-label={`Score parts for ${row.acronym}`}>
         {row.parts.map((part) => (

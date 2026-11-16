@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { investigations } from "@/lib/data";
+import { insights, investigations } from "@/lib/data";
 import { toInvestigationRow, toTestRows } from "@/lib/filters";
 import { Explore } from "./Explore";
 
@@ -11,6 +11,7 @@ export default function ExplorePage() {
     <Explore
       investigations={investigations.map(toInvestigationRow)}
       tests={investigations.flatMap(toTestRows)}
+      insights={insights}
     />
   );
 }

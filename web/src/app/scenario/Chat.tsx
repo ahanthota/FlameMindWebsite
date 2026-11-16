@@ -9,7 +9,7 @@ import { errorMessage, useAuth } from "@/lib/auth";
 import { fromResponse, STARTER_PROMPTS, toHistory, type ChatSource, type UiMessage } from "@/lib/chat";
 import { getFirebase } from "@/lib/firebase";
 import { deleteChat, listChats, listMessages, NAME_MAX_LENGTH, renameChat, type SavedChat } from "@/lib/userdata";
-import { AssistantMessage, SourceDrawer, type InvestigationNames } from "./AssistantMessage";
+import { AssistantMessage, SourceDrawer, type EvidenceContext, type InvestigationNames } from "./AssistantMessage";
 
 const MESSAGE_MAX_LENGTH = 2000;
 
@@ -26,16 +26,16 @@ function setChatInUrl(chatId: string | null) {
 let nextId = 0;
 const newId = () => `local-${++nextId}`;
 
-export function Chat({ investigations }: { investigations: InvestigationNames }) {
+export function Chat({ investigations, evidence }: { investigations: InvestigationNames; evidence: EvidenceContext }) {
   const { user, loading } = useAuth();
   if (loading) {
     return <LoadingState label="Checking sign-in" />;
   }
   // A new key resets the conversation when someone signs in or out.
-  return <ChatSession key={user?.uid ?? "guest"} user={user} names={investigations} />;
+  return <ChatSession key={user?.uid ?? "guest"} user={user} names={investigations} evidence={evidence} />;
 }
 
-function ChatSession({ user, names }: { user: User | null; names: InvestigationNames }) {
+function ChatSession({ user, names, evidence }: { user: User | null; names: InvestigationNames; evidence: EvidenceContext }) {
   const [chatId, setChatId] = useState<string | null>(null);
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [pending, setPending] = useState(false);
@@ -235,9 +235,9 @@ function ChatSession({ user, names }: { user: User | null; names: InvestigationN
             {empty ? (
               <div className="pt-[8vh] text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">What are you working on?</h1>
-                <p className="mx-auto mt-2 max-w-xl text-muted">
-                  Describe what you are designing or what you need to know. Answers come from NASA microgravity
-                  combustion data, with sources.
+                <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-muted">
+                  Start from the Moon base crew-quarters example, or describe your own habitat, materials, and goal.
+                  Answers come from NASA microgravity combustion data, with sources.
                 </p>
                 <ul className="mx-auto mt-8 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
                   {STARTER_PROMPTS.map((prompt) => (
@@ -265,7 +265,15 @@ function ChatSession({ user, names }: { user: User | null; names: InvestigationN
                   </li>
                 ) : (
                   <li key={message.id} className="rounded-xl border border-line bg-canvas/60 p-4 sm:p-5">
-                    <AssistantMessage text={message.text} answer={message.answer} sources={message.sources} names={names} onCite={setSource} />
+                    <AssistantMessage
+                      text={message.text}
+                      answer={message.answer}
+                      sources={message.sources}
+                      names={names}
+                      onCite={setSource}
+                      asked={message.asked}
+                      evidence={evidence}
+                    />
                   </li>
                 ),
               )}

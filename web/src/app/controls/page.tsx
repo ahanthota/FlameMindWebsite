@@ -6,6 +6,24 @@ import type { Finding, Investigation } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Controls" };
 
+const PHOTOS: Record<string, { src: string; alt: string; credit: string }> = {
+  Prevention: {
+    src: "/images/controls/prevention.jpg",
+    alt: "A solid fuel sample burning during a BASS-II flame test on the International Space Station. NASA, iss040e088023.",
+    credit: "Photograph: NASA, iss040e088023. A BASS-II flame test of a solid fuel sample, taken at reduced oxygen.",
+  },
+  Detection: {
+    src: "/images/controls/detection.jpg",
+    alt: "Astronaut Clay Anderson working with the Smoke Aerosol Measurement Experiment in the station glovebox. NASA, iss015e27411.",
+    credit: "Photograph: NASA, iss015e27411. SAME hardware in the Microgravity Science Glovebox, used to measure smoke particles.",
+  },
+  Suppression: {
+    src: "/images/controls/suppression.jpg",
+    alt: "Astronaut Terry Virts preparing the droplet combustion apparatus for the Flame Extinguishment Experiment, FLEX-2. NASA, iss043e190395.",
+    credit: "Photograph: NASA, iss043e190395. The Multi-user Droplet Combustion Apparatus being prepared for FLEX-2.",
+  },
+};
+
 const SECTIONS: {
   title: string;
   text: string;
@@ -45,6 +63,7 @@ export default function ControlsPage() {
         <section key={section.title} className="mb-8">
           <h2 className="text-lg font-semibold">{section.title}</h2>
           <p className="mt-1 text-sm text-muted">{section.text}</p>
+          <SectionPhoto title={section.title} />
           {section.entries.map((entry) => {
             const item = getInvestigation(entry.id);
             if (!item) return null;
@@ -72,6 +91,17 @@ export default function ControlsPage() {
         </section>
       ))}
     </div>
+  );
+}
+
+function SectionPhoto({ title }: { title: string }) {
+  const photo = PHOTOS[title];
+  if (!photo) return null;
+  return (
+    <figure className="mt-3 overflow-hidden rounded-lg border border-line bg-black">
+      <img src={photo.src} alt={photo.alt} className="aspect-[3/2] w-full object-cover" />
+      <figcaption className="bg-surface px-3 py-2 text-xs leading-5 text-muted">{photo.credit}</figcaption>
+    </figure>
   );
 }
 

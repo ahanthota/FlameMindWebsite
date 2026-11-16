@@ -97,6 +97,58 @@ function formatCount(value: number): string {
   return String(Number(value.toFixed(3)));
 }
 
+export interface HabitatGapRank {
+  /** Oxygen band the habitats fall in. Null when the atmosphere is off the grid. */
+  o2Min: number | null;
+  o2Max: number | null;
+  psiMin: number | null;
+  psiMax: number | null;
+  offGrid: boolean;
+  habitatCount: number;
+  habitats: { id: string; name: string }[];
+  gravities: GravityName[];
+}
+
+/**
+ * Untested habitat atmospheres, grouped by the oxygen-pressure cell they fall
+ * in, most habitats first. A tested atmosphere is not a gap.
+ */
+export function rankHabitatGaps(
+  reports: readonly HabitatCoverage[],
+  o2Edges: readonly number[],
+  psiEdges: readonly number[],
+): HabitatGapRank[] {
+  const groups = new Map<string, HabitatGapRank>();
+  for (const report of reports) {
+    if (report.inside_tested) continue;
+    const o2Bin = binIndex(o2Edges, report.o2_percent);
+    const psiBin = binIndex(psiEdges, report.pressure_psi);
+    const offGrid = o2Bin === null || psiBin === null;
+    const key = offGrid
+      ? `off:${report.o2_percent}:${report.pressure_psi}`
+      : `${o2Edges[o2Bin]}:${psiEdges[psiBin]}`;
+    const group = groups.get(key) ?? {
+      o2Min: offGrid ? null : o2Edges[o2Bin],
+      o2Max: offGrid ? null : o2Edges[o2Bin + 1],
+      psiMin: offGrid ? null : psiEdges[psiBin],
+      psiMax: offGrid ? null : psiEdges[psiBin + 1],
+      offGrid,
+      habitatCount: 0,
+      habitats: [],
+      gravities: [],
+    };
+    if (!group.habitats.some((item) => item.id === report.habitat_id)) {
+      group.habitats.push({ id: report.habitat_id, name: report.name });
+      group.habitatCount = group.habitats.length;
+    }
+    if (!group.gravities.includes(report.gravity)) group.gravities.push(report.gravity);
+    groups.set(key, group);
+  }
+  return [...groups.values()].sort(
+    (a, b) => b.habitatCount - a.habitatCount || (a.o2Min ?? 999) - (b.o2Min ?? 999) || (a.psiMin ?? 999) - (b.psiMin ?? 999),
+  );
+}
+
 export function habitatsAtGravity(
   reports: readonly HabitatCoverage[],
   gravity: GravityName,

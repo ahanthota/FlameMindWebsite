@@ -24,7 +24,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { afterAll, beforeAll, beforeEach, describe, it } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 const RULES = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "firestore.rules");
 
@@ -154,6 +154,28 @@ describe("saved filters", () => {
     await assertFails(addDoc(filters, { ...savedFilter, manualFilters: "all" }));
     await assertFails(addDoc(filters, { name: "No filters" }));
     await assertFails(addDoc(filters, { ...savedFilter, extra: 1 }));
+  });
+
+  it("keeps a saved chat and filter private, then removes them when the account is deleted", async () => {
+    const created = await assertSucceeds(
+      addDoc(collection(alice(), "users/alice/savedFilters"), { ...savedFilter, createdAt: serverTimestamp() }),
+    );
+    await assertFails(getDoc(doc(bob(), CHAT)));
+    await assertFails(getDoc(doc(bob(), MESSAGE)));
+    await assertFails(getDoc(doc(bob(), created.path)));
+
+    await assertSucceeds(deleteDoc(doc(alice(), MESSAGE)));
+    await assertSucceeds(deleteDoc(doc(alice(), CHAT)));
+    await assertSucceeds(deleteDoc(doc(alice(), created.path)));
+    await assertSucceeds(deleteDoc(doc(alice(), FILTER)));
+    await assertSucceeds(deleteDoc(doc(alice(), "users/alice")));
+
+    expect((await getDoc(doc(alice(), CHAT))).exists()).toBe(false);
+    expect((await getDoc(doc(alice(), MESSAGE))).exists()).toBe(false);
+    expect((await getDoc(doc(alice(), created.path))).exists()).toBe(false);
+    expect((await getDoc(doc(alice(), FILTER))).exists()).toBe(false);
+    expect((await getDoc(doc(alice(), "users/alice"))).exists()).toBe(false);
+    await assertFails(getDoc(doc(bob(), CHAT)));
   });
 
   it("blocks other users and guests", async () => {

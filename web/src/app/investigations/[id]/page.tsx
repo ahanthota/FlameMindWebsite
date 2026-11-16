@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { FlammabilityChart, type FlammabilityPoint } from "@/components/FlammabilityChart";
 import { EmptyState, linkClass } from "@/components/States";
 import { getInvestigation, investigations } from "@/lib/data";
 import { testPressurePsi } from "@/lib/filters";
@@ -60,6 +61,23 @@ function SourceLink({ source }: { source: SourceRef }) {
         </>
       ) : null}
     </span>
+  );
+}
+
+function FlammabilitySection({ item }: { item: Investigation }) {
+  const points: FlammabilityPoint[] = item.tests.flatMap((test, index) => {
+    if (test.o2_percent === null || test.flow_cm_s === null) return [];
+    return [{ testId: `${item.id}-T${index + 1}`, o2: test.o2_percent, flow: test.flow_cm_s, outcome: test.outcome }];
+  });
+  if (points.length === 0) return null;
+  return (
+    <Section title="Oxygen and airflow">
+      <p className="mb-3 text-sm leading-6 text-muted">
+        Tests that state both oxygen and airflow. Ignited and extinguished marks are the outcomes the source records,
+        so the change from one mark to the other is the limit those tests show.
+      </p>
+      <FlammabilityChart points={points} total={item.tests.length} />
+    </Section>
   );
 }
 
@@ -233,6 +251,8 @@ export default async function InvestigationPage({ params }: Params) {
           </div>
         ) : null}
       </Section>
+
+      <FlammabilitySection item={item} />
 
       <Section title={`Tests (${item.tests.length})`}>
         {item.tests.length === 0 ? (

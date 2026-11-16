@@ -138,7 +138,7 @@ export function SpreadScatter({ rows }: { rows: TestRow[] }) {
       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
         {oxygen.length > 0 ? (
           <span className="flex items-center gap-2">
-            Oxygen
+            Oxygen (%)
             <span>{formatNumber(o2Min)}%</span>
             {o2Max > o2Min ? (
               <>

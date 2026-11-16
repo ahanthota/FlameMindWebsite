@@ -5,7 +5,7 @@
  */
 
 import { formatNumber } from "./format";
-import { rank, WEIGHTS, type PartName, type Ranked } from "./rank";
+import { rank, WEIGHTS, type AxisName, type PartName, type Ranked } from "./rank";
 import type { Habitat, Investigation } from "./types";
 
 export const PART_LABEL: Record<PartName, string> = {
@@ -51,8 +51,17 @@ export interface RankedRow {
   needsReview: boolean;
   score: number;
   parts: RankPartView[];
+  /** Oxygen, pressure, and airflow closeness behind the combined parts. */
+  axes: Partial<Record<AxisName, number>>;
   reasons: string[];
   tests: RankTestView[];
+}
+
+export interface ScoreSlice {
+  key: string;
+  label: string;
+  /** Points this slice adds to the 0–1 score. The slices add up to the score. */
+  points: number;
 }
 
 export interface RankHabitatView {
@@ -130,6 +139,34 @@ export function formatScore(score: number): string {
   return `${(score * 100).toFixed(2).replace(/\.?0+$/, "")}%`;
 }
 
+/**
+ * The score split into the pieces that add up to it. Oxygen and pressure are
+ * shown apart, each taking an equal share of the conditions weight. Gravity
+ * is not a slice: the ranker records it and leaves the score unchanged.
+ */
+export function scoreSlices(row: Pick<RankedRow, "parts" | "axes">): ScoreSlice[] {
+  const weight = row.parts.reduce((sum, part) => sum + part.weight, 0);
+  if (weight === 0) return [];
+  const slices: ScoreSlice[] = [];
+  for (const part of row.parts) {
+    if (part.name === "conditions") {
+      const oxygen = row.axes.o2_percent;
+      const pressure = row.axes.pressure_psi;
+      const count = [oxygen, pressure].filter((value) => value !== undefined).length || 1;
+      if (oxygen !== undefined) slices.push({ key: "oxygen", label: "Oxygen", points: (oxygen * part.weight) / count / weight });
+      if (pressure !== undefined) slices.push({ key: "pressure", label: "Pressure", points: (pressure * part.weight) / count / weight });
+      if (oxygen === undefined && pressure === undefined) {
+        slices.push({ key: "conditions", label: part.label, points: (part.value * part.weight) / weight });
+      }
+    } else if (part.name === "airflow") {
+      slices.push({ key: "airflow", label: "Airflow", points: ((row.axes.flow_cm_s ?? part.value) * part.weight) / weight });
+    } else {
+      slices.push({ key: part.name, label: part.label, points: (part.value * part.weight) / weight });
+    }
+  }
+  return slices;
+}
+
 /** This part's weight divided by the weights of the parts that were scored. */
 export function partShare(part: RankPartView, parts: readonly RankPartView[]): number {
   const total = parts.reduce((sum, item) => sum + item.weight, 0);
@@ -149,6 +186,7 @@ function toRow(item: Ranked, record: Investigation | undefined, gravityNote: str
       value: item.parts[name] as number,
       weight: WEIGHTS[name],
     })),
+    axes: item.axes,
     reasons: gravityNote ? item.reasons.filter((text) => text !== gravityNote) : item.reasons,
     tests: item.tests.map((test) => ({
       testId: test.testId,

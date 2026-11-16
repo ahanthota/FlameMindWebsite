@@ -1,4 +1,4 @@
-import { atSameConditions, deltaLabel, type MapData, type MapHabitat } from "@/lib/charts";
+import { atSameConditions, deltaLabel, type MapData, type MapEvidence, type MapHabitat } from "@/lib/charts";
 import { formatNumber } from "@/lib/format";
 
 const CELL_W = 30;
@@ -19,7 +19,10 @@ export function CoverageMap({
   selectedId,
   onSelect,
   compact = false,
+  evidence,
 }: {
+  /** Cited evidence and the asked atmosphere, drawn over the cells (chat answers). */
+  evidence?: MapEvidence;
   data: MapData;
   selectedId?: string | null;
   onSelect?: (id: string) => void;
@@ -39,6 +42,8 @@ export function CoverageMap({
   const psiMax = psiEdges[psiEdges.length - 1] ?? 1;
   const x = (o2: number) => PAD.left + ((o2 - o2Min) / (o2Max - o2Min || 1)) * plotW;
   const y = (psi: number) => PAD.top + ((psiMax - psi) / (psiMax - psiMin || 1)) * plotH;
+  const clampX = (value: number) => Math.min(Math.max(value, PAD.left), PAD.left + plotW);
+  const clampY = (value: number) => Math.min(Math.max(value, PAD.top), PAD.top + plotH);
   const covered = new Set(data.covered.map((cell) => `${cell.o2Min}:${cell.psiMin}`));
 
   const shown = data.habitats.filter((habitat) => habitat.onGrid);
@@ -103,6 +108,43 @@ export function CoverageMap({
         Pressure (psi)
       </text>
 
+      {evidence ? (
+        <g>
+          {evidence.rects.map((rect) => {
+            const left = clampX(x(rect.o2[0]));
+            const right = clampX(x(rect.o2[1]));
+            const top = clampY(y(rect.psi[1]));
+            const bottom = clampY(y(rect.psi[0]));
+            // A single stated value still gets a visible mark.
+            const box = { x: Math.min(left, right) - 3, y: Math.min(top, bottom) - 3, width: Math.abs(right - left) + 6, height: Math.abs(bottom - top) + 6 };
+            return (
+              <g key={rect.id}>
+                <title>{`${rect.label}: ${formatNumber(rect.o2[0])}–${formatNumber(rect.o2[1])}% oxygen, ${formatNumber(rect.psi[0])}–${formatNumber(rect.psi[1])} psi (stated range).`}</title>
+                <rect {...box} rx={3} fill="none" stroke="var(--color-surface)" strokeWidth={5} />
+                <rect {...box} rx={3} fill="var(--color-ink)" fillOpacity={0.1} stroke="var(--color-ink)" strokeWidth={2} />
+              </g>
+            );
+          })}
+          {evidence.points.map((point) => (
+            <g key={point.id}>
+              <title>{`${point.id}: ${formatNumber(point.o2)}% oxygen, ${formatNumber(point.psi)} psi (cited test).`}</title>
+              <circle cx={clampX(x(point.o2))} cy={clampY(y(point.psi))} r={5} fill="var(--color-ink)" stroke="var(--color-surface)" strokeWidth={2} />
+            </g>
+          ))}
+          {evidence.asked ? (
+            <g>
+              <title>{`Your conditions: ${formatNumber(evidence.asked.o2)}% oxygen, ${formatNumber(evidence.asked.psi)} psi.`}</title>
+              <path
+                d={diamond(clampX(x(evidence.asked.o2)), clampY(y(evidence.asked.psi)), 9)}
+                fill="var(--color-warn-soft)"
+                stroke="var(--color-warn)"
+                strokeWidth={2.5}
+              />
+            </g>
+          ) : null}
+        </g>
+      ) : null}
+
       {selectedAt ? (
         <NearestLine
           key={selectedAt.habitat.id}
@@ -160,6 +202,10 @@ export function CoverageMap({
       })}
     </svg>
   );
+}
+
+function diamond(cx: number, cy: number, r: number): string {
+  return `M${cx} ${cy - r} L${cx + r} ${cy} L${cx} ${cy + r} L${cx - r} ${cy} Z`;
 }
 
 /** Dots at (nearly) the same point are set side by side so each can be seen and selected. */

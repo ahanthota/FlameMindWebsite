@@ -179,6 +179,42 @@ def test_derive_rejects_unknown_investigations(client):
     assert response.status_code == 422
 
 
+def test_five_mapped_filters_convert_into_stored_units(client, llm):
+    cases = [
+        ("o2_percent", "investigation", 0.21, 0.34, "mole fraction", 21.0, 34.0, "%"),
+        ("pressure_psi", "investigation", 1, None, "atm", 14.696, None, "psi"),
+        ("pressure_psi", "test", 100, None, "kPa", 14.5038, None, "psi"),
+        ("flow_cm_s", "investigation", 0.2, None, "m/s", 20.0, None, "cm/s"),
+        ("spread_rate_mm_s", "test", 0.5, 1, "cm/s", 5.0, 10.0, "mm/s"),
+    ]
+    assert len(cases) == 5
+    for field, level, low, high, unit, expect_min, expect_max, expect_unit in cases:
+        body = parse(client, llm, kind="mapped", field=field, level=level, min=low, max=high, unit=unit)
+        assert body["kind"] == "mapped" and body["field"] == field and body["unit"] == expect_unit
+        assert body["min"] == pytest.approx(expect_min, abs=1e-3)
+        assert body["max"] is None if expect_max is None else body["max"] == pytest.approx(expect_max, abs=1e-3)
+
+
+def test_three_derived_parameters_leave_not_reported_out_of_matches(client, llm):
+    for parameter in ("sample thickness", "igniter power", "droplet diameter"):
+        body = parse(client, llm, kind="derived", parameter=parameter, min=1, max=5, unit="mm")
+        assert body["kind"] == "derived" and body["parameter"] == parameter and body["unit"] == "mm"
+
+    # 2 is written in PSI-25 passage 2. 9 is not written in PSI-68 passage 1, so that row is not_reported.
+    llm.found = [
+        {"investigation_id": "PSI-25", "value": 2, "unit": "mm", "citation": 2},
+        {"investigation_id": "PSI-68", "value": 9, "unit": "mm", "citation": 1},
+    ]
+    for parameter in ("sample thickness", "igniter power", "droplet diameter"):
+        body = derive(client, parameter=parameter, min=1, max=5, unit="mm")
+        matches = [row for row in body["results"] if row["status"] == "match"]
+        missing = [row for row in body["results"] if row["status"] == "not_reported"]
+        assert [row["investigation_id"] for row in matches] == ["PSI-25"]
+        assert [row["investigation_id"] for row in missing] == ["PSI-68"]
+        assert all(row["value"] is None and row["citation"] is None for row in missing)
+        assert all(row["investigation_id"] not in {item["investigation_id"] for item in missing} for row in matches)
+
+
 def test_helpers():
     assert cache_key(" Sample-Thickness (mm) ") == "sample thickness mm"
     assert appears_in(0.5, "thickness of 0.50 mm") and appears_in(1000, "1,000 K")

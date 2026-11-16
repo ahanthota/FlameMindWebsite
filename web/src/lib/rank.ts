@@ -92,6 +92,8 @@ export interface Ranked {
   investigationId: string;
   score: number;
   parts: Partial<Record<PartName, number>>;
+  /** Per-axis closeness that the conditions and airflow parts were built from. */
+  axes: Partial<Record<AxisName, number>>;
   reasons: string[];
   tests: RankedTest[];
 }
@@ -109,18 +111,21 @@ export function rank(records: readonly RankSource[], conditions: RankConditions,
 export function scoreInvestigation(record: RankSource, conditions: RankConditions, intent: string): Ranked {
   const query = queryAxes(conditions);
   const parts: Partial<Record<PartName, number>> = {};
+  const axes: Partial<Record<AxisName, number>> = {};
   const reasons: string[] = [];
   const tests = scoredTests(record, query);
 
   const conditionAxes = (["o2_percent", "pressure_psi"] as const).filter((axis) => axis in query);
   if (conditionAxes.length > 0) {
-    const [value, text] = closenessPart(record, query, conditionAxes, tests);
+    const [value, text, axisValues] = closenessPart(record, query, conditionAxes, tests);
     parts.conditions = value;
+    Object.assign(axes, axisValues);
     reasons.push(text);
   }
   if ("flow_cm_s" in query) {
-    const [value, text] = closenessPart(record, query, ["flow_cm_s"], tests);
+    const [value, text, axisValues] = closenessPart(record, query, ["flow_cm_s"], tests);
     parts.airflow = value;
+    Object.assign(axes, axisValues);
     reasons.push(text);
   }
 
@@ -151,6 +156,7 @@ export function scoreInvestigation(record: RankSource, conditions: RankCondition
     investigationId: record.id,
     score: round4(score),
     parts: rounded,
+    axes,
     reasons,
     tests: tests.filter((test) => test.closeness > 0).slice(0, TOP_TESTS),
   };
@@ -222,10 +228,18 @@ function closenessPart(
   query: Partial<Record<AxisName, number>>,
   axes: readonly AxisName[],
   tests: readonly RankedTest[],
-): [number, string] {
+): [number, string, Partial<Record<AxisName, number>>] {
   const ranges: Partial<Record<AxisName, [number, number] | null>> = {};
   for (const axis of axes) ranges[axis] = recordRange(record, axis);
+  const scoreAxes = (values: readonly number[]): Partial<Record<AxisName, number>> => {
+    const scored: Partial<Record<AxisName, number>> = {};
+    axes.forEach((axis, index) => {
+      scored[axis] = round4(values[index] ?? 0);
+    });
+    return scored;
+  };
   let best = 0;
+  let bestAxes = axes.map(() => 0);
   let bestTest: RankedTest | null = null;
   for (const test of tests) {
     const perAxis = axes.map((axis) => {
@@ -237,6 +251,7 @@ function closenessPart(
     const value = perAxis.reduce((sum, item) => sum + item, 0) / axes.length;
     if (value > best) {
       best = value;
+      bestAxes = perAxis;
       bestTest = test;
     }
   }
@@ -245,8 +260,8 @@ function closenessPart(
     return span ? axisCloseness(axis, query[axis] as number, span[0], span[1]) : 0;
   });
   const rangeValue = fromRanges.reduce((sum, item) => sum + item, 0) / axes.length;
-  if (bestTest && best >= rangeValue) return [best, describeTest(bestTest, query, axes, ranges)];
-  return [rangeValue, describeRanges(ranges, query, axes)];
+  if (bestTest && best >= rangeValue) return [best, describeTest(bestTest, query, axes, ranges), scoreAxes(bestAxes)];
+  return [rangeValue, describeRanges(ranges, query, axes), scoreAxes(fromRanges)];
 }
 
 function describeTest(

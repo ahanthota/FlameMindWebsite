@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState, PageHeader, linkClass } from "@/components/States";
 import { ConditionCharts } from "@/components/ConditionCharts";
+import { CoverageChart } from "@/components/CoverageChart";
 import { NearestExplorer } from "@/components/NearestExplorer";
 import { buildMapData } from "@/lib/charts";
+import { buildCoverageMarks } from "@/lib/coverageChart";
 import { gaps, getInvestigation, habitats, investigations } from "@/lib/data";
 import { formatNumber } from "@/lib/format";
 import {
@@ -13,6 +15,7 @@ import {
   gravityStatus,
   groupHabitatReports,
   habitatsAtGravity,
+  rankHabitatGaps,
   sameNeighbors,
 } from "@/lib/gapsView";
 import type { GapCell, GravityName, Habitat, HabitatCoverage, NearestTested } from "@/lib/types";
@@ -25,6 +28,7 @@ export default function GapsPage() {
   const reports = gaps.habitats;
   const partial = gaps.grid.coverage.partial;
   const partialGap = gaps.gaps.find((gap) => gap.id === "no_partial_gravity");
+  const marks = buildCoverageMarks(investigations);
   const groups = groupHabitatReports(reports);
   const catalog = new Map(habitats.map((habitat) => [habitat.id, habitat]));
   const acronyms = new Map<string, string>();
@@ -70,26 +74,39 @@ export default function GapsPage() {
         </dl>
       </section>
 
+      <CoverageChart
+        points={marks.points}
+        boxes={marks.boxes}
+        habitats={habitats.map((habitat) => ({
+          id: habitat.id,
+          name: habitat.name,
+          o2: habitat.o2_percent,
+          psi: habitat.pressure_psi,
+        }))}
+        reports={reports}
+        investigationPages={investigations.map((item) => item.id)}
+      />
+
       <NearestExplorer data={buildMapData(gaps)} investigationPages={investigations.map((item) => item.id)} />
 
       <section className="mb-6 rounded-lg border border-warn/30 bg-warn-soft px-4 py-4 text-sm leading-6">
         <h2 className="text-base font-semibold text-warn">
-          Partial gravity: {coveragePhrase(partial?.covered_cells ?? 0, partial?.total_cells ?? 0)} cells
+          No partial-gravity combustion data in PSI yet; upcoming LUCI and FM2 experiments
         </h2>
         <p className="mt-1">
           {partialGap?.text ??
-            "No PSI combustion investigation in this dataset was run at Moon or Mars gravity."}
+            "No PSI combustion investigation in this dataset was run at Moon or Mars gravity. Habitat presets at partial gravity can only be compared with microgravity and 1 g results."}
         </p>
-        {partialGap?.notes && partialGap.notes.length > 0 ? (
-          <ul className="mt-2 list-disc space-y-1 pl-5">
-            {partialGap.notes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        ) : null}
+        <p className="mt-2">
+          <Link href="/investigations/PSI-22/" className={linkClass}>
+            E-FIELD Flames (PSI-22)
+          </Link>{" "}
+          is a partial stand-in. It flew in microgravity and uses an electric field to mimic some gravity effects, so it
+          does not fill this partial-gravity grid.
+        </p>
+        <p className="mt-2">Microgravity and 1 g results bound behavior at lunar and Martian gravity.</p>
         <p className="mt-2 text-xs text-muted">
-          E-FIELD Flames (PSI-22) is in the structured records. It flew in microgravity and uses an electric field as a
-          stand-in for some gravity effects, so it does not fill this partial-gravity grid.
+          Partial gravity: {coveragePhrase(partial?.covered_cells ?? 0, partial?.total_cells ?? 0)} cells tested.
         </p>
       </section>
 
@@ -115,6 +132,7 @@ export default function GapsPage() {
       </section>
 
       <ConditionCharts
+        gapRanks={rankHabitatGaps(reports, gaps.grid.o2_percent_edges, gaps.grid.pressure_psi_edges)}
         cells={gaps.grid.cells.map((cell) => ({
           gravity: cell.gravity,
           o2Min: cell.o2_min,
@@ -410,9 +428,9 @@ function NeighborTable({ title, rows }: { title: string; rows: NearestTested[] }
                 <th scope="col" className="whitespace-nowrap py-2 pr-3 font-medium">Taken from</th>
                 <th scope="col" className="whitespace-nowrap py-2 pr-3 text-right font-medium">Nearest O2 (%)</th>
                 <th scope="col" className="whitespace-nowrap py-2 pr-3 text-right font-medium">Nearest pressure (psi)</th>
-                <th scope="col" className="whitespace-nowrap py-2 pr-3 text-right font-medium">Δ oxygen</th>
+                <th scope="col" className="whitespace-nowrap py-2 pr-3 text-right font-medium">Δ oxygen (%)</th>
                 <th scope="col" className="whitespace-nowrap py-2 pr-3 text-right font-medium">Δ pressure (psi)</th>
-                <th scope="col" className="whitespace-nowrap py-2 text-right font-medium">Distance</th>
+                <th scope="col" className="whitespace-nowrap py-2 text-right font-medium">Distance (scaled)</th>
               </tr>
             </thead>
             <tbody>

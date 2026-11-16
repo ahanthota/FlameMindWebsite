@@ -1,11 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
   atSameConditions,
+  buildEvidence,
   buildMapData,
+  buildTimeline,
   countOutcomes,
   deltaLabel,
   deltaSentence,
+  domainPercent,
   niceTicks,
+  parseYears,
+  rangeDomain,
   outcomeSummary,
   rampColor,
   statedOutcomes,
@@ -150,5 +155,77 @@ describe("axes and color", () => {
     expect(rampColor(22, 18, 22)).toBe("#0d366b");
     expect(rampColor(30, 18, 22)).toBe("#0d366b");
     expect(rampColor(21, 21, 21)).toMatch(/^#[0-9a-f]{6}$/);
+  });
+});
+
+describe("range bars", () => {
+  it("spans every stated value and places values along it", () => {
+    const domain = rangeDomain([{ min: 10, max: 40 }, { min: null, max: null }, { min: 21, max: 21 }, { min: null, max: 85 }]);
+    expect(domain).toEqual([10, 85]);
+    expect(domainPercent(10, domain!)).toBe(0);
+    expect(domainPercent(85, domain!)).toBe(100);
+    expect(domainPercent(200, domain!)).toBe(100);
+    expect(rangeDomain([{ min: 21, max: 21 }])).toBeNull();
+    expect(rangeDomain([])).toBeNull();
+  });
+});
+
+describe("timeline", () => {
+  it("reads a year or a span of years, and nothing else", () => {
+    expect(parseYears("1999-2025")).toEqual({ start: 1999, end: 2025 });
+    expect(parseYears("2017")).toEqual({ start: 2017, end: 2017 });
+    expect(parseYears("ongoing")).toBeNull();
+    expect(parseYears(null)).toBeNull();
+  });
+
+  it("groups by hardware, earliest first, and lists records with no years", () => {
+    const timeline = buildTimeline(
+      [
+        { id: "PSI-69", acronym: "FLEX", years: "2007-2016", hardware: "CIR" },
+        { id: "PSI-26", acronym: "BASS", years: "2009-2013", hardware: "MSG" },
+        { id: "PSI-102", acronym: "SAME", years: "2000-2009", hardware: "MSG" },
+        { id: "PSI-106", acronym: "SLICE", years: null, hardware: null },
+      ],
+      (hardware) => hardware ?? "Not stated",
+    );
+    expect(timeline.groups.map((group) => [group.label, group.rows.map((row) => row.acronym)])).toEqual([
+      ["MSG", ["SAME", "BASS"]],
+      ["CIR", ["FLEX"]],
+    ]);
+    expect(timeline.undated).toEqual(["SLICE"]);
+    expect([timeline.start, timeline.end]).toEqual([2000, 2016]);
+  });
+});
+
+describe("buildEvidence", () => {
+  const source = {
+    ranges: {
+      "PSI-25": { acronym: "BASS-II", o2: [13.6, 22.2] as [number, number], psi: [14.7, 14.7] as [number, number] },
+      "PSI-26": { acronym: "BASS", o2: [21, 21] as [number, number], psi: null },
+      "PSI-101": { acronym: "SAME-R", o2: null, psi: null },
+    },
+    tests: { "PSI-26-T3": [21, 14.7] as [number, number] },
+  };
+
+  it("places cited investigations by range and cited tests by their own values", () => {
+    const evidence = buildEvidence(
+      [
+        { investigation_id: "PSI-25", test_ids: [] },
+        { investigation_id: "PSI-26", test_ids: ["PSI-26-T3", "PSI-26-T9"] },
+        { investigation_id: "PSI-101", test_ids: [] },
+        { investigation_id: "PSI-25", test_ids: [] },
+      ],
+      source,
+      { o2: 34, psi: 8 },
+    );
+    expect(evidence.rects.map((rect) => rect.label)).toEqual(["BASS-II"]);
+    expect(evidence.points).toEqual([{ id: "PSI-26-T3", o2: 21, psi: 14.7 }]);
+    expect(evidence.unplaced).toEqual(["SAME-R"]);
+    expect(evidence.asked).toEqual({ o2: 34, psi: 8 });
+  });
+
+  it("has no asked point unless the question gave both oxygen and pressure", () => {
+    expect(buildEvidence([], source, { o2: 34, psi: null }).asked).toBeNull();
+    expect(buildEvidence([], source, null).asked).toBeNull();
   });
 });

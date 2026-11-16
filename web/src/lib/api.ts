@@ -153,12 +153,13 @@ interface DeriveResponse {
 
 /**
  * POST /filter/derive for the given investigations, a few at a time.
- * `onProgress` is called with the number of investigations finished so far.
+ * `onProgress` is called after each batch with the number of investigations
+ * finished and the values found so far.
  */
 export async function deriveFilter(
   filter: DerivedFilter,
   investigationIds: string[],
-  onProgress?: (done: number) => void,
+  onProgress?: (done: number, values: DerivedValue[]) => void,
 ): Promise<DerivedValue[]> {
   const values: DerivedValue[] = [];
   for (let start = 0; start < investigationIds.length; start += DERIVE_BATCH) {
@@ -188,7 +189,7 @@ export async function deriveFilter(
           : null,
       });
     }
-    onProgress?.(Math.min(start + ids.length, investigationIds.length));
+    onProgress?.(Math.min(start + ids.length, investigationIds.length), [...values]);
   }
   return values;
 }

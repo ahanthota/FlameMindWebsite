@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { buttonClass, linkClass } from "@/components/States";
-import { deriveFilter, parseFilter } from "@/lib/api";
+import { DERIVE_BATCH, deriveFilter, parseFilter } from "@/lib/api";
 import { errorMessage } from "@/lib/auth";
 import {
   customFilterLabel,
@@ -18,23 +18,33 @@ const EXAMPLES = ["flame spread rate 2 to 5 mm/s", "sample thickness under 1 mm"
 const inputClass =
   "rounded-md border border-line bg-surface px-2.5 py-1.5 text-sm placeholder:text-muted/70 focus:border-accent";
 
+const PROGRESS_STYLE = {
+  found: "border-accent/40 bg-accent-soft text-accent",
+  none: "border-line bg-canvas text-muted",
+  reading: "border-accent bg-surface text-ink",
+  waiting: "border-dashed border-line bg-surface text-muted",
+};
+
+const PROGRESS_TEXT = { none: "Not reported", reading: "Reading", waiting: "Waiting" };
+
 type Stage =
   | { kind: "idle" }
   | { kind: "parsing" }
   /** The interpretation, waiting for the user to confirm or edit it. */
   | { kind: "draft"; filter: CustomFilter }
-  | { kind: "deriving"; filter: CustomFilter; done: number };
+  /** `found` is how many values each finished investigation has. */
+  | { kind: "deriving"; filter: CustomFilter; done: number; found: Record<string, number> };
 
 /**
  * Free-text filter: the API reads the text into a filter definition, the user
  * confirms or edits it, and the page applies it. It only ever filters the table.
  */
 export function CustomFilterBox({
-  investigationIds,
+  investigations,
   onApply,
 }: {
   /** The investigations in the table. A derived parameter is looked up for these. */
-  investigationIds: string[];
+  investigations: { id: string; acronym: string }[];
   onApply: (custom: ActiveCustomFilter) => void;
 }) {
   const [text, setText] = useState("");
@@ -43,6 +53,7 @@ export function CustomFilterBox({
   const [error, setError] = useState<string | null>(null);
 
   const busy = stage.kind === "parsing" || stage.kind === "deriving";
+  const investigationIds = investigations.map((item) => item.id);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -76,11 +87,13 @@ export function CustomFilterBox({
       finish({ filter, values: [] });
       return;
     }
-    setStage({ kind: "deriving", filter, done: 0 });
+    setStage({ kind: "deriving", filter, done: 0, found: {} });
     try {
-      const values = await deriveFilter(filter, investigationIds, (done) =>
-        setStage({ kind: "deriving", filter, done }),
-      );
+      const values = await deriveFilter(filter, investigationIds, (done, soFar) => {
+        const found: Record<string, number> = {};
+        for (const value of soFar) found[value.investigationId] = (found[value.investigationId] ?? 0) + 1;
+        setStage({ kind: "deriving", filter, done, found });
+      });
       finish({ filter, values });
     } catch (reason) {
       setError(errorMessage(reason));
@@ -151,11 +164,32 @@ export function CustomFilterBox({
             Reading the source documents for &quot;{stage.filter.kind === "derived" ? stage.filter.parameter : ""}&quot;:{" "}
             {stage.done} of {investigationIds.length} investigations done.
           </p>
-          <progress
-            value={stage.done}
-            max={Math.max(1, investigationIds.length)}
-            className="mt-2 h-2 w-full max-w-md accent-accent"
-          />
+          <ul aria-label="Progress by investigation" className="mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {investigations.map((item, index) => {
+              const state =
+                index < stage.done
+                  ? (stage.found[item.id] ?? 0) > 0
+                    ? "found"
+                    : "none"
+                  : index < stage.done + DERIVE_BATCH
+                    ? "reading"
+                    : "waiting";
+              return (
+                <li
+                  key={item.id}
+                  className={`flex items-center justify-between gap-2 rounded-md border px-2.5 py-1.5 text-xs transition-colors ${PROGRESS_STYLE[state]}`}
+                >
+                  <span className="truncate font-medium">{item.acronym}</span>
+                  <span className="flex shrink-0 items-center gap-1.5">
+                    {state === "reading" ? <span aria-hidden="true" className="size-2 animate-pulse rounded-full bg-accent" /> : null}
+                    {state === "found"
+                      ? `Found ${stage.found[item.id]} ${stage.found[item.id] === 1 ? "value" : "values"}`
+                      : PROGRESS_TEXT[state]}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       ) : null}
     </section>

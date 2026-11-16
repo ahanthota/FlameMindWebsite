@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AskBox } from "@/components/AskBox";
-import { CoverageLegend, CoverageMap } from "@/components/CoverageMap";
+import { CountUp } from "@/components/CountUp";
+import { CoverageChart } from "@/components/CoverageChart";
+import { OxygenSlider } from "@/components/OxygenSlider";
 import { EmptyState, linkClass } from "@/components/States";
 import { buildMapData } from "@/lib/charts";
-import { gaps, investigations } from "@/lib/data";
+import { buildCoverageMarks, HABITAT_SHORT } from "@/lib/coverageChart";
+import { gaps, habitats, investigations } from "@/lib/data";
 import { knowledgeStats } from "@/lib/knowledge";
 
 export const metadata: Metadata = { title: "Home" };
@@ -36,6 +39,7 @@ export default function Home() {
   const indexed = Math.max(knowledge.investigations, investigations.length);
   const tests = investigations.reduce((total, item) => total + item.tests.length, 0);
   const map = buildMapData(gaps);
+  const atmospheres = habitats.filter((habitat) => habitat.o2_percent >= 21 && habitat.o2_percent <= 34);
   const untested = map.habitats.filter((habitat) => habitat.onGrid && !habitat.tested).length;
   const numbers = [
     { label: "Investigations", value: indexed, note: `${investigations.length} with extracted test records` },
@@ -55,6 +59,9 @@ export default function Home() {
           Future Moon bases may run at 30% oxygen or more, which makes everyday materials far more flammable than they
           are on Earth.
         </p>
+        <div className="mt-4 max-w-3xl">
+          <OxygenSlider habitats={atmospheres} />
+        </div>
       </header>
 
       <AskBox />
@@ -68,7 +75,7 @@ export default function Home() {
             >
               <span className="text-xs font-medium uppercase tracking-wide text-muted">{item.section}</span>
               <span className="mt-1 block text-lg font-semibold text-accent">{item.title}</span>
-              <span className="mt-1 block text-sm text-muted">{item.text}</span>
+              <span className="mt-1 block text-sm leading-6 text-muted">{item.text}</span>
             </Link>
           </li>
         ))}
@@ -92,9 +99,17 @@ export default function Home() {
               </p>
             </div>
             <figure>
-              <CoverageMap data={map} compact />
-              <figcaption className="mt-2">
-                <CoverageLegend data={map} />
+              <CoverageChart
+                compact
+                points={buildCoverageMarks(investigations).points}
+                boxes={buildCoverageMarks(investigations).boxes}
+                habitats={habitats
+                  .filter((habitat) => habitat.id in HABITAT_SHORT)
+                  .map((habitat) => ({ id: habitat.id, name: habitat.name, o2: habitat.o2_percent, psi: habitat.pressure_psi }))}
+              />
+              <figcaption className="mt-2 text-xs leading-5 text-muted">
+                Points are tests that state oxygen and pressure. Rectangles are stated ranges. Diamonds are habitat
+                atmospheres. Color is the fuel phase.
               </figcaption>
             </figure>
           </div>
@@ -113,7 +128,9 @@ export default function Home() {
             {numbers.map((item) => (
               <div key={item.label} className="rounded-lg border border-line bg-surface p-4">
                 <dt className="text-sm text-muted">{item.label}</dt>
-                <dd className="mt-1 text-2xl font-semibold tabular-nums">{item.value.toLocaleString("en-US")}</dd>
+                <dd className="mt-1 text-2xl font-semibold tabular-nums">
+                  <CountUp value={item.value} />
+                </dd>
                 <dd className="mt-1 text-xs text-muted">
                   {"href" in item && item.href ? (
                     <Link href={item.href} className={linkClass}>

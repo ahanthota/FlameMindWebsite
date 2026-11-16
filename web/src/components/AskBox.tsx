@@ -21,31 +21,32 @@ export function AskBox() {
         <label htmlFor="home-ask" className="block text-lg font-semibold tracking-tight">
           Ask FlameMind about your design
         </label>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
           <input
             id="home-ask"
             value={text}
             onChange={(event) => setText(event.target.value)}
             maxLength={2000}
             placeholder="Describe the atmosphere, materials, or question you have"
-            className="min-w-0 flex-1 basis-64 rounded-md border border-line bg-surface px-4 py-3 text-base placeholder:text-muted/70 focus:border-accent"
+            className="min-w-0 flex-1 rounded-md border border-line bg-surface px-4 py-3 text-base placeholder:text-muted/70 focus:border-accent"
           />
           <button
             type="submit"
             disabled={!text.trim()}
-            className="rounded-md bg-accent px-6 py-3 text-base font-medium text-white hover:bg-accent-strong disabled:opacity-40"
+            className="rounded-md bg-accent px-6 py-3 text-base font-medium text-white hover:bg-accent-strong disabled:opacity-40 sm:shrink-0"
           >
             Ask
           </button>
         </div>
       </form>
-      <p className="mt-4 text-xs font-medium text-muted">Or start with one of these</p>
-      <ul className="mt-2 flex flex-wrap gap-2">
-        {STARTER_PROMPTS.slice(0, 2).map((prompt) => (
+      <p className="mt-4 text-sm font-medium">Moon base crew quarters</p>
+      <p className="text-sm leading-6 text-muted">34% oxygen at 8 psi. Each of these opens a new chat.</p>
+      <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+        {STARTER_PROMPTS.map((prompt) => (
           <li key={prompt}>
             <Link
               href={`/scenario/?ask=${encodeURIComponent(prompt)}`}
-              className="block rounded-full border border-line px-3 py-1.5 text-xs text-muted hover:border-accent hover:text-accent"
+              className="block rounded-lg border border-line px-3 py-2 text-sm leading-6 text-ink hover:border-accent hover:text-accent"
             >
               {prompt}
             </Link>

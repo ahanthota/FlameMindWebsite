@@ -7,6 +7,7 @@ import {
   groupHabitatReports,
   habitatsAtGravity,
   matchesAtmosphere,
+  rankHabitatGaps,
 } from "./gapsView";
 import type { GapsFile, HabitatCoverage, NearestTested } from "./types";
 
@@ -104,6 +105,14 @@ describe("gaps page rules", () => {
     expect(binIndex(psi, 16)).toBe(psi.length - 2);
     expect(binIndex(o2, 14)).toBeNull();
     expect(matchesAtmosphere(nearest({ gravity: "microgravity", delta_o2_percent: 0, delta_pressure_psi: 0.2 }))).toBe(false);
+  });
+
+  it("ranks untested cells by how many habitats fall into them", () => {
+    const ranked = rankHabitatGaps(gaps.habitats, gaps.grid.o2_percent_edges, gaps.grid.pressure_psi_edges);
+    expect(ranked[0]?.habitatCount).toBeGreaterThanOrEqual(ranked[1]?.habitatCount ?? 0);
+    const shared = ranked.find((gap) => gap.habitats.some((habitat) => habitat.id === "moon_base"));
+    expect(shared?.habitats.map((habitat) => habitat.id).sort()).toEqual(["mars_habitat", "moon_base"]);
+    expect(ranked.some((gap) => gap.habitats.some((habitat) => habitat.id === "iss"))).toBe(false);
   });
 
   it("puts ISS on the microgravity map and the Moon base on the partial-gravity map", () => {

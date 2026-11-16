@@ -24,8 +24,8 @@ DOCUMENT_EXTENSIONS = frozenset(
     {".pdf", ".csv", ".xlsx", ".xls", ".docx", ".doc", ".txt", ".rtf"}
 )
 
-# Named in the project brief as the deep tier. Saffire is three PSI records.
-# DAFT and DAFT-2 share one record (PSI-47) and stay in the light tier.
+# Named in the project brief as the deep tier, plus the promoted tier-B records.
+# Saffire is three PSI records. DAFT and DAFT-2 share PSI-47.
 TIER_A_ACCESSIONS = frozenset(
     {
         "PSI-20",  # ACME BRE

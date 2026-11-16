@@ -14,8 +14,9 @@ def test_tier_a_matches_the_named_investigations() -> None:
     assert tier_for("PSI-26") == "A"
     assert tier_for("PSI-98") == "A"
     assert tier_for("PSI-20") == "A"
-    assert tier_for("PSI-47") == "B"
-    assert tier_for("PSI-22") == "B"
+    assert tier_for("PSI-47") == "A"
+    assert tier_for("PSI-22") == "A"
+    assert tier_for("PSI-60") == "B"
 
 
 def test_small_science_pdf_is_kept() -> None:

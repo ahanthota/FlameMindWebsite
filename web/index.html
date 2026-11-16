@@ -680,6 +680,26 @@
             margin-bottom: 1.75rem;
         }
 
+        .editorial-section h2,
+        .solution-section h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .editorial-section .lead-copy,
+        .solution-section .lead-copy {
+            margin-bottom: 1.75rem;
+        }
+
+        .solution-section {
+            background-color: var(--surface-navy);
+            border-top: 1px solid var(--border-white-subtle);
+            padding-block: clamp(2.75rem, 5vw, 4.25rem);
+        }
+
+        .solution-close {
+            margin-top: 1.75rem;
+        }
+
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -938,11 +958,6 @@
             <div class="container hero-content-layer">
                 <div class="hero-grid">
                     <div class="hero-copy">
-                        <div class="kicker">
-                            <span class="live-dot" aria-hidden="true"></span>
-                            <span>Coming soon: built for the NASA Space Apps Flame in Freefall challenge</span>
-                        </div>
-
                         <h1 id="hero-title">FlameMind</h1>
                         <p class="tagline">Fire safety insights for living beyond Earth</p>
                         <p class="lead-copy">
@@ -950,25 +965,6 @@
                             microgravity combustion behavior—turning orbital fire physics into actionable crew safety
                             intelligence for space stations, lunar habitats, and deep-space transit.
                         </p>
-
-                        <div class="cta-group">
-                            <a class="nasa-cta" href="https://github.com/ahanthota/FlameMind"
-                                rel="noopener noreferrer">
-                                <span>Explore GitHub Repository</span>
-                                <span class="nasa-cta-circle" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M5 12h11.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L16.17 13H5v-2z" />
-                                    </svg>
-                                </span>
-                            </a>
-
-                            <button type="button" class="motion-toggle" id="motion-toggle-btn" aria-pressed="false">
-                                <svg id="motion-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                                </svg>
-                                <span id="motion-label">Pause Motion</span>
-                            </button>
-                        </div>
                     </div>
 
                     <aside class="orbital-graphic-card" id="flame-visualizer" data-gravity="0g"
@@ -1069,31 +1065,95 @@
         <section class="editorial-section" aria-labelledby="problem-heading">
             <div class="container">
                 <p class="section-overline">Mission Brief</p>
-                <h2 id="problem-heading">The Problem: Fire in Freefall</h2>
+                <h2 id="problem-heading">The Problem</h2>
+                <p class="lead-copy">
+                    Fires in space do not behave like fires on Earth, and the research that explains them is too large
+                    to search by hand.
+                </p>
 
                 <div class="cards-grid">
                     <article class="nasa-card">
-                        <p class="card-kicker">01 // Physics of Microgravity</p>
-                        <h3>When Buoyancy Disappears</h3>
+                        <p class="card-kicker">01 // Fire dynamics</p>
+                        <h3>Unpredictable fire in a spacecraft</h3>
                         <p>
-                            On Earth, gravity-driven convection pulls cool oxygen in at the base of a fire and drives
-                            hot combustion gases upward into a flickering teardrop. In microgravity, hot gases no longer
-                            rise—flames form quiet, expanding spheres governed by slow molecular diffusion and subtle
-                            cabin ventilation currents.
+                            A fire is an extreme threat in a confined spacecraft, hundreds of thousands of miles from
+                            Earth. In microgravity, buoyancy-driven convection is absent: hot air does not rise and
+                            cold air does not sink. Flames ignite, spread, take shape, and go out differently than they
+                            do on Earth. They can become spherical, soot-free, blue, and non-flickering.
                         </p>
                     </article>
 
                     <article class="nasa-card accent-red">
-                        <p class="card-kicker">02 // Spacecraft Crew Safety</p>
-                        <h3>Rethinking Detection &amp; Suppression</h3>
+                        <p class="card-kicker">02 // Lunar habitats</p>
+                        <h3>Higher oxygen, higher flammability</h3>
                         <p>
-                            Because microgravity flames burn at lower temperatures, produce far less visible soot, and
-                            drift along cabin airflow paths rather than rising toward ceiling sensors, Earth-calibrated
-                            smoke detectors and suppression protocols can miss critical early signatures.
-                            <strong>FlameMind</strong> equips researchers and mission planners with clear insights to
-                            safeguard crews living beyond Earth.
+                            Future habitats on the Moon will operate in partial gravity at elevated oxygen. The higher
+                            oxygen is there to reduce decompression sickness, the bends, and to make frequent
+                            spacewalks possible. That same oxygen makes everyday materials far more flammable.
                         </p>
                     </article>
+
+                    <article class="nasa-card">
+                        <p class="card-kicker">03 // The data bottleneck</p>
+                        <h3>A repository that is hard to search</h3>
+                        <p>
+                            Over decades, NASA ran microgravity combustion experiments in drop towers, on parabolic
+                            flights, on sounding rockets, and on the International Space Station. That record is in the
+                            Physical Sciences Informatics (PSI) repository. The Combustion Science section alone holds
+                            24 investigations and about 12 terabytes, spread across folders, test runs, documents, and
+                            papers. Architects and engineers cannot quickly find the measurements they need to design
+                            fire-safe habitats and vehicles.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-section" aria-labelledby="solution-heading">
+            <div class="container">
+                <p class="section-overline">The approach</p>
+                <h2 id="solution-heading">The Solution</h2>
+                <p class="lead-copy">
+                    FlameMind is a lookup for those measurements. It does not replace the experiments, and it does not
+                    predict a flame size.
+                </p>
+
+                <div class="cards-grid">
+                    <article class="nasa-card">
+                        <p class="card-kicker">01 // What was measured</p>
+                        <h3>Ask, and get the cited test</h3>
+                        <p>
+                            Describe the atmosphere, the material, and the question. Scenario answers from the indexed
+                            records and names the PSI page each number came from. Ignition, spread, and extinction
+                            appear only when a test states them. A missing value stays blank.
+                        </p>
+                    </article>
+
+                    <article class="nasa-card accent-red">
+                        <p class="card-kicker">02 // A habitat atmosphere</p>
+                        <h3>See what fits, and what was never tested</h3>
+                        <p>
+                            Pick a habitat, including a Moon base at 34% oxygen and 8 psi. Rank lists the
+                            investigations whose stated conditions are closest. Gaps maps the oxygen and pressure that
+                            were tested and says when a habitat has no test at its own gravity. Partial gravity is
+                            still empty, and the page says so.
+                        </p>
+                    </article>
+
+                    <article class="nasa-card">
+                        <p class="card-kicker">03 // The 12 terabytes</p>
+                        <h3>Search the knowledge layer</h3>
+                        <p>
+                            The raw archive stays in PSI. FlameMind indexes the knowledge layer of all 24
+                            investigations: the stated conditions, the findings, and the papers. Every result links
+                            back to its PSI folder. Filter the tables, compare investigations, or read prevention,
+                            detection, and suppression from the records that state them.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="solution-close">
+                    <a class="nasa-cta" href="/home/">Open FlameMind</a>
                 </div>
             </div>
         </section>
@@ -1173,9 +1233,6 @@
         (() => {
             const canvas = document.getElementById('space-canvas');
             const ctx = canvas.getContext('2d');
-            const motionBtn = document.getElementById('motion-toggle-btn');
-            const motionLabel = document.getElementById('motion-label');
-            const motionIcon = document.getElementById('motion-icon');
             const visualizer = document.getElementById('flame-visualizer');
             const btn0g = document.getElementById('btn-0g');
             const btn1g = document.getElementById('btn-1g');
@@ -1189,22 +1246,12 @@
 
             const updateMotionUI = () => {
                 document.body.classList.toggle('motion-paused', isPaused);
-                motionBtn.setAttribute('aria-pressed', String(isPaused));
-                motionLabel.textContent = isPaused ? 'Play Motion' : 'Pause Motion';
-                motionIcon.innerHTML = isPaused
-                    ? '<path d="M8 5v14l11-7z"/>'
-                    : '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
             };
 
             updateMotionUI();
 
             reducedMotionQuery.addEventListener('change', (e) => {
                 isPaused = e.matches;
-                updateMotionUI();
-            });
-
-            motionBtn.addEventListener('click', () => {
-                isPaused = !isPaused;
                 updateMotionUI();
             });
 

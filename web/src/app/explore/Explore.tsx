@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { OutcomeLegend, OutcomeStrip } from "@/components/OutcomeStrip";
 import { buttonClass, EmptyState, linkClass, PageHeader } from "@/components/States";
-import { outcomeSummary, statedOutcomes } from "@/lib/charts";
+import { CONTROL_CATEGORIES } from "@/lib/controlTabs";
+import type { CategoryName, Insight } from "@/lib/types";
+import { CategoryPanel } from "./CategoryPanel";
+import { RangeBar } from "@/components/RangeBar";
+import { outcomeSummary, rangeDomain, statedOutcomes } from "@/lib/charts";
 import { deriveFilter } from "@/lib/api";
 import { errorMessage, useAuth } from "@/lib/auth";
 import {
@@ -73,7 +77,11 @@ const rangeCsv = (min: number | null, max: number | null): string | null =>
 const PAGE_SIZE = 50;
 const CHECKBOX_FACETS: readonly FacetKey[] = ["fuelPhase", "hardware", "platform", "category", "gravity"];
 
-const INVESTIGATION_COLUMNS: Column<InvestigationRow>[] = [
+/** For each range column: the scale its bars share and the active filter to shade. */
+type RangeBars = Record<RangeKey, { domain: [number, number] | null; filter: Filters[RangeKey] }>;
+
+function investigationColumns(bars: RangeBars): Column<InvestigationRow>[] {
+  return [
   {
     key: "acronym",
     header: "Investigation",
@@ -116,13 +124,13 @@ const INVESTIGATION_COLUMNS: Column<InvestigationRow>[] = [
   { key: "platform", header: "Platform", sortValue: (row) => row.platform[0] ?? null, cell: (row) => formatList(row.platform), csv: (row) => joined(row.platform) },
   { key: "category", header: "Category", sortValue: (row) => row.category[0] ?? null, cell: (row) => formatList(row.category), csv: (row) => joined(row.category) },
   { key: "gravity", header: "Gravity", sortValue: (row) => row.gravity, cell: (row) => label(row.gravity) },
-  { key: "o2", header: "O2 (%)", numeric: true, sortValue: (row) => row.o2.min, cell: (row) => formatRange(row.o2.min, row.o2.max), csv: (row) => rangeCsv(row.o2.min, row.o2.max) },
+  { key: "o2", header: "O2 (%)", numeric: true, sortValue: (row) => row.o2.min, cell: (row) => <RangeBar range={row.o2} unit="%" {...bars.o2} />, csv: (row) => rangeCsv(row.o2.min, row.o2.max) },
   {
     key: "pressure",
     header: "Pressure (psi)",
     numeric: true,
     sortValue: (row) => row.pressure.min,
-    cell: (row) => formatRange(row.pressure.min, row.pressure.max),
+    cell: (row) => <RangeBar range={row.pressure} unit="psi" {...bars.pressure} />,
     csv: (row) => rangeCsv(row.pressure.min, row.pressure.max),
   },
   {
@@ -130,12 +138,13 @@ const INVESTIGATION_COLUMNS: Column<InvestigationRow>[] = [
     header: "Airflow (cm/s)",
     numeric: true,
     sortValue: (row) => row.flow.min,
-    cell: (row) => formatRange(row.flow.min, row.flow.max),
+    cell: (row) => <RangeBar range={row.flow} unit="cm/s" {...bars.flow} />,
     csv: (row) => rangeCsv(row.flow.min, row.flow.max),
   },
   { key: "tests", header: "Tests (count)", numeric: true, sortValue: (row) => row.testCount, cell: (row) => row.testCount },
   { key: "years", header: "Years", sortValue: (row) => row.years, cell: (row) => row.years ?? MISSING },
 ];
+}
 
 const TEST_COLUMNS: Column<TestRow>[] = [
   { key: "testId", header: "Test", sortValue: (row) => row.testId, cell: (row) => row.testId },
@@ -271,8 +280,17 @@ function download(name: string, text: string) {
 const inputClass =
   "w-full rounded-md border border-line bg-surface px-2.5 py-1.5 text-sm placeholder:text-muted/70 focus:border-accent";
 
-export function Explore({ investigations, tests }: { investigations: InvestigationRow[]; tests: TestRow[] }) {
+export function Explore({
+  investigations,
+  tests,
+  insights,
+}: {
+  investigations: InvestigationRow[];
+  tests: TestRow[];
+  insights: Insight[];
+}) {
   const [mode, setMode] = useState<Mode>("investigations");
+  const [tab, setTab] = useState<"all" | CategoryName>("all");
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [customs, setCustoms] = useState<ActiveCustomFilter[]>([]);
   const [showNotReported, setShowNotReported] = useState(false);
@@ -282,6 +300,14 @@ export function Explore({ investigations, tests }: { investigations: Investigati
   const { user, loading: authLoading } = useAuth();
 
   const investigationIds = useMemo(() => investigations.map((row) => row.id), [investigations]);
+  const domains = useMemo(
+    () => ({
+      o2: rangeDomain(investigations.map((row) => row.o2)),
+      pressure: rangeDomain(investigations.map((row) => row.pressure)),
+      flow: rangeDomain(investigations.map((row) => row.flow)),
+    }),
+    [investigations],
+  );
   const psiUrls = useMemo(() => new Map(investigations.map((row) => [row.id, row.psiUrl])), [investigations]);
 
   const addCustom = useCallback((custom: ActiveCustomFilter) => {
@@ -381,6 +407,12 @@ export function Explore({ investigations, tests }: { investigations: Investigati
   const hasSpreadRate = customs.some((item) => item.filter.kind === "mapped" && item.filter.field === "spread_rate_mm_s");
   const customDefinitions = customs.map((item) => item.filter);
 
+  // Scales come from every investigation, so a bar keeps its place when filters change.
+  const rangeBars: RangeBars = {
+    o2: { domain: domains.o2, filter: filters.o2 },
+    pressure: { domain: domains.pressure, filter: filters.pressure },
+    flow: { domain: domains.flow, filter: filters.flow },
+  };
   const testResults = applyCustomFilters(mode === "tests" ? filterTests(tests, filters) : [], customs);
 
   const shared = {
@@ -414,6 +446,7 @@ export function Explore({ investigations, tests }: { investigations: Investigati
       <PageHeader
         title="Explore"
         aside={
+          tab === "all" ? (
           <div role="group" aria-label="Show" className="inline-flex rounded-md border border-line bg-surface p-0.5">
             {(["investigations", "tests"] as const).map((value) => (
               <button
@@ -429,12 +462,39 @@ export function Explore({ investigations, tests }: { investigations: Investigati
               </button>
             ))}
           </div>
+          ) : undefined
         }
       >
         Every investigation and test in the dataset. Show one row per investigation, or one row per test sample.
       </PageHeader>
 
-      {total === 0 ? (
+      <div role="tablist" aria-label="Category" className="mb-4 inline-flex rounded-md border border-line bg-surface p-0.5">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={tab === "all"}
+          onClick={() => setTab("all")}
+          className={`rounded px-3 py-1.5 text-sm font-medium ${tab === "all" ? "bg-accent text-white" : "text-muted hover:text-ink"}`}
+        >
+          All
+        </button>
+        {CONTROL_CATEGORIES.map((category) => (
+          <button
+            key={category}
+            type="button"
+            role="tab"
+            aria-selected={tab === category}
+            onClick={() => setTab(category)}
+            className={`rounded px-3 py-1.5 text-sm font-medium ${tab === category ? "bg-accent text-white" : "text-muted hover:text-ink"}`}
+          >
+            {label(category)}
+          </button>
+        ))}
+      </div>
+
+      {tab !== "all" ? (
+        <CategoryPanel category={tab} investigations={investigations} insights={insights} />
+      ) : total === 0 ? (
         <EmptyState title={`No ${noun} in the dataset`}>
           {mode === "tests"
             ? "No investigation has individual tests recorded."
@@ -455,13 +515,13 @@ export function Explore({ investigations, tests }: { investigations: Investigati
             </p>
           ) : null}
 
-          <CustomFilterBox investigationIds={investigationIds} onApply={addCustom} />
+          <CustomFilterBox investigations={investigations} onApply={addCustom} />
 
           {mode === "investigations" ? (
             <Results
               {...applyCustomFilters(filterInvestigations(investigations, filters), customs)}
               columns={[
-                ...INVESTIGATION_COLUMNS,
+                ...investigationColumns(rangeBars),
                 ...(hasSpreadRate ? [SPREAD_RATE_COLUMN] : []),
                 ...derived.map((item) => derivedColumn<InvestigationRow>(item)),
               ]}

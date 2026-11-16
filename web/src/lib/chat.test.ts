@@ -72,7 +72,14 @@ describe("reading answers", () => {
     expect(stored.answer?.confidence).toBe("medium");
     expect(stored.sources).toHaveLength(2);
     // An assistant message saved without structure still shows its text.
-    expect(fromStored("b", { role: "assistant", text: "Plain." })).toEqual({ id: "b", role: "assistant", text: "Plain.", answer: null, sources: [] });
+    expect(fromStored("b", { role: "assistant", text: "Plain." })).toEqual({
+      id: "b",
+      role: "assistant",
+      text: "Plain.",
+      answer: null,
+      sources: [],
+      asked: null,
+    });
   });
 });
 

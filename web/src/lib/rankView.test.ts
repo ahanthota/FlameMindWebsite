@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import habitatsJson from "../../../data/habitats.json";
 import investigationsJson from "../../../data/investigations.json";
-import { atmosphereLine, buildRankViews, formatScore, partShare } from "./rankView";
+import { atmosphereLine, buildRankViews, formatScore, partShare, scoreSlices } from "./rankView";
 import type { Habitat, Investigation } from "./types";
 
 const habitats = habitatsJson as unknown as Habitat[];
@@ -61,6 +61,10 @@ describe("buildRankViews", () => {
     expect(first.acronym).toBe("ACME CFI-G");
     expect(first.parts.map((part) => part.name)).toEqual(["conditions", "intent"]);
     expect(first.parts.map((part) => part.value)).toEqual([1, 1]);
+    const slices = scoreSlices(first);
+    expect(slices.map((slice) => slice.key)).toEqual(["oxygen", "pressure", "intent"]);
+    const sliceTotal = slices.reduce((sum, slice) => sum + slice.points, 0);
+    expect(sliceTotal).toBeCloseTo(first.score, 4);
     expect(first.reasons[0]).toBe("Ranges: oxygen 12-85% O2 covers 21% O2; pressure 7.18-48 psi covers 14.7 psi.");
     expect(first.tests[0]).toMatchObject({ testId: "PSI-159-T122", o2Percent: 21, pressurePsi: 14.6967 });
     expect(first.tests.length).toBeLessThanOrEqual(5);

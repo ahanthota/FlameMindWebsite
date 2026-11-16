@@ -70,17 +70,40 @@ export interface HistoryItem {
 /** One message as shown in the conversation. */
 export type UiMessage =
   | { id: string; role: "user"; text: string }
-  | { id: string; role: "assistant"; text: string; answer: Answer | null; sources: ChatSource[] };
+  | {
+      id: string;
+      role: "assistant";
+      text: string;
+      answer: Answer | null;
+      sources: ChatSource[];
+      /** The oxygen and pressure the API read from the question, when it reports them. */
+      asked?: AskedConditions | null;
+    };
+
+export interface AskedConditions {
+  o2: number | null;
+  psi: number | null;
+}
+
+/** The conditions the API understood, from `understanding.conditions` in its response. */
+export function toAsked(value: unknown): AskedConditions | null {
+  const conditions = isRecord(value) && isRecord(value.conditions) ? value.conditions : null;
+  if (!conditions) return null;
+  const number = (item: unknown) => (typeof item === "number" && Number.isFinite(item) ? item : null);
+  const asked = { o2: number(conditions.o2_percent), psi: number(conditions.pressure_psi) };
+  return asked.o2 === null && asked.psi === null ? null : asked;
+}
 
 export const HISTORY_LIMIT = 8;
 
 export const DISCLAIMER = "Research summary, not certified safety guidance. Check the cited sources before relying on a value.";
 
+/** Moon-base crew quarters, the worked example used on Home and Scenario. */
 export const STARTER_PROMPTS: readonly string[] = [
-  "We're designing a Moon base at 34% O2 and 8 psi. Which fabrics have been tested near those conditions?",
-  "How does flame spread over fabric change with airflow in microgravity?",
-  "What happens to a burning fabric sample when the airflow drops very low?",
-  "I am planning ventilation for an ISS module that stores cotton clothing. What does the data suggest?",
+  "We're designing crew quarters for a Moon base at 34% oxygen and 8 psi. Which fabrics have been tested near those conditions?",
+  "For a Moon base at 34% oxygen and 8 psi, how does flame spread over fabric change with airflow?",
+  "At Moon-base oxygen, what happens to a fabric flame when the airflow drops very low?",
+  "I am choosing bedding and clothing for Moon base crew quarters at 34% oxygen and 8 psi. What should I look at?",
 ];
 
 /** The last 8 messages, as the API expects them. Guests send this; nothing is stored. */
@@ -155,6 +178,7 @@ export function fromResponse(id: string, payload: unknown): UiMessage {
     text: typeof data.content === "string" && data.content ? data.content : (answer?.summary ?? ""),
     answer,
     sources: toSources(data.sources),
+    asked: toAsked(data.understanding),
   };
 }
 
@@ -164,7 +188,14 @@ export function fromStored(id: string, document: unknown): UiMessage {
   const text = typeof data.text === "string" ? data.text : "";
   if (data.role !== "assistant") return { id, role: "user", text };
   const structured = isRecord(data.structured) ? data.structured : {};
-  return { id, role: "assistant", text, answer: toAnswer(structured.answer), sources: toSources(structured.sources) };
+  return {
+    id,
+    role: "assistant",
+    text,
+    answer: toAnswer(structured.answer),
+    sources: toSources(structured.sources),
+    asked: toAsked(structured.understanding),
+  };
 }
 
 /** "p. 3", "pp. 3-4", or "" for a structured record. */
