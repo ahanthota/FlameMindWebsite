@@ -5,6 +5,7 @@
  * flame spread rate in mm/s.
  */
 
+import { countOutcomes, type OutcomeCounts } from "./charts";
 import type { Investigation, TestCondition } from "./types";
 
 export const KPA_TO_PSI = 0.1450377;
@@ -113,6 +114,8 @@ export interface InvestigationRow extends RowBase {
   /** Span of the flame spread rates its tests report. */
   spreadRate: Range;
   testCount: number;
+  /** How many of its tests ended in each outcome. */
+  outcomes: OutcomeCounts;
   needsReview: boolean;
   psiUrl: string;
 }
@@ -168,6 +171,7 @@ export function toInvestigationRow(item: Investigation): InvestigationRow {
     flow: recordRange(item.flow_cm_s_min, item.flow_cm_s_max, item.tests.map((test) => test.flow_cm_s)),
     spreadRate: spanOf(item.tests.map((test) => test.spread_rate_mm_s)),
     testCount: item.tests.length,
+    outcomes: countOutcomes(item.tests.map((test) => test.outcome)),
     needsReview: item.needs_review,
     psiUrl: item.psi_url,
     searchText: [item.id, item.acronym, item.name, item.program, item.sample_geometry, ...item.fuels, ...item.objectives]

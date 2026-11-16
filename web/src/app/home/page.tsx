@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AskBox } from "@/components/AskBox";
+import { CoverageLegend, CoverageMap } from "@/components/CoverageMap";
 import { EmptyState, linkClass } from "@/components/States";
+import { buildMapData } from "@/lib/charts";
 import { gaps, investigations } from "@/lib/data";
 import { knowledgeStats } from "@/lib/knowledge";
 
@@ -33,6 +35,8 @@ export default function Home() {
   // Every investigation with extracted records is also in the text index, so take the larger count.
   const indexed = Math.max(knowledge.investigations, investigations.length);
   const tests = investigations.reduce((total, item) => total + item.tests.length, 0);
+  const map = buildMapData(gaps);
+  const untested = map.habitats.filter((habitat) => habitat.onGrid && !habitat.tested).length;
   const numbers = [
     { label: "Investigations", value: indexed, note: `${investigations.length} with extracted test records` },
     { label: "Tests", value: tests, note: "Individual test conditions" },
@@ -69,6 +73,33 @@ export default function Home() {
           </li>
         ))}
       </ul>
+
+      {map.habitats.length > 0 ? (
+        <section aria-label="Coverage preview" className="mb-6 rounded-lg border border-line bg-surface p-5">
+          <div className="grid items-center gap-5 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+            <div>
+              <h2 className="text-lg font-semibold tracking-tight">Where habitats sit, and where tests exist</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">
+                {map.covered.length} of {map.cellCount} oxygen and pressure cells hold a test
+                {map.coveredGravities.length > 0 ? `, all in ${map.coveredGravities.join(" or ")}` : ""}. {untested} of
+                the {map.habitats.filter((habitat) => habitat.onGrid).length} habitat atmospheres marked here have no
+                test at their own gravity.
+              </p>
+              <p className="mt-3 text-sm">
+                <Link href="/gaps/" className={linkClass}>
+                  Open the coverage map
+                </Link>
+              </p>
+            </div>
+            <figure>
+              <CoverageMap data={map} compact />
+              <figcaption className="mt-2">
+                <CoverageLegend data={map} />
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+      ) : null}
 
       {indexed === 0 ? (
         <div className="mb-6">

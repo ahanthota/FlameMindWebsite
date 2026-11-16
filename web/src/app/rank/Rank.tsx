@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { HabitatArt } from "@/components/HabitatArt";
 import { MatchMeter, PART_COLOR, RankCharts } from "@/components/RankCharts";
 import { linkClass } from "@/components/States";
 import { formatNumber, MISSING } from "@/lib/format";
@@ -15,20 +16,31 @@ export function Rank({ views }: { views: RankHabitatView[] }) {
     <div>
       <fieldset className="mb-4 rounded-lg border border-line bg-surface p-4">
         <legend className="px-1 text-sm font-medium">Habitat</legend>
-        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">
-          {views.map((item) => (
-            <label key={item.id} className="flex items-center gap-2 text-sm">
-              <input
-                type="radio"
-                name="habitat"
-                value={item.id}
-                checked={current.id === item.id}
-                onChange={() => setId(item.id)}
-                className="size-4 accent-accent"
-              />
-              {item.label}
-            </label>
-          ))}
+        <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-7">
+          {views.map((item) => {
+            const checked = current.id === item.id;
+            return (
+              <label
+                key={item.id}
+                className={`flex cursor-pointer flex-col rounded-lg border p-1.5 text-sm transition-shadow has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
+                  checked ? "border-accent bg-accent-soft shadow-sm ring-1 ring-accent" : "border-line bg-surface hover:border-accent"
+                }`}
+              >
+                <HabitatArt id={item.id} />
+                <span className="flex items-center gap-2 px-1 pb-0.5 pt-2">
+                  <input
+                    type="radio"
+                    name="habitat"
+                    value={item.id}
+                    checked={checked}
+                    onChange={() => setId(item.id)}
+                    className="size-4 shrink-0 accent-accent focus-visible:outline-none"
+                  />
+                  <span className={checked ? "font-medium text-accent" : ""}>{item.label}</span>
+                </span>
+              </label>
+            );
+          })}
         </div>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
           Conditions is how close the oxygen and pressure are, and it counts for 50%. Intent counts for 15%: here, that

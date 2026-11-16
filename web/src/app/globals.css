@@ -33,3 +33,56 @@ table {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+/* Coverage map: the line to the nearest test draws itself, then its label fades in. */
+@keyframes fm-draw {
+  from {
+    stroke-dashoffset: var(--fm-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fm-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fm-pulse {
+  from {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.fm-draw {
+  stroke-dasharray: var(--fm-length);
+  animation: fm-draw 700ms ease-out both;
+}
+
+.fm-fade {
+  animation: fm-fade 300ms ease-out 600ms both;
+}
+
+.fm-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fm-pulse 600ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-draw,
+  .fm-fade,
+  .fm-pulse {
+    animation: none;
+  }
+}

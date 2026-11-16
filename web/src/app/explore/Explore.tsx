@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { OutcomeLegend, OutcomeStrip } from "@/components/OutcomeStrip";
 import { buttonClass, EmptyState, linkClass, PageHeader } from "@/components/States";
+import { outcomeSummary, statedOutcomes } from "@/lib/charts";
 import { deriveFilter } from "@/lib/api";
 import { errorMessage, useAuth } from "@/lib/auth";
 import {
@@ -40,6 +42,7 @@ import { getFirebase } from "@/lib/firebase";
 import { formatList, formatNumber, formatRange, label, MISSING } from "@/lib/format";
 import { getSavedFilter, listSavedFilters, NAME_MAX_LENGTH, saveFilter, type SavedFilter } from "@/lib/userdata";
 import { CustomFilterBox } from "./CustomFilter";
+import { SpreadScatter } from "./SpreadScatter";
 
 type Mode = "investigations" | "tests";
 
@@ -92,6 +95,14 @@ const INVESTIGATION_COLUMNS: Column<InvestigationRow>[] = [
         </span>
       </div>
     ),
+  },
+  {
+    key: "outcomes",
+    header: "Outcomes",
+    // Sorts by how many tests state an outcome.
+    sortValue: (row) => (row.testCount > 0 ? statedOutcomes(row.outcomes) : null),
+    cell: (row) => <OutcomeStrip counts={row.outcomes} />,
+    csv: (row) => outcomeSummary(row.outcomes) || null,
   },
   { key: "fuelPhase", header: "Fuel phase", sortValue: (row) => row.fuelPhase, cell: (row) => label(row.fuelPhase) },
   {
@@ -370,6 +381,8 @@ export function Explore({ investigations, tests }: { investigations: Investigati
   const hasSpreadRate = customs.some((item) => item.filter.kind === "mapped" && item.filter.field === "spread_rate_mm_s");
   const customDefinitions = customs.map((item) => item.filter);
 
+  const testResults = applyCustomFilters(mode === "tests" ? filterTests(tests, filters) : [], customs);
+
   const shared = {
     total,
     noun,
@@ -458,11 +471,13 @@ export function Explore({ investigations, tests }: { investigations: Investigati
                 { header: "PSI folder", value: (row) => row.psiUrl },
               ]}
               rowKey={(row) => row.id}
+              legend={<OutcomeLegend />}
               {...shared}
             />
           ) : (
             <Results
-              {...applyCustomFilters(filterTests(tests, filters), customs)}
+              {...testResults}
+              chart={<SpreadScatter rows={testResults.matches} />}
               columns={[...TEST_COLUMNS, ...derived.map((item) => derivedColumn<TestRow>(item))]}
               csvExtra={[
                 { header: "PSI id", value: (row) => row.investigationId },
@@ -743,7 +758,13 @@ function Results<T>({
   customCount,
   resetKey,
   controls,
+  chart,
+  legend,
 }: {
+  /** A chart of the matching rows, above the table. */
+  chart?: ReactNode;
+  /** A key for colored cells in the table. */
+  legend?: ReactNode;
   /** Rows that pass every filter. */
   matches: T[];
   /** Rows that pass the other filters but have no value for a custom parameter. Never counted as matches. */
@@ -821,6 +842,9 @@ function Results<T>({
           </button>
         </div>
       </div>
+
+      {matches.length > 0 ? chart : null}
+      {matches.length > 0 && legend ? <div className="mb-2">{legend}</div> : null}
 
       {matches.length === 0 ? (
         <EmptyState

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState, PageHeader, linkClass } from "@/components/States";
 import { ConditionCharts } from "@/components/ConditionCharts";
+import { NearestExplorer } from "@/components/NearestExplorer";
+import { buildMapData } from "@/lib/charts";
 import { gaps, getInvestigation, habitats, investigations } from "@/lib/data";
 import { formatNumber } from "@/lib/format";
 import {
@@ -67,6 +69,8 @@ export default function GapsPage() {
           })}
         </dl>
       </section>
+
+      <NearestExplorer data={buildMapData(gaps)} investigationPages={investigations.map((item) => item.id)} />
 
       <section className="mb-6 rounded-lg border border-warn/30 bg-warn-soft px-4 py-4 text-sm leading-6">
         <h2 className="text-base font-semibold text-warn">
